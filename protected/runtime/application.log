@@ -194,3 +194,57 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/yii-basic/webapp_yii/index.php/gii
 ---
+2021/05/12 11:38:14 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.tbl_comment' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_Comment`.
+in G:\xampp\htdocs\yii-basic\webapp_yii\index.php (13)
+2021/05/12 11:38:22 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.tbl_comment' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_comment`.
+in G:\xampp\htdocs\yii-basic\webapp_yii\index.php (13)
+2021/05/12 12:02:58 [error] [php] count(): Parameter must be an array or an object that implements Countable (G:\xampp\htdocs\yii-1.1.13\framework\gii\generators\model\ModelCode.php:357)
+Stack trace:
+#0 G:\xampp\htdocs\yii-1.1.13\framework\gii\CCodeGenerator.php(162): ModelCode->prepare()
+#1 G:\xampp\htdocs\yii-1.1.13\framework\gii\CCodeGenerator.php(63): ModelGenerator->prepare()
+#2 G:\xampp\htdocs\yii-1.1.13\framework\web\actions\CInlineAction.php(49): ModelGenerator->actionIndex()
+#3 G:\xampp\htdocs\yii-1.1.13\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 G:\xampp\htdocs\yii-1.1.13\framework\web\CController.php(286): ModelGenerator->runAction()
+#5 G:\xampp\htdocs\yii-1.1.13\framework\web\CController.php(265): ModelGenerator->runActionWithFilters()
+#6 G:\xampp\htdocs\yii-1.1.13\framework\web\CWebApplication.php(282): ModelGenerator->run()
+#7 G:\xampp\htdocs\yii-1.1.13\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 G:\xampp\htdocs\yii-1.1.13\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 G:\xampp\htdocs\yii-basic\webapp_yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/yii-basic/webapp_yii/index.php/gii/model
+in G:\xampp\htdocs\yii-basic\webapp_yii\index.php (13)
+2021/05/12 12:03:09 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.tbl_comment' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_comment`.
+in G:\xampp\htdocs\yii-basic\webapp_yii\index.php (13)
+2021/05/12 12:03:30 [error] [php] count(): Parameter must be an array or an object that implements Countable (G:\xampp\htdocs\yii-1.1.13\framework\gii\generators\model\ModelCode.php:357)
+Stack trace:
+#0 G:\xampp\htdocs\yii-1.1.13\framework\gii\CCodeGenerator.php(162): ModelCode->prepare()
+#1 G:\xampp\htdocs\yii-1.1.13\framework\gii\CCodeGenerator.php(63): ModelGenerator->prepare()
+#2 G:\xampp\htdocs\yii-1.1.13\framework\web\actions\CInlineAction.php(49): ModelGenerator->actionIndex()
+#3 G:\xampp\htdocs\yii-1.1.13\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 G:\xampp\htdocs\yii-1.1.13\framework\web\CController.php(286): ModelGenerator->runAction()
+#5 G:\xampp\htdocs\yii-1.1.13\framework\web\CController.php(265): ModelGenerator->runActionWithFilters()
+#6 G:\xampp\htdocs\yii-1.1.13\framework\web\CWebApplication.php(282): ModelGenerator->run()
+#7 G:\xampp\htdocs\yii-1.1.13\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 G:\xampp\htdocs\yii-1.1.13\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 G:\xampp\htdocs\yii-basic\webapp_yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/yii-basic/webapp_yii/index.php/gii/model
+in G:\xampp\htdocs\yii-basic\webapp_yii\index.php (13)
+2021/05/12 12:03:48 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.tbl_comment' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_comment`.
+in G:\xampp\htdocs\yii-basic\webapp_yii\index.php (13)
+2021/05/12 12:04:04 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.tbl_comment' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_comment`.
+in G:\xampp\htdocs\yii-basic\webapp_yii\index.php (13)
+2021/05/12 12:04:07 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.tbl_comment' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_comment`.
+in G:\xampp\htdocs\yii-basic\webapp_yii\index.php (13)
+2021/05/12 12:04:14 [error] [php] count(): Parameter must be an array or an object that implements Countable (G:\xampp\htdocs\yii-1.1.13\framework\gii\generators\model\ModelCode.php:357)
+Stack trace:
+#0 G:\xampp\htdocs\yii-1.1.13\framework\gii\CCodeGenerator.php(162): ModelCode->prepare()
+#1 G:\xampp\htdocs\yii-1.1.13\framework\gii\CCodeGenerator.php(63): ModelGenerator->prepare()
+#2 G:\xampp\htdocs\yii-1.1.13\framework\web\actions\CInlineAction.php(49): ModelGenerator->actionIndex()
+#3 G:\xampp\htdocs\yii-1.1.13\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 G:\xampp\htdocs\yii-1.1.13\framework\web\CController.php(286): ModelGenerator->runAction()
+#5 G:\xampp\htdocs\yii-1.1.13\framework\web\CController.php(265): ModelGenerator->runActionWithFilters()
+#6 G:\xampp\htdocs\yii-1.1.13\framework\web\CWebApplication.php(282): ModelGenerator->run()
+#7 G:\xampp\htdocs\yii-1.1.13\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 G:\xampp\htdocs\yii-1.1.13\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 G:\xampp\htdocs\yii-basic\webapp_yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/yii-basic/webapp_yii/index.php/gii/model
+in G:\xampp\htdocs\yii-basic\webapp_yii\index.php (13)

@@ -4,3 +4,10 @@ https://www.yiiframework.com/doc/guide/1.1/en/database.migration
 -------
 gii model
 https://www.youtube.com/watch?v=ZDbL_-qWnmA
+
+-------
+migrate
+yiic migrate
+yiic migrate down
+yiic migrate create ngaytao_lookup
+yiic migrate up
