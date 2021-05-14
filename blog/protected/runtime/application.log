@@ -50,3 +50,31 @@ Stack trace:
 #9 G:\xampp\htdocs\webapp_yii\blog\index.php(13): CWebApplication->run()
 REQUEST_URI=/webapp_yii/blog/index.php?r=gii/model
 in G:\xampp\htdocs\webapp_yii\blog\index.php (13)
+2021/05/14 05:41:13 [error] [php] count(): Parameter must be an array or an object that implements Countable (G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\gii\generators\model\ModelCode.php:357)
+Stack trace:
+#0 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\gii\CCodeGenerator.php(162): ModelCode->prepare()
+#1 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\gii\CCodeGenerator.php(63): ModelGenerator->prepare()
+#2 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\actions\CInlineAction.php(49): ModelGenerator->actionIndex()
+#3 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(286): ModelGenerator->runAction()
+#5 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(265): ModelGenerator->runActionWithFilters()
+#6 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CWebApplication.php(282): ModelGenerator->run()
+#7 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 G:\xampp\htdocs\webapp_yii\blog\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=gii/model
+in G:\xampp\htdocs\webapp_yii\blog\index.php (13)
+2021/05/14 06:17:47 [error] [exception.CHttpException.404] CHttpException: Unable to find the code you requested. in G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\gii\CCodeGenerator.php:90
+Stack trace:
+#0 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\actions\CInlineAction.php(49): CCodeGenerator->actionCode()
+#1 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#3 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CWebApplication.php(282): CController->run('code')
+#5 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CWebApplication.php(141): CWebApplication->runController('gii/crud/code')
+#6 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#7 G:\xampp\htdocs\webapp_yii\blog\index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/index.php?r=gii/crud/code&id=0
+HTTP_REFERER=http://webappyii.ceres/index.php?r=gii/crud
+---
