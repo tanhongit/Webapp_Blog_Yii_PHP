@@ -1,0 +1,2 @@
+2021/05/14 04:03:28 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.user' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `user`.
+in G:\xampp\htdocs\webapp_yii\blog\index.php (13)
