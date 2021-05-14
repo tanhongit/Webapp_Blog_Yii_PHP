@@ -30,4 +30,4 @@ class m210514_021022_lookup extends CDbMigration
 	{
 	}
 	*/
-}
+}	
