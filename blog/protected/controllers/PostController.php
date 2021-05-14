@@ -138,7 +138,7 @@ class PostController extends Controller
 		if(isset($_GET['Post']))
 			$model->attributes=$_GET['Post'];
 
-		$this->render('fu',array(
+		$this->render('admin',array(
 			'model'=>$model,
 		));
 	}

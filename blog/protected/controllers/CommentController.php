@@ -138,7 +138,7 @@ class CommentController extends Controller
 		if(isset($_GET['Comment']))
 			$model->attributes=$_GET['Comment'];
 
-		$this->render('admin',array(
+		$this->render('cT',array(
 			'model'=>$model,
 		));
 	}
