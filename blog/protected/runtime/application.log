@@ -1,3 +1,52 @@
 2021/05/14 04:03:28 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.user' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `user`.
 in G:\xampp\htdocs\webapp_yii\blog\index.php (13)
 2021/05/14 04:15:32 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2021/05/14 04:47:43 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table `blogbasic`.`tbl_comment` (errno: 121 "Duplicate key on write or update"). The SQL statement executed was: ALTER TABLE `tbl_comment` ADD CONSTRAINT `FK_user_post` FOREIGN KEY (`post_id`) REFERENCES `tbl_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE.
+2021/05/14 04:47:43 [error] [exception.CDbException] CDbException: CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table `blogbasic`.`tbl_comment` (errno: 121 "Duplicate key on write or update"). The SQL statement executed was: ALTER TABLE `tbl_comment` ADD CONSTRAINT `FK_user_post` FOREIGN KEY (`post_id`) REFERENCES `tbl_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE in G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\db\CDbCommand.php:357
+Stack trace:
+#0 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\db\CDbCommand.php(1432): CDbCommand->execute()
+#1 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\db\CDbMigration.php(343): CDbCommand->addForeignKey('FK_user_post', '{{comment}}', 'post_id', '{{post}}', 'id', 'CASCADE', 'CASCADE')
+#2 G:\xampp\htdocs\webapp_yii\blog\protected\migrations\m210514_024701_comment_foreigin_key.php(7): CDbMigration->addForeignKey('FK_user_post', '{{comment}}', 'post_id', '{{post}}', 'id', 'CASCADE', 'CASCADE')
+#3 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\cli\commands\MigrateCommand.php(385): m210514_024701_comment_foreigin_key->up()
+#4 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\cli\commands\MigrateCommand.php(109): MigrateCommand->migrateUp('m210514_024701_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\console\CConsoleCommandRunner.php(67): CConsoleCommand->run(Array)
+#8 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\console\CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#9 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\base\CApplication.php(169): CConsoleApplication->processRequest()
+#10 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\yiic.php(33): CApplication->run()
+#11 G:\xampp\htdocs\webapp_yii\blog\protected\yiic.php(7): require_once('G:\\xampp\\htdocs...')
+#12 {main}
+---
+2021/05/14 04:49:00 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.user' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `user`.
+in G:\xampp\htdocs\webapp_yii\blog\index.php (13)
+2021/05/14 04:49:16 [error] [php] count(): Parameter must be an array or an object that implements Countable (G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\gii\generators\model\ModelCode.php:357)
+Stack trace:
+#0 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\gii\CCodeGenerator.php(162): ModelCode->prepare()
+#1 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\gii\CCodeGenerator.php(63): ModelGenerator->prepare()
+#2 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\actions\CInlineAction.php(49): ModelGenerator->actionIndex()
+#3 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(286): ModelGenerator->runAction()
+#5 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(265): ModelGenerator->runActionWithFilters()
+#6 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CWebApplication.php(282): ModelGenerator->run()
+#7 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 G:\xampp\htdocs\webapp_yii\blog\index.php(13): CWebApplication->run()
+REQUEST_URI=/webapp_yii/blog/index.php?r=gii/model
+in G:\xampp\htdocs\webapp_yii\blog\index.php (13)
+2021/05/14 04:49:32 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'blogbasic.user' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `user`.
+in G:\xampp\htdocs\webapp_yii\blog\index.php (13)
+2021/05/14 04:49:40 [error] [php] count(): Parameter must be an array or an object that implements Countable (G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\gii\generators\model\ModelCode.php:357)
+Stack trace:
+#0 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\gii\CCodeGenerator.php(162): ModelCode->prepare()
+#1 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\gii\CCodeGenerator.php(63): ModelGenerator->prepare()
+#2 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\actions\CInlineAction.php(49): ModelGenerator->actionIndex()
+#3 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(286): ModelGenerator->runAction()
+#5 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CController.php(265): ModelGenerator->runActionWithFilters()
+#6 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CWebApplication.php(282): ModelGenerator->run()
+#7 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 G:\xampp\htdocs\webapp_yii\yii-1.1.13\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 G:\xampp\htdocs\webapp_yii\blog\index.php(13): CWebApplication->run()
+REQUEST_URI=/webapp_yii/blog/index.php?r=gii/model
+in G:\xampp\htdocs\webapp_yii\blog\index.php (13)
