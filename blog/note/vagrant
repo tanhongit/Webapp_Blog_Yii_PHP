@@ -1,5 +1,7 @@
 vagrant up
 
+vagrant suspend
+
 vagrant resume
 
 -----------
@@ -8,3 +10,46 @@ vagrant ssh
     (ubuntu)
     whoami
     sudo apt-get update -y
+
+    -------
+        check ping:
+            which ping
+            ping localhost
+
+        check apache:
+            service apache2 status
+
+    sudo apt-get install apache2
+    sudo apt-get install systemd
+
+    ls /var/www/html/    //link data virtual machine vagrant
+
+-----------
+vagrant reload //use when Vagrantfile has a change
+
+
+    
+
+
+-----------------------------
+Bug log:
+
+Machine already provisioned. Run `vagrant provision` or use the `--provision`
+https://stackoverflow.com/questions/40772779/how-to-start-already-provisioned-vagrant-box-without-losing-data
+
+Unable to lock the administration directory (/var/lib/dpkg/)
+https://vinasupport.com/sua-loi-unable-to-lock-the-administration-directory-var-lib-dpkg-ubuntu/
+
+-----------------------------
+Tutorial: 
+https://www.youtube.com/watch?v=NzvByqoreoc
+https://www.youtube.com/watch?v=NzvByqoreoc&list=PLbup-MaQtodWsbllDXyHS4Cef4G8G5iNX
+
+config: https://www.youtube.com/watch?v=Bma7P8q02KI&t=582s
+
+setup lamp: https://www.youtube.com/watch?v=9Gyt3G5wLAs&list=PLbup-MaQtodWsbllDXyHS4Cef4G8G5iNX&index=3
+
+
+-----------------------------
+path to the folder containing the downloaded boxes
+https://helpex.vn/question/vagrant-tai-tap-tin-.box-cua-no-ve-dau-5cb7def8ae03f646703c8634 (C:/Users/USERNAME/.vagrant.d/boxes)

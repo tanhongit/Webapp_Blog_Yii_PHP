@@ -362,3 +362,67 @@ Stack trace:
 REQUEST_URI=/index.php?r=comment/admin
 HTTP_REFERER=http://webappyii.ceres/index.php?r=comment/create
 ---
+2021/05/17 08:17:12 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /var/www/html/webapp_yii/yii-1.1.13/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /var/www/html/webapp_yii/yii-1.1.13/framework/db/ar/CActiveRecord.php(623): CApplication->getDb()
+#5 /var/www/html/webapp_yii/yii-1.1.13/framework/db/ar/CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 /var/www/html/webapp_yii/yii-1.1.13/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Post))
+#7 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CActiveDataProvider.php(74): CActiveRecord::model('Post')
+#8 /var/www/html/webapp_yii/blog/protected/controllers/PostController.php(125): CActiveDataProvider->__construct('Post')
+#9 /var/www/html/webapp_yii/yii-1.1.13/framework/web/actions/CInlineAction.php(49): PostController->actionIndex()
+#10 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/html/webapp_yii/yii-1.1.13/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /var/www/html/webapp_yii/yii-1.1.13/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /var/www/html/webapp_yii/yii-1.1.13/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/html/webapp_yii/yii-1.1.13/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(291): CFilterChain->run()
+#17 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(282): CController->run('')
+#19 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('post')
+#20 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/webapp_yii/blog/index.php?r=post
+---
+2021/05/17 08:47:24 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "post". in /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(270): CController->missingAction('post')
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(282): CController->run('post')
+#2 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('site/post')
+#3 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/webapp_yii/blog/index.php?r=site/post
+---
+2021/05/17 08:47:30 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /var/www/html/webapp_yii/yii-1.1.13/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /var/www/html/webapp_yii/yii-1.1.13/framework/db/ar/CActiveRecord.php(623): CApplication->getDb()
+#5 /var/www/html/webapp_yii/yii-1.1.13/framework/db/ar/CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 /var/www/html/webapp_yii/yii-1.1.13/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Post))
+#7 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CActiveDataProvider.php(74): CActiveRecord::model('Post')
+#8 /var/www/html/webapp_yii/blog/protected/controllers/PostController.php(125): CActiveDataProvider->__construct('Post')
+#9 /var/www/html/webapp_yii/yii-1.1.13/framework/web/actions/CInlineAction.php(49): PostController->actionIndex()
+#10 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/html/webapp_yii/yii-1.1.13/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /var/www/html/webapp_yii/yii-1.1.13/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /var/www/html/webapp_yii/yii-1.1.13/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/html/webapp_yii/yii-1.1.13/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(291): CFilterChain->run()
+#17 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(282): CController->run('')
+#19 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('post')
+#20 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/webapp_yii/blog/index.php?r=post
+---
