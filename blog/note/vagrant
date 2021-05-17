@@ -1,0 +1,10 @@
+vagrant up
+
+vagrant resume
+
+-----------
+vagrant ssh
+    --------
+    (ubuntu)
+    whoami
+    sudo apt-get update -y
