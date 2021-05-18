@@ -452,3 +452,43 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/webapp_yii/blog/index.php?r=tag
 ---
+2021/05/18 04:14:06 [error] [exception.CHttpException.404] CHttpException: Không thể giải quyết yêu cầu "pót". in /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('p\xC3\xB3t')
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/webapp_yii/blog/index.php?r=p%C3%B3t
+---
+2021/05/18 04:14:45 [error] [exception.CHttpException.404] CHttpException: Impossible de résoudre la requête « pót ». in /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('p\xC3\xB3t')
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/webapp_yii/blog/index.php?r=p%C3%B3t
+---
+2021/05/18 04:14:47 [error] [exception.CHttpException.404] CHttpException: Impossible de résoudre la requête « tag ». in /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('tag')
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/webapp_yii/blog/index.php?r=tag
+---
+2021/05/18 04:14:48 [error] [exception.CHttpException.404] CHttpException: Impossible de résoudre la requête « tag ». in /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('tag')
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/webapp_yii/blog/index.php?r=tag
+---
+2021/05/18 04:14:49 [error] [exception.CHttpException.404] CHttpException: Impossible de résoudre la requête « pót ». in /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('p\xC3\xB3t')
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/webapp_yii/blog/index.php?r=p%C3%B3t
+---

@@ -115,6 +115,9 @@ return array(
 				],
 			],
 		],
+		'message' => array(
+            'source' => 'MPhpMessageSource'
+        )
 	),
 
 	// application-level parameters that can be accessed
