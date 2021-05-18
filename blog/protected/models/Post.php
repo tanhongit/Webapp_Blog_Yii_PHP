@@ -74,13 +74,13 @@ class Post extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Title',
-			'content' => 'Content',
-			'tag' => 'Tag',
-			'status' => 'Status',
-			'create_time' => 'Create Time',
-			'update_time' => 'Update Time',
-			'author_id' => 'Author',
+			'title' => Yii::t('app','model.post.title'),
+			'content' => Yii::t('app','model.post.content'),
+			'tag' => Yii::t('app','model.post.tag'),
+			'status' => Yii::t('app','model.post.status'),
+			'create_time' => Yii::t('app','model.post.create_time'),
+			'update_time' => Yii::t('app','model.post.update_time'),
+			'author_id' => Yii::t('app','model.post.author'),
 		);
 	}
 

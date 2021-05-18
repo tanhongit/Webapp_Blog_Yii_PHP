@@ -33,11 +33,8 @@
 	<?php echo CHtml::encode($data->update_time); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('author_id')); ?>:</b>
 	<?php echo CHtml::encode($data->author_id); ?>
 	<br />
-
-	*/ ?>
 
 </div>

@@ -63,8 +63,8 @@ class Tag extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'frequency' => 'Frequency',
+			'name' => 'model.tag.name',
+			'frequency' => 'model.tag.frequency',
 		);
 	}
 

@@ -17,6 +17,8 @@ return array(
 		'application.models.*',
 		'application.components.*',
 	),
+	'sourceLanguage'=>'00',
+    'language'=>'vi',
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
@@ -100,6 +102,19 @@ return array(
 				*/
 			),
 		),
+		'i18n' => [
+			'translations' => [
+				'app*' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					//'basePath' => '@app/messages',
+					//'sourceLanguage' => 'en-US',
+					'fileMap' => [
+						'app' => 'app.php',
+						'app/error' => 'error.php',
+					],
+				],
+			],
+		],
 	),
 
 	// application-level parameters that can be accessed
