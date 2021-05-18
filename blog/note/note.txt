@@ -13,6 +13,11 @@ yiic migrate create ngaytao_lookup
 yiic migrate up
 
 
+-------
+
+How to translate and do the translations the easy way
+https://www.yiiframework.com/wiki/243/how-to-translate-and-do-the-translations-the-easy-way
+
 ------
 virtual host:
 https://hocwebchuan.com/tutorial/php/xampp_config_virtual_host.php
@@ -20,3 +25,9 @@ https://stackoverflow.com/questions/35668594/create-a-virtual-host-in-xamp-windo
 
 multi ver php
 https://tinhocvanphong.com.vn/chay-nhieu-version-php-voi-xampp-tren-windows.html
+
+----------Bug
+
+Gii module does not allow access and does not generate preview´s and Files
+You are not allowed to access this page gii vagrant
+https://github.com/yiisoft/yii2/issues/7704
