@@ -18,6 +18,10 @@ yiic migrate up
 How to translate and do the translations the easy way
 https://www.yiiframework.com/wiki/243/how-to-translate-and-do-the-translations-the-easy-way
 
+Internationalization using behavior method
+https://www.yiiframework.com/wiki/26/setting-and-maintaining-the-language-in-application-i18n
+
+
 ------
 virtual host:
 https://hocwebchuan.com/tutorial/php/xampp_config_virtual_host.php
