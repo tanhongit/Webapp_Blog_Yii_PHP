@@ -106,4 +106,14 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	
+	/**
+	 * set the application language or the theme according to the choice of the user
+	 */
+	public function actionSettings()
+	{
+		if (isset($_POST['language']))
+			Yii::app()->user->setState('applicationLanguage',$_POST['language']);
+		$this->redirect($_POST['url']);
+	}
 }
