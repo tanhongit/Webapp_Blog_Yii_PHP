@@ -21,8 +21,18 @@ https://www.yiiframework.com/wiki/243/how-to-translate-and-do-the-translations-t
 Internationalization using behavior method
 https://www.yiiframework.com/wiki/26/setting-and-maintaining-the-language-in-application-i18n
 
+setFlash & setState
+https://www.yiiframework.com/doc/api/1.1/CWebUser#setFlash-detail
+https://www.yiiframework.com/doc/api/1.1/CWebUser#setState-detail
 
-------
+
+--------
+Url manager 
+https://www.youtube.com/watch?v=QaCf8EO30CE (Need virtual host)
+
+
+------------------------------------------------------------------------------------------
+==========================================================================================
 virtual host:
 https://hocwebchuan.com/tutorial/php/xampp_config_virtual_host.php
 https://stackoverflow.com/questions/35668594/create-a-virtual-host-in-xamp-windows-10

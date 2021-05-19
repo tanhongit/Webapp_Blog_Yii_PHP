@@ -2610,3 +2610,108 @@ REQUEST_URI=/webapp_yii/blog/index.php?r=site/index
 in /var/www/html/webapp_yii/blog/protected/controllers/SiteController.php (117)
 in /var/www/html/webapp_yii/blog/protected/views/site/index.php (5)
 in /var/www/html/webapp_yii/blog/protected/controllers/SiteController.php (32)
+2021/05/19 04:52:01 [error] [exception.CHttpException.404] CHttpException: Le système ne peut trouver l'action « post » demandée. in /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(270): CController->missingAction('post')
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(282): CController->run('post')
+#2 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('site/post')
+#3 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/webapp_yii/blog/index.php/site/post
+---
+2021/05/19 06:17:57 [error] [exception.CException] CException: Alias "application.components.CarUrlRule" không có hiệu lực. Phải chắc chắn nó chỉ đến một tập tin PHP đã có. in /var/www/html/webapp_yii/yii-1.1.13/framework/YiiBase.php:316
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/YiiBase.php(196): YiiBase::import('application.com...', true)
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CUrlManager.php(366): YiiBase::createComponent(Array)
+#2 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(140): CUrlManager->parseUrl(Object(CHttpRequest))
+#3 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/webapp_yii/blog/index.php/post/view/id/1
+HTTP_REFERER=http://vagrant.local/webapp_yii/blog/index.php/post/
+---
+2021/05/19 06:18:03 [error] [exception.CException] CException: Alias "application.components.CarUrlRule" không có hiệu lực. Phải chắc chắn nó chỉ đến một tập tin PHP đã có. in /var/www/html/webapp_yii/yii-1.1.13/framework/YiiBase.php:316
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/YiiBase.php(196): YiiBase::import('application.com...', true)
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CUrlManager.php(298): YiiBase::createComponent(Array)
+#2 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(531): CUrlManager->createUrl('site/page', Array, '&')
+#3 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(967): CApplication->createUrl('site/page', Array, '&')
+#4 /var/www/html/webapp_yii/yii-1.1.13/framework/web/helpers/CHtml.php(1147): CController->createUrl('/site/page', Array)
+#5 /var/www/html/webapp_yii/yii-1.1.13/framework/web/helpers/CHtml.php(394): CHtml::normalizeUrl(Array)
+#6 /var/www/html/webapp_yii/yii-1.1.13/framework/zii/widgets/CMenu.php(245): CHtml::link('About', Array, Array)
+#7 /var/www/html/webapp_yii/yii-1.1.13/framework/zii/widgets/CMenu.php(213): CMenu->renderMenuItem(Array)
+#8 /var/www/html/webapp_yii/yii-1.1.13/framework/zii/widgets/CMenu.php(177): CMenu->renderMenuRecursive(Array)
+#9 /var/www/html/webapp_yii/yii-1.1.13/framework/zii/widgets/CMenu.php(164): CMenu->renderMenu(Array)
+#10 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(173): CMenu->run()
+#11 /var/www/html/webapp_yii/blog/protected/views/layouts/main.php(36): CBaseController->widget('zii.widgets.CMe...', Array)
+#12 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(126): require('/var/www/html/w...')
+#13 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/html/w...', Array, true)
+#14 /var/www/html/webapp_yii/yii-1.1.13/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/var/www/html/w...', Array, true)
+#15 /var/www/html/webapp_yii/yii-1.1.13/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#16 /var/www/html/webapp_yii/yii-1.1.13/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#17 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(206): COutputProcessor->run()
+#18 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#19 /var/www/html/webapp_yii/blog/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#20 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(126): require('/var/www/html/w...')
+#21 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/html/w...', Array, true)
+#22 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(784): CBaseController->renderFile('/var/www/html/w...', Array, true)
+#23 /var/www/html/webapp_yii/blog/protected/controllers/SiteController.php(32): CController->render('index')
+#24 /var/www/html/webapp_yii/yii-1.1.13/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#25 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#26 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#27 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#28 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(282): CController->run('index')
+#29 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('site/index')
+#30 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#31 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#32 {main}
+REQUEST_URI=/webapp_yii/blog/
+---
+2021/05/19 06:18:03 [error] [exception.CException] CException: Alias "application.components.CarUrlRule" không có hiệu lực. Phải chắc chắn nó chỉ đến một tập tin PHP đã có. in /var/www/html/webapp_yii/yii-1.1.13/framework/YiiBase.php:316
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/YiiBase.php(196): YiiBase::import('application.com...', true)
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CUrlManager.php(298): YiiBase::createComponent(Array)
+#2 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(531): CUrlManager->createUrl('site/page', Array, '&')
+#3 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(967): CApplication->createUrl('site/page', Array, '&')
+#4 /var/www/html/webapp_yii/yii-1.1.13/framework/web/helpers/CHtml.php(1147): CController->createUrl('/site/page', Array)
+#5 /var/www/html/webapp_yii/yii-1.1.13/framework/web/helpers/CHtml.php(394): CHtml::normalizeUrl(Array)
+#6 /var/www/html/webapp_yii/yii-1.1.13/framework/zii/widgets/CMenu.php(245): CHtml::link('About', Array, Array)
+#7 /var/www/html/webapp_yii/yii-1.1.13/framework/zii/widgets/CMenu.php(213): CMenu->renderMenuItem(Array)
+#8 /var/www/html/webapp_yii/yii-1.1.13/framework/zii/widgets/CMenu.php(177): CMenu->renderMenuRecursive(Array)
+#9 /var/www/html/webapp_yii/yii-1.1.13/framework/zii/widgets/CMenu.php(164): CMenu->renderMenu(Array)
+#10 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(173): CMenu->run()
+#11 /var/www/html/webapp_yii/blog/protected/views/layouts/main.php(36): CBaseController->widget('zii.widgets.CMe...', Array)
+#12 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(126): require('/var/www/html/w...')
+#13 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/html/w...', Array, true)
+#14 /var/www/html/webapp_yii/yii-1.1.13/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/var/www/html/w...', Array, true)
+#15 /var/www/html/webapp_yii/yii-1.1.13/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#16 /var/www/html/webapp_yii/yii-1.1.13/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#17 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(206): COutputProcessor->run()
+#18 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#19 /var/www/html/webapp_yii/blog/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#20 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(126): require('/var/www/html/w...')
+#21 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/html/w...', Array, true)
+#22 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(784): CBaseController->renderFile('/var/www/html/w...', Array, true)
+#23 /var/www/html/webapp_yii/blog/protected/controllers/SiteController.php(32): CController->render('index')
+#24 /var/www/html/webapp_yii/yii-1.1.13/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#25 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#26 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#27 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#28 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(282): CController->run('index')
+#29 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('site/index')
+#30 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#31 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#32 {main}
+REQUEST_URI=/webapp_yii/blog/
+---
+2021/05/19 07:09:14 [error] [exception.CHttpException.404] CHttpException: Hệ thống không thể tìm được hành động yêu cầu "post". in /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CController.php(270): CController->missingAction('post')
+#1 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(282): CController->run('post')
+#2 /var/www/html/webapp_yii/yii-1.1.13/framework/web/CWebApplication.php(141): CWebApplication->runController('site/post')
+#3 /var/www/html/webapp_yii/yii-1.1.13/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/html/webapp_yii/blog/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/webapp_yii/blog/index.php/site/post
+---

@@ -1,0 +1,15 @@
+#Random code
+#deny from all
+
+Options +SymLinksIfOwnerMatch
+
+RewriteEngine on
+
+RewriteBase /
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#RewriteRule ^ http://google.com/? [L,R]
+RewriteRule ^(.*)\?*$ index.php/$1 [L,QSA]
