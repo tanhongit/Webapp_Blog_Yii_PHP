@@ -1,9 +1,11 @@
 migrate
 https://www.yiiframework.com/doc/guide/1.1/en/database.migration
 
+
 -------
 gii model
 https://www.youtube.com/watch?v=ZDbL_-qWnmA
+
 
 -------
 migrate
@@ -14,7 +16,6 @@ yiic migrate up
 
 
 -------
-
 How to translate and do the translations the easy way
 https://www.yiiframework.com/wiki/243/how-to-translate-and-do-the-translations-the-easy-way
 
@@ -26,9 +27,11 @@ https://www.yiiframework.com/doc/api/1.1/CWebUser#setFlash-detail
 https://www.yiiframework.com/doc/api/1.1/CWebUser#setState-detail
 
 
---------
+-------
 Url manager 
 https://www.youtube.com/watch?v=QaCf8EO30CE (Need virtual host)
+
+http://www.bsourcecode.com/2013/04/yii-url-manager-configuration/
 
 
 ------------------------------------------------------------------------------------------
