@@ -39,7 +39,18 @@ class Controller extends CController
 	{
 		$time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 		$app = Yii::app();
+		// $app->language = 'fr_fr'; // yii uses all lowercase
 
-		echo $app->dateFormatter->formatDateTime($time, 'long', null);
+		// echo $app->dateFormatter->formatDateTime($time, 'full', null);
+		echo $app->dateFormatter->formatDateTime($time, 'full', 'full');
+	}
+
+	public function showDateFormat()
+	{
+		$time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
+		$app = Yii::app();
+		// $app->language = 'fr_fr'; // yii uses all lowercase
+
+		echo $app->dateFormatter->formatDateTime($time, 'short', null);
 	}
 }
