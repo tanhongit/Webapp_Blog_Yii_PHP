@@ -109,11 +109,9 @@ class SiteController extends Controller
 	{
 		//Internationalization by alias domain
 		$test_main_url = explode('.', $_SERVER['HTTP_HOST']);
-		!empty($test_main_url[2]) ? Yii::app()->user->setState('applicationLanguage', $test_main_url[2]) : "";
+		!empty($test_main_url[2]) && Yii::app()->user->setState('applicationLanguage', $test_main_url[2]);
 
 		//Internationalization with custom by client users
-		if (isset($_POST['language'])) {
-			Yii::app()->user->setState('applicationLanguage', $_POST['language']);
-		}
+		isset($_POST['language']) && Yii::app()->user->setState('applicationLanguage', $_POST['language']);
 	}
 }
