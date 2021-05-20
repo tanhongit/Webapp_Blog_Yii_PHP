@@ -2,7 +2,6 @@
 /* @var $this SiteController */
 
 $this->pageTitle = Yii::app()->name;
-$yii = dirname(__FILE__).'/protected/components/Yii.php';
 ?>
 
 <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
