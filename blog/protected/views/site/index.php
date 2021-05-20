@@ -30,7 +30,7 @@ $this->actionSettings();
 
 	$test_main_url = explode('.', $_SERVER['HTTP_HOST']);
 	print_r($test_main_url);
-
+	echo '<br>';
 	echo CHtml::dropDownList(
 		'language',
 		'empty',
