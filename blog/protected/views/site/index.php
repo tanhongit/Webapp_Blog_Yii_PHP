@@ -26,7 +26,12 @@ $this->actionSettings();
 	'id' => 'language-form',
 )); ?>
 <div class="row">
-	<?php echo CHtml::dropDownList(
+	<?php
+
+	$test_main_url = explode('.', $_SERVER['HTTP_HOST']);
+	print_r($test_main_url);
+
+	echo CHtml::dropDownList(
 		'language',
 		'empty',
 		array('empty' => 'Choose language', 'vi' => 'Vietnamese', 'fr' => 'French', 'more' => array('test 1', 'test 2'))
