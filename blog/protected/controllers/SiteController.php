@@ -102,16 +102,4 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
-	/**
-	 * set the application language or the theme according to the choice of the user
-	 */
-	public function actionSettings()
-	{
-		//Internationalization by alias domain
-		$test_main_url = explode('.', $_SERVER['HTTP_HOST']);
-		!empty($test_main_url[2]) && Yii::app()->user->setState('applicationLanguage', $test_main_url[2]);
-
-		//Internationalization with custom by client users
-		isset($_POST['language']) && Yii::app()->user->setState('applicationLanguage', $_POST['language']);
-	}
 }

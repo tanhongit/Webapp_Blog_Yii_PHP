@@ -36,6 +36,15 @@ http://www.bsourcecode.com/2013/04/yii-url-manager-configuration/
 
 ------------------------------------------------------------------------------------------
 ==========================================================================================
+
+URL Rewriting Guide htaccess
+http://httpd.apache.org/docs/2.0/misc/rewriteguide.html
+
+
+------------------------------------------------------------------------------------------
+==========================================================================================
+
+
 virtual host:
 https://hocwebchuan.com/tutorial/php/xampp_config_virtual_host.php
 https://stackoverflow.com/questions/35668594/create-a-virtual-host-in-xamp-windows-10

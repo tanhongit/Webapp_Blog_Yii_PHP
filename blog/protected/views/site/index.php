@@ -2,8 +2,6 @@
 /* @var $this SiteController */
 
 $this->pageTitle = Yii::app()->name;
-
-$this->actionSettings();
 ?>
 
 <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
@@ -22,7 +20,7 @@ $this->actionSettings();
 	should you have any questions.</p>
 
 
-<?php $form = $this->beginWidget('CActiveForm', array(
+<!-- <?php $form = $this->beginWidget('CActiveForm', array(
 	'id' => 'language-form',
 )); ?>
 <div class="row">
@@ -40,4 +38,4 @@ $this->actionSettings();
 <div class="row buttons">
 	<?php echo CHtml::submitButton('Change'); ?>
 </div>
-<?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?> -->
