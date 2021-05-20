@@ -19,10 +19,11 @@ $this->pageTitle = Yii::app()->name;
 	Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
 	should you have any questions.</p>
 
+<p><span><?php echo Yii::t('app', 'index.hello.text') ?></span> - <span><?= $this->showDateFormat() ?></span></p>
 
 <!-- <?php $form = $this->beginWidget('CActiveForm', array(
-	'id' => 'language-form',
-)); ?>
+			'id' => 'language-form',
+		)); ?>
 <div class="row">
 	<?php
 

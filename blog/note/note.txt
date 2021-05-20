@@ -34,6 +34,14 @@ https://www.youtube.com/watch?v=QaCf8EO30CE (Need virtual host)
 http://www.bsourcecode.com/2013/04/yii-url-manager-configuration/
 
 
+-------
+Format datetime:
+https://stackoverflow.com/questions/22275858/how-do-i-format-a-date-with-a-locale-preferred-date-format-with-the-actual-month
+
+Info
+https://www.yiiframework.com/doc/guide/2.0/en/output-formatting#date-and-time
+
+
 ------------------------------------------------------------------------------------------
 ==========================================================================================
 

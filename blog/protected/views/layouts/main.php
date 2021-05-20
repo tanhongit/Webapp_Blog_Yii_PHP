@@ -71,6 +71,10 @@ $this->actionSettings();
 				<?php echo CHtml::submitButton('Change'); ?>
 			</div>
 			<?php $this->endWidget(); ?>
+
+			<div class="datetime">
+				<?= $this->showDateTimeFormat(); ?>
+			</div>
 		</div><!-- footer -->
 
 	</div><!-- page -->
