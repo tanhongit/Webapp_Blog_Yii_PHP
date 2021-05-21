@@ -170,4 +170,8 @@ class PostController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	// public function actionListPost($id){
+	// 	$this->render('listProduct', $array = ('data'=>$data));
+	// }
 }
