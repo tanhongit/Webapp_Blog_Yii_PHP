@@ -9,6 +9,9 @@
 	<?php $form = $this->beginWidget('CActiveForm', array(
 		'id' => 'product-form',
 		'enableAjaxValidation' => false,
+		'htmlOptions' => array(
+			'enctype' => 'multipart/form-data',
+		)
 	)); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -41,25 +44,25 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'image'); ?>
-		<?php echo $form->textField($model, 'image', array('size' => 60, 'maxlength' => 255)); ?>
+		<?php echo $form->FileField($model, 'image', array('size' => 60, 'maxlength' => 255)); ?>
 		<?php echo $form->error($model, 'image'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'image2'); ?>
-		<?php echo $form->textField($model, 'image2', array('size' => 60, 'maxlength' => 255)); ?>
+		<?php echo $form->FileField($model, 'image2', array('size' => 60, 'maxlength' => 255)); ?>
 		<?php echo $form->error($model, 'image2'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'image3'); ?>
-		<?php echo $form->textField($model, 'image3', array('size' => 60, 'maxlength' => 255)); ?>
+		<?php echo $form->FileField($model, 'image3', array('size' => 60, 'maxlength' => 255)); ?>
 		<?php echo $form->error($model, 'image3'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'image4'); ?>
-		<?php echo $form->textField($model, 'image4', array('size' => 60, 'maxlength' => 255)); ?>
+		<?php echo $form->FileField($model, 'image4', array('size' => 60, 'maxlength' => 255)); ?>
 		<?php echo $form->error($model, 'image4'); ?>
 	</div>
 

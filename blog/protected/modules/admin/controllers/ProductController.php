@@ -71,9 +71,18 @@ class ProductController extends Controller
 		// print_r($user);
 		$data = CHtml::listData($category, 'id', 'name');
 
+		$path = Yii::getPathOfAlias('webroot'). '/uploads';
+
 		if(isset($_POST['Product']))
 		{
 			$model->attributes=$_POST['Product'];
+
+			$model->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
+
+			$image= CUploadedFile::getInstance($model,'image'); //image is the name input form
+			$image->saveAs($path.'/'.time().'_'.$image->name);
+			$model->image = "/uploads/".time().'_' .$image->name;
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -94,6 +103,9 @@ class ProductController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
+		$category = Category::getAllCategory();
+		// print_r($user);
+		$data = CHtml::listData($category, 'id', 'name');
 
 		if(isset($_POST['Product']))
 		{
@@ -104,6 +116,7 @@ class ProductController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+			'data'=>$data
 		));
 	}
 
