@@ -1,6 +1,8 @@
 migrate
 https://www.yiiframework.com/doc/guide/1.1/en/database.migration
 
+database migration 
+https://www.yiiframework.com/doc/guide/1.1/en/database.migration#transactional-migrations
 
 -------
 gii model
