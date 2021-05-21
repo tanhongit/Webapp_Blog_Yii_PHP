@@ -67,15 +67,19 @@ class ProductController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		$category = Category::getAllCategory();
+		// print_r($user);
+		$data = CHtml::listData($category, 'id', 'name');
+
 		if(isset($_POST['Product']))
 		{
 			$model->attributes=$_POST['Product'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-
 		$this->render('create',array(
 			'model'=>$model,
+			'data' => $data,
 		));
 	}
 
