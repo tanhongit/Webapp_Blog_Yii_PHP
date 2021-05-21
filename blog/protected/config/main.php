@@ -76,14 +76,7 @@ return array(
 				'contact' => 'site/contact',
 			),
 		),
-		'db' => array(
-			'connectionString' => 'mysql:host=localhost;dbname=blogbasic',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-			'tablePrefix' => 'tbl_',
-		),
+		'db' => require(dirname(__FILE__) . '/database.php'),
 		// uncomment the following to use a MySQL database
 		/*
 		'db'=>array(
