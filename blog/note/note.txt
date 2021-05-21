@@ -42,6 +42,11 @@ Info
 https://www.yiiframework.com/doc/guide/2.0/en/output-formatting#date-and-time
 
 
+-------
+how to seed db in Yii?
+https://stackoverflow.com/questions/17114708/how-to-seed-in-yii
+
+
 ------------------------------------------------------------------------------------------
 ==========================================================================================
 

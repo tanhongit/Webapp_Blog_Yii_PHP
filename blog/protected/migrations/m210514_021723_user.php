@@ -8,8 +8,8 @@ class m210514_021723_user extends CDbMigration
 			'id' => 'pk',
 			'username' =>'varchar(255) not null',
 			'password' => 'varchar(255) not null',
-			'(email' =>'varchar(255) not null',
-			'profile' => 'text',
+			'email' =>'varchar(255) not null',
+			'profile' => 'longtext',
 		));
 	}
 

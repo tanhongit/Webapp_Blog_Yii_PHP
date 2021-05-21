@@ -7,11 +7,11 @@ class m210514_022239_post extends CDbMigration
 		$this->createTable('{{post}}', array(
 			'id' => 'pk',
 			'title' =>'varchar(255) not null',
-			'content' => 'text not null',
+			'content' => 'longtext not null',
 			'tag' =>'varchar(255) not null',
 			'status' => 'int not null',
-			'create_time' => 'int',
-			'update_time' => 'int',
+			'create_time' => 'datetime',
+			'update_time' => 'datetime',
 			'author_id' => 'int not null',
 		));
 	}

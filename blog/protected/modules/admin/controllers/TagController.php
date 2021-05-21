@@ -1,6 +1,6 @@
 <?php
 
-class PostController extends Controller
+class TagController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,14 +62,14 @@ class PostController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Post;
+		$model=new Tag;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Post']))
+		if(isset($_POST['Tag']))
 		{
-			$model->attributes=$_POST['Post'];
+			$model->attributes=$_POST['Tag'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +91,9 @@ class PostController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Post']))
+		if(isset($_POST['Tag']))
 		{
-			$model->attributes=$_POST['Post'];
+			$model->attributes=$_POST['Tag'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +122,7 @@ class PostController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Post');
+		$dataProvider=new CActiveDataProvider('Tag');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class PostController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Post('search');
+		$model=new Tag('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Post']))
-			$model->attributes=$_GET['Post'];
+		if(isset($_GET['Tag']))
+			$model->attributes=$_GET['Tag'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class PostController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Post the loaded model
+	 * @return Tag the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Post::model()->findByPk($id);
+		$model=Tag::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +160,11 @@ class PostController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Post $model the model to be validated
+	 * @param Tag $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='post-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='tag-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
