@@ -23,7 +23,18 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'content'); ?>
-		<?php echo $form->textArea($model, 'content', array('rows' => 6, 'cols' => 50)); ?>
+		<?php //echo $form->textArea($model, 'content', array('rows' => 6, 'cols' => 50)); 
+		$this->widget('application.extensions.eckeditor.ECKEditor', array(
+			"model" => $model,
+			"attribute" => 'content',
+			"config" => array(
+				"height" => "400px",
+				"width" => "100%",
+				"toolbar" => "Basic",
+				'editorTemplate' => 'full',
+			),
+		));
+		?>
 		<?php echo $form->error($model, 'content'); ?>
 	</div>
 
