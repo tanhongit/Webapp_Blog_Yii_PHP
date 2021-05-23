@@ -49,6 +49,12 @@ how to seed db in Yii?
 https://stackoverflow.com/questions/17114708/how-to-seed-in-yii
 
 
+-------
+User date picker for input form
+https://www.yiiframework.com/wiki/438/jquery-ui-datepicker
+
+
+
 ------------------------------------------------------------------------------------------
 ==========================================================================================
 

@@ -46,6 +46,18 @@
 		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
 			'model' => $model,
 			'attribute' => 'create_time',
+			'options' => array(
+				'showOn' => 'both',				// also opens with a button
+				'dateFormat' => 'yy-mm-dd',		// format of "2012-12-25"
+				'showOtherMonths' => true,		// show dates in other months
+				'selectOtherMonths' => true,	// can seelect dates in other months
+				'changeYear' => true,			// can change year
+				'changeMonth' => true,
+				'yearRange' => '2000:2099',		// range of year
+				'minDate' => '1900-01-01',		// minimum date
+				'maxDate' => '2099-12-31',		// maximum date
+				'showButtonPanel' => true,
+			),
 			'htmlOptions' => array(
 				// 'size' => '10',			// textField size
 				'maxlength' => '10',	// textField maxlength
@@ -57,7 +69,28 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'update_time'); ?>
-		<?php echo $form->textField($model, 'update_time'); ?>
+		<?php //echo $form->textField($model, 'update_time');
+		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+			'model' => $model,
+			'attribute' => 'update_time',
+			'options' => array(
+				'showOn' => 'both',				// also opens with a button
+				'dateFormat' => 'yy-mm-dd',		// format of "2012-12-25"
+				'showOtherMonths' => true,		// show dates in other months
+				'selectOtherMonths' => true,	// can seelect dates in other months
+				'changeYear' => true,			// can change year
+				'changeMonth' => true,
+				'yearRange' => '2000:2099',		// range of year
+				'minDate' => '1900-01-01',		// minimum date
+				'maxDate' => '2099-12-31',		// maximum date
+				'showButtonPanel' => true,
+			),
+			'htmlOptions' => array(
+				// 'size' => '10',			// textField size
+				'maxlength' => '10',	// textField maxlength
+			),
+		));
+		?>
 		<?php echo $form->error($model, 'update_time'); ?>
 	</div>
 
