@@ -41,7 +41,17 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'create_time'); ?>
-		<?php echo $form->textField($model, 'create_time'); ?>
+		<?php
+		//echo $form->textField($model, 'create_time'); 
+		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+			'model' => $model,
+			'attribute' => 'create_time',
+			'htmlOptions' => array(
+				// 'size' => '10',			// textField size
+				'maxlength' => '10',	// textField maxlength
+			),
+		));
+		?>
 		<?php echo $form->error($model, 'create_time'); ?>
 	</div>
 
