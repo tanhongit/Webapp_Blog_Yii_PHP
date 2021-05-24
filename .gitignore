@@ -1,2 +1,3 @@
 /blog/protected/runtime/application.log
 /blog/assets/*
+/blog/protected/runtime/cache

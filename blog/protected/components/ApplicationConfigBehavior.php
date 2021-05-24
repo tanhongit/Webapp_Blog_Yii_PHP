@@ -29,6 +29,6 @@ class ApplicationConfigBehavior extends CBehavior
 
 		$this->owner->user->getState('applicationLanguage') ?
 			$this->owner->language = $this->owner->user->getState('applicationLanguage') :
-			$this->owner->language = 'vi';
+			$this->owner->language = 'es';
 	}
 }

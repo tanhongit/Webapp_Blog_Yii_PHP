@@ -58,6 +58,19 @@ https://www.yiiframework.com/wiki/438/jquery-ui-datepicker
 ------------------------------------------------------------------------------------------
 ==========================================================================================
 
+
+Full tutorial:
+https://www.youtube.com/watch?v=PE2Kl0dOZ2c&list=PLRd0zhQj3CBnYFqV6YxkwBKIBFsj2Zc36&index=4
+
+https://www.youtube.com/watch?v=vuFWq5antbw&list=PLdfhvjWV26rSOGtrj3OHqpfXr4Sdz9Mwc
+
+RBAC: https://www.youtube.com/watch?v=7fGUtvwofU8&list=PLdfhvjWV26rQBM9gUAPG1BnTrDGsReQSr
+
+
+
+------------------------------------------------------------------------------------------
+==========================================================================================
+
 URL Rewriting Guide htaccess
 http://httpd.apache.org/docs/2.0/misc/rewriteguide.html
 
