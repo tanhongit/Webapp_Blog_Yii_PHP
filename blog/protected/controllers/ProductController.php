@@ -82,6 +82,16 @@ class ProductController extends Controller
 
 		$data = Product::getProductByCategoryUsePagi($id, $page, $per_page);
 
-		$this->render('list', array('data' => $data)); // app//product/list/2
+		$this->render(
+			'list',
+			array(
+				'data' => $data,
+
+				//div Paging navigation
+				'page_size' => $per_page,
+				'pages' => $pages,
+				'item_count' => $count,
+			)
+		); // app//product/list/2
 	}
 }

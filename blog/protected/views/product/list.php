@@ -24,6 +24,21 @@
             ?>
         </div>
     </div>
+
+    <?php
+    $this->widget('CLinkPager', array(
+        'currentPage' => $pages->getCurrentPage(),
+        'itemCount' => $item_count,
+        'pageSize' => $page_size,
+        'maxButtonCount' => 4,
+        'header' => '',
+        'firstPageLabel' => '|<',
+        'prevPageLabel' => '<<',
+        'nextPageLabel' => '>>',
+        'lastPageLabel' => '>|',
+
+    ));
+    ?>
 </body>
 
 </html>
