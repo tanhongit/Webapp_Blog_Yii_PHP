@@ -54,11 +54,33 @@ class ProductController extends Controller
 
 
 	/** show data product by category enabled SEO friendly URLs and echo statement in the view */
-	public function actionList($id)
+	/** The transmission parameter is required with the same name as the parameter called in the rule url manager config, on the main.php file config  */
+	public function actionList3($id)
 	{
 		//Required config rule url manager in main.php
 		// 'product/list/<id:\d+>',
 		$data = Product::getProductByCategory($id);
+
+		$this->render('list', array('data' => $data)); // app//product/list/2
+	}
+
+	/** show data product by category enabled SEO friendly URLs and echo statement in the view */
+	/** The transmission parameter is required with the same name as the parameter called in the rule url manager config, on the main.php file config  */
+	public function actionList($id)
+	{
+		// get value in url
+		isset($_REQUEST['page']) && $params = $_REQUEST['page'];
+		$page = (isset($params) ? $params - 1 : 0);
+
+		//get count
+		$count = Product::getTotalProductRecordByCategory($id);
+
+		//count page
+		$pages = new CPagination($count);
+		$per_page = Yii::app()->params['pager']; //Required config params in main.php
+		$pages->setPageSize($per_page);
+
+		$data = Product::getProductByCategoryUsePagi($id, $page, $per_page);
 
 		$this->render('list', array('data' => $data)); // app//product/list/2
 	}
