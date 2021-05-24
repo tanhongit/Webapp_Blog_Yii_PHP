@@ -66,7 +66,7 @@ $this->actionSettings();
 				echo CHtml::dropDownList(
 					'language',
 					'empty',
-					array('empty' => 'Choose language', 'vi' => 'Vietnamese', 'fr' => 'French', 'more' => array('test 1', 'test 2'))
+					array('empty' => 'Choose language', 'vi' => 'Vietnamese', 'en' => 'EN', 'fr' => 'French', 'more' => array('test 1', 'test 2'))
 				); ?>
 				<?php echo CHtml::submitButton('Change'); ?>
 			</div>

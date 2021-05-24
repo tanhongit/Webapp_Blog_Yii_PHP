@@ -1,8 +1,7 @@
 <?php
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
-
 	public function actionIndex()
 	{
 		$this->render('index');
@@ -34,19 +33,4 @@ class ProductController extends Controller
 		);
 	}
 	*/
-
-	public function actionList()
-	{
-		$id = $_REQUEST['id'];
-		$data = Product::getProductByCategory($id);
-
-		$this->render('list', array('data' => $data)); // app//product/list?id=2
-	}
-
-	// public function actionList()
-	// {
-	// 	$data = Product::getProductHomePage();
-
-	// 	$this->render('list', array('data' => $data));
-	// }
 }
