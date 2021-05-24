@@ -35,18 +35,31 @@ class ProductController extends Controller
 	}
 	*/
 
-	public function actionList()
+	/** get all product data by category  */
+	public function actionList1()
+	{
+		$data = Product::getProductHomePage();
+
+		$this->render('list', array('data' => $data));
+	}
+
+	/** get product data by category using request id url . Ex: app//product/list?id=2 */
+	public function actionList2()
 	{
 		$id = $_REQUEST['id'];
 		$data = Product::getProductByCategory($id);
 
-		$this->render('list', array('data' => $data)); // app//product/list?id=2
+		$this->render('list', array('data' => $data)); // Ex: app//product/list?id=2
 	}
 
-	// public function actionList()
-	// {
-	// 	$data = Product::getProductHomePage();
 
-	// 	$this->render('list', array('data' => $data));
-	// }
+	/** show data product by category enabled SEO friendly URLs and echo statement in the view */
+	public function actionList($id)
+	{
+		//Required config rule url manager in main.php
+		// 'product/list/<id:\d+>',
+		$data = Product::getProductByCategory($id);
+
+		$this->render('list', array('data' => $data)); // app//product/list/2
+	}
 }
