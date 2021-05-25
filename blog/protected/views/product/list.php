@@ -15,7 +15,7 @@
             foreach ($data as $value) :
             ?>
                 <div class="col-md-3">
-                    <a href="#"><img class="img-fluid" src="<?= Yii::app()->request->baseUrl . $value->image ?>" alt="" style="max-width: 30%; max-height:30%"></a>
+                    <a href="#"><img class="img-fluid" src="<?= Yii::app()->request->baseUrl . $value->image ?>" alt=""></a>
                     <h3><?= $value->name ?></h3>
                     <p>Gia: <?= $value->price ?> VND</p>
                 </div>
@@ -38,6 +38,8 @@
         'lastPageLabel' => '>|',
 
     ));
+    // print_r('<pre>');
+    // print_r(Yii::app()->user->getState('currentUserInfo'));
     ?>
 </body>
 
