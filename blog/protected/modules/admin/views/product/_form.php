@@ -12,6 +12,7 @@
 		'htmlOptions' => array(
 			'enctype' => 'multipart/form-data',
 		),
+		'method' => 'post',
 		'focus' => array($model, 'name'),
 	)); ?>
 
