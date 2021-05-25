@@ -97,7 +97,7 @@ class ProductController extends Controller
 
 	public function actionTestCache()
 	{
-		isset($_REQUEST['go']) && Product::testUsingQueryCaching();
+		isset($_REQUEST['go']) && Product::productQueryCaching();
 		$this->render('testCache');
 	}
 }

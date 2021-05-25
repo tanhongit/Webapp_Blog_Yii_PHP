@@ -54,6 +54,10 @@ User date picker for input form
 https://www.yiiframework.com/wiki/438/jquery-ui-datepicker
 
 
+-------
+cache
+https://www.yiiframework.com/doc/guide/1.1/en/caching.data  
+https://stackoverflow.com/questions/22143115/how-to-use-cfilecache-and-memcache-togther-in-yii
 
 ------------------------------------------------------------------------------------------
 ==========================================================================================

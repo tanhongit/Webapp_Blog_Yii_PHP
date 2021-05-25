@@ -54,9 +54,20 @@ class Product extends ProductBase
 
 	public function testUsingQueryCaching()
 	{
-		
 		$sql = 'SELECT * FROM tbl_product LIMIT 2';
 		$rows = Yii::app()->db->createCommand($sql)->queryAll();
 		Yii::app()->cache->set('testquery', $rows, 10);
+	}
+
+	public function productQueryCaching()
+	{
+		$val = Yii::app()->cache->get('testquery');
+		if (!$val) {
+			sleep(10);
+			set_time_limit(30);
+			$sql = 'SELECT * FROM tbl_product LIMIT 5';
+			$rows = Yii::app()->db->createCommand($sql)->queryAll();
+			Yii::app()->cache->set('testquery', $rows, 20);
+		}
 	}
 }
