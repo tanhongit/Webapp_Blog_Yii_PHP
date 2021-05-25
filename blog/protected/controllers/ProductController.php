@@ -1,8 +1,7 @@
 <?php
 
-class ProductController extends Controller
+class ProductController extends Controller implements ViewInterFace
 {
-
 	public function actionIndex()
 	{
 		$this->render('index');

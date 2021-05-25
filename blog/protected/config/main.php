@@ -19,6 +19,7 @@ return array(
 		'application.models.*',
 		'application.models.bases.*',
 		'application.components.*',
+		'application.components.interface.*',
 	),
 
 	'modules' => array(
