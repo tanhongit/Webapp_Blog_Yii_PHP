@@ -11,3 +11,6 @@ $this->breadcrumbs=array(
 	You may change the content of this page by modifying
 	the file <tt><?php echo __FILE__; ?></tt>.
 </p>
+<?php
+print_r('<pre>');
+print_r(Yii::app()->cache->get('testquery'));?>

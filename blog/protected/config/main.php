@@ -45,6 +45,9 @@ return array(
 		'cache'  => array(
 			'class'  => 'system.caching.CFileCache',
 		),
+		'memcache' => array(
+			'class' => 'system.caching.CMemCache',
+		),
 		'user' => array(
 			// enable cookie-based authentication
 			'allowAutoLogin' => true,

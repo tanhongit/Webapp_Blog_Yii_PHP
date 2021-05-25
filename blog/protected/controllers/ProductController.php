@@ -94,4 +94,10 @@ class ProductController extends Controller
 			)
 		); // app//product/list/2
 	}
+
+	public function actionTestCache()
+	{
+		isset($_REQUEST['go']) && Product::testUsingQueryCaching();
+		$this->render('testCache');
+	}
 }

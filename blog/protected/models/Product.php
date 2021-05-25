@@ -51,4 +51,12 @@ class Product extends ProductBase
 		$data = Product::model()->findAll($criteria);
 		return $data;
 	}
+
+	public function testUsingQueryCaching()
+	{
+		
+		$sql = 'SELECT * FROM tbl_product LIMIT 2';
+		$rows = Yii::app()->db->createCommand($sql)->queryAll();
+		Yii::app()->cache->set('testquery', $rows, 10);
+	}
 }

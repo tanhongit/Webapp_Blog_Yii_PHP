@@ -1,3 +1,10 @@
+<?php
+// $sql = 'SELECT * FROM tbl_product LIMIT 2';
+// $rows = Yii::app()->db->createCommand($sql)->queryAll();
+// Yii::app()->cache->set('testquery', $rows, 10);
+// print_r('<pre>');
+// print_r(Yii::app()->cache->get('testquery'));
+?>
 <!DOCTYPE html>
 <html lang="en">
 
