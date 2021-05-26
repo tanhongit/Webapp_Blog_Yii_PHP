@@ -63,9 +63,9 @@ $this->actionSettings();
 							<li class="dropdown dropdown-small">
 								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="<?= get_site_url() ?>.en">English</a></li>
-									<li><a href="<?= get_site_url() ?>.fr">French</a></li>
-									<li><a href="<?= get_site_url() ?>.vi">Vietnamese</a></li>
+									<li><a href="<?= dynamic_url_internationalization() ?>.en">English</a></li>
+									<li><a href="<?= dynamic_url_internationalization() ?>.fr">French</a></li>
+									<li><a href="<?= dynamic_url_internationalization() ?>.vi">Vietnamese</a></li>
 								</ul>
 							</li>
 						</ul>
