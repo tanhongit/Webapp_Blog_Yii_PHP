@@ -40,7 +40,7 @@ $this->actionSettings();
 				),
 			)); ?>
 		</div><!-- mainmenu -->
-			
+
 		<?php if (isset($this->breadcrumbs)) : ?>
 			<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 				'links' => $this->breadcrumbs,
@@ -67,7 +67,8 @@ $this->actionSettings();
 				echo CHtml::dropDownList(
 					'language',
 					'empty',
-					array('empty' => 'Choose language', 'vi' => 'Vietnamese', 'en' => 'EN', 'fr' => 'French', 'more' => array('test 1', 'test 2'))
+					array('empty' => 'Choose language', 'vi' => 'Vietnamese', 'en' => 'EN', 'fr' => 'French', 'more' => array('test 1', 'test 2')),
+					array('submit' => '')
 				); ?>
 				<?php echo CHtml::submitButton('Change'); ?>
 			</div>

@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<!--
-	ustora by freshdesignweb.com
-	Twitter: https://twitter.com/freshdesignweb
-	URL: https://www.freshdesignweb.com/ustora/
--->
 <html lang="en">
 
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Ustora Demo</title>
+	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
 	<!-- Google Fonts -->
 	<link href='http://fonts.googl
@@ -29,12 +24,6 @@
 	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css">
 	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/responsive.css">
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -86,7 +75,7 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="logo">
-						<h1><a href="./"><img src="img/logo.png"></a></h1>
+						<h1><a href="./"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/logo.png"></a></h1>
 					</div>
 				</div>
 
@@ -111,20 +100,31 @@
 					</button>
 				</div>
 				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="index.html">Home</a></li>
-						<li><a href="shop.html">Shop page</a></li>
-						<li><a href="single-product.html">Single product</a></li>
-						<li><a href="cart.html">Cart</a></li>
-						<li><a href="checkout.html">Checkout</a></li>
-						<li><a href="#">Category</a></li>
-						<li><a href="#">Others</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
+					<?php $this->widget('zii.widgets.CMenu', array(
+						'htmlOptions' => array(
+							'class' => 'nav navbar-nav',
+						),
+						'items' => array(
+							array('label' => 'Home', 'url' => array('/site/index')),
+							array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
+							array('label' => 'Contact', 'url' => array('/site/contact')),
+							array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+							array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+						),
+					)); ?>
 				</div>
 			</div>
 		</div>
 	</div> <!-- End mainmenu area -->
+
+	<?php if (isset($this->breadcrumbs)) : ?>
+		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+			'links' => $this->breadcrumbs,
+		)); ?>
+		<!-- breadcrumbs -->
+	<?php endif ?>
+
+	<?php echo $content; ?>
 
 	<div class="slider-area">
 		<!-- Slider -->
@@ -544,12 +544,15 @@
 	<div class="footer-bottom-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-4">
 					<div class="copyright">
-						<p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.freshdesignweb.com" target="_blank">freshDesignweb.com</a></p>
+						<p>Copyright &copy; <?php echo date('Y'); ?> by My Company. All Rights Reserved.</p>
+						<?php echo Yii::powered(); ?>
 					</div>
 				</div>
-
+				<div class="col-md-4">
+					</p><?= $this->showDateTimeFormat(); ?><p>
+				</div>
 				<div class="col-md-4">
 					<div class="footer-card-icon">
 						<i class="fa fa-cc-discover"></i>
@@ -566,21 +569,21 @@
 	<script src="https://code.jquery.com/jquery.min.js"></script>
 
 	<!-- Bootstrap JS form CDN -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
 
 	<!-- jQuery sticky menu -->
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.sticky.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/owl.carousel.min.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.sticky.js"></script>
 
 	<!-- jQuery easing -->
-	<script src="js/jquery.easing.1.3.min.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.easing.1.3.min.js"></script>
 
 	<!-- Main Script -->
-	<script src="js/main.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/main.js"></script>
 
 	<!-- Slider -->
-	<script type="text/javascript" src="js/bxslider.min.js"></script>
-	<script type="text/javascript" src="js/script.slider.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bxslider.min.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/script.slider.js"></script>
 </body>
 
 </html>

@@ -59,6 +59,26 @@ cache
 https://www.yiiframework.com/doc/guide/1.1/en/caching.data  
 https://stackoverflow.com/questions/22143115/how-to-use-cfilecache-and-memcache-togther-in-yii
 
+
+-------
+Auto submit dropdown list
+https://forum.yiiframework.com/t/is-autosubmit-not-working-any-more/78378/2
+
+yii1: echo CHtml::dropDownList('box', $value, $list, array('submit' => ''));
+yii2: echo Html::dropDownList('box', $value, $list, ['onchange'=>'this.form.submit()']);
+
+
+
+
+
+
+
+
+
+
+
+
+
 ------------------------------------------------------------------------------------------
 ==========================================================================================
 
