@@ -1,3 +1,8 @@
+<?php
+include('protected/scripts/globals.php');
+/* @var $this Controller */
+$this->actionSettings();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,15 +19,15 @@
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?= get_BaseUrl(); ?>/css/bootstrap.min.css">
 
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?= get_BaseUrl(); ?>/css/font-awesome.min.css">
 
 	<!-- Custom CSS -->
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/owl.carousel.css">
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css">
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/responsive.css">
+	<link rel="stylesheet" href="<?= get_BaseUrl(); ?>/css/owl.carousel.css">
+	<link rel="stylesheet" href="<?= get_BaseUrl(); ?>/css/style.css">
+	<link rel="stylesheet" href="<?= get_BaseUrl(); ?>/css/responsive.css">
 
 </head>
 
@@ -75,7 +80,7 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="logo">
-						<h1><a href="./"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/logo.png"></a></h1>
+						<h1><a href="./"><img src="<?= get_BaseUrl(); ?>/img/logo.png"></a></h1>
 					</div>
 				</div>
 
@@ -108,6 +113,7 @@
 							array('label' => 'Home', 'url' => array('/site/index')),
 							array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
 							array('label' => 'Contact', 'url' => array('/site/contact')),
+							array('label' => 'Product', 'url' => array('/product')),
 							array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
 							array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
 						),
@@ -125,52 +131,6 @@
 	<?php endif ?>
 
 	<?php echo $content; ?>
-
-	<div class="slider-area">
-		<!-- Slider -->
-		<div class="block-slider block-slider4">
-			<ul class="" id="bxslider-home4">
-				<li>
-					<img src="img/h4-slide.png" alt="Slide">
-					<div class="caption-group">
-						<h2 class="caption title">
-							iPhone <span class="primary">6 <strong>Plus</strong></span>
-						</h2>
-						<h4 class="caption subtitle">Dual SIM</h4>
-						<a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-					</div>
-				</li>
-				<li><img src="img/h4-slide2.png" alt="Slide">
-					<div class="caption-group">
-						<h2 class="caption title">
-							by one, get one <span class="primary">50% <strong>off</strong></span>
-						</h2>
-						<h4 class="caption subtitle">school supplies & backpacks.*</h4>
-						<a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-					</div>
-				</li>
-				<li><img src="img/h4-slide3.png" alt="Slide">
-					<div class="caption-group">
-						<h2 class="caption title">
-							Apple <span class="primary">Store <strong>Ipod</strong></span>
-						</h2>
-						<h4 class="caption subtitle">Select Item</h4>
-						<a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-					</div>
-				</li>
-				<li><img src="img/h4-slide4.png" alt="Slide">
-					<div class="caption-group">
-						<h2 class="caption title">
-							Apple <span class="primary">Store <strong>Ipod</strong></span>
-						</h2>
-						<h4 class="caption subtitle">& Phone</h4>
-						<a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<!-- ./Slider -->
-	</div> <!-- End slider area -->
 
 	<div class="promo-area">
 		<div class="zigzag-bottom"></div>
@@ -510,6 +470,22 @@
 							<li><a href="#">Front page</a></li>
 						</ul>
 					</div>
+					<div class="footer-menu">
+						<?php $form = $this->beginWidget('CActiveForm', array(
+							'id' => '',
+							'htmlOptions' => array(
+								'class' => '',
+							),
+						));
+						echo CHtml::dropDownList(
+							'language',
+							'empty',
+							array('empty' => 'Choose language', 'vi' => 'Vietnamese', 'en' => 'EN', 'fr' => 'French', 'more' => array('test 1', 'test 2')),
+							['onchange' => 'this.form.submit()']
+						); ?>
+						<?php echo CHtml::submitButton('Change'); ?>
+						<?php $this->endWidget(); ?>
+					</div>
 				</div>
 
 				<div class="col-md-3 col-sm-6">
@@ -569,21 +545,21 @@
 	<script src="https://code.jquery.com/jquery.min.js"></script>
 
 	<!-- Bootstrap JS form CDN -->
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
+	<script src="<?= get_BaseUrl(); ?>/js/bootstrap.min.js"></script>
 
 	<!-- jQuery sticky menu -->
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/owl.carousel.min.js"></script>
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.sticky.js"></script>
+	<script src="<?= get_BaseUrl(); ?>/js/owl.carousel.min.js"></script>
+	<script src="<?= get_BaseUrl(); ?>/js/jquery.sticky.js"></script>
 
 	<!-- jQuery easing -->
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.easing.1.3.min.js"></script>
+	<script src="<?= get_BaseUrl(); ?>/js/jquery.easing.1.3.min.js"></script>
 
 	<!-- Main Script -->
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/main.js"></script>
+	<script src="<?= get_BaseUrl(); ?>/js/main.js"></script>
 
 	<!-- Slider -->
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bxslider.min.js"></script>
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/script.slider.js"></script>
+	<script type="text/javascript" src="<?= get_BaseUrl(); ?>/js/bxslider.min.js"></script>
+	<script type="text/javascript" src="<?= get_BaseUrl(); ?>/js/script.slider.js"></script>
 </body>
 
 </html>

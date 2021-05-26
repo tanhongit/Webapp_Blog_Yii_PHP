@@ -63,7 +63,7 @@ class Product extends ProductBase
 	{
 		$val = Yii::app()->cache->get('testquery');
 		if (!$val) {
-			sleep(10);
+			sleep(3);
 			set_time_limit(30);
 			$sql = 'SELECT * FROM tbl_product LIMIT 5';
 			$rows = Yii::app()->db->createCommand($sql)->queryAll();
