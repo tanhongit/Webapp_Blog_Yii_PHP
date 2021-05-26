@@ -43,7 +43,7 @@ $this->actionSettings();
 							<li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
 							<li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
 							<li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-							<li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+							<li><a href="/login"><i class="fa fa-user"></i> Login</a></li>
 						</ul>
 					</div>
 				</div>
@@ -80,7 +80,7 @@ $this->actionSettings();
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="logo">
-						<h1><a href="./"><img src="<?= get_BaseUrl(); ?>/img/logo.png"></a></h1>
+						<h1><a href="./"><img src="/img/logo.png"></a></h1>
 					</div>
 				</div>
 
@@ -173,7 +173,6 @@ $this->actionSettings();
 							array('empty' => 'Choose language', 'vi' => 'Vietnamese', 'en' => 'EN', 'fr' => 'French', 'more' => array('test 1', 'test 2')),
 							['onchange' => 'this.form.submit()']
 						); ?>
-						<?php echo CHtml::submitButton('Change'); ?>
 						<?php $this->endWidget(); ?>
 					</div>
 				</div>
