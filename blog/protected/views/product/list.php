@@ -4,6 +4,7 @@
 // Yii::app()->cache->set('testquery', $rows, 10);
 // print_r('<pre>');
 // print_r(Yii::app()->cache->get('testquery'));
+require_once('protected/scripts/globals.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,7 @@
             ?>
         </div>
     </div>
-
+<?php print_r(get_BaseUrl()); ?>
     <?php
     $this->widget('CLinkPager', array(
         'currentPage' => $pages->getCurrentPage(),

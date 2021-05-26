@@ -1,6 +1,6 @@
 <?php
 /* @var $this ProductController */
-
+require_once('protected/scripts/globals.php');
 $this->breadcrumbs=array(
 	'Product',
 );
@@ -12,5 +12,5 @@ $this->breadcrumbs=array(
 	the file <tt><?php echo __FILE__; ?></tt>.
 </p>	
 <?php
-print_r(Yii::app()->request->baseUrl);
+print_r(get_BaseUrl());
 print_r(Yii::app()->cache->get('testquery'));?>
