@@ -125,11 +125,32 @@ $this->actionSettings();
 	</div> <!-- End mainmenu area -->
 
 	<?php if (isset($this->breadcrumbs)) : ?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links' => $this->breadcrumbs,
-		)); ?>
+
 		<!-- breadcrumbs -->
 	<?php endif ?>
+
+	<div class="product-big-title-area">
+		<style>
+			.product-bit-title h2 a {
+				text-decoration: none;
+				color: white;
+			}
+		</style>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="product-bit-title text-center">
+						<h2>
+							<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+								'htmlOptions' => array(),
+								'links' => $this->breadcrumbs,
+							)); ?>
+						</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<?php echo $content; ?>
 

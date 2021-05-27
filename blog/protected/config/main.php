@@ -108,6 +108,6 @@ return array(
 		// this is used in contact page
 		'adminEmail' => 'webmaster@example.com',
 		'pager' => 2, //using for pagination
-		'pager_product' => 20,
+		'pager_product' => 2,
 	),
 );
