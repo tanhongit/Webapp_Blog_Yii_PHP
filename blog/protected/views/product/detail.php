@@ -53,11 +53,9 @@ $this->breadcrumbs = array(
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Recent Posts</h2>
                     <ul>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
+                        <?php foreach ($recent_data as $value) : ?>
+                            <li><a href="<?= $value->id ?>"><?= $value->name ?></a></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -132,7 +130,6 @@ $this->breadcrumbs = array(
                         </div>
                     </div>
                 </div>
-
 
                 <div class="related-products-wrapper">
                     <h2 class="related-products-title">Related Products</h2>

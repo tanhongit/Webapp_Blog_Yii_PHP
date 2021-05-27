@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 /* @var $this SiteController */
 require_once('protected/scripts/globals.php');
 $this->pageTitle = Yii::app()->name;
@@ -21,7 +21,7 @@ $this->pageTitle = Yii::app()->name;
 
 <p><span><?php echo Yii::t('app', 'index.hello.text') ?></span> - <span><?= $this->showDateFormat() ?></span></p>
 
-<!-- <?php $form = $this->beginWidget('CActiveForm', array(
+<?php $form = $this->beginWidget('CActiveForm', array(
 			'id' => 'language-form',
 		)); ?>
 <div class="row">

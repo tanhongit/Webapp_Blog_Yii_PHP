@@ -86,4 +86,14 @@ class Product extends ProductBase
 		$data = Product::model()->findByPk($id);
 		return $data;
 	}
+
+	public function getRecentProduct()
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->order = 'create_time DESC';
+		$criteria->limit = 6;
+		$data = Product::model()->findAll($criteria);
+		return $data;
+	}
 }

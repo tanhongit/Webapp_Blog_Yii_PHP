@@ -133,10 +133,13 @@ class ProductController extends Controller implements ViewInterFace
 
 		$related_data = Product::getProductByCategory($category_id);
 
+		$recent_data = Product::getRecentProduct();
+
 		$this->render('detail', array(
 			'data' => $data,
 			'cate_data' => $cate_data,
 			'related_data' => $related_data,
+			'recent_data' => $recent_data,
 		));
 	}
 }
