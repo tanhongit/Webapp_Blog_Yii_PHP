@@ -4,7 +4,31 @@ class ProductController extends Controller implements ViewInterFace
 {
 	public function actionIndex()
 	{
-		$this->render('index');
+		// get value in url
+		isset($_REQUEST['page']) && $params = $_REQUEST['page'];
+		$page = (isset($params) ? $params - 1 : 0);
+
+		//get count
+		$count = Product::getTotalProductRecord();
+
+		//count page
+		$pages = new CPagination($count);
+		$per_page = Yii::app()->params['pager_product']; //Required config params in main.php
+		$pages->setPageSize($per_page);
+
+		$data = Product::getAllProductUsePagination($page, $per_page);
+
+		$this->render(
+			'index',
+			array(
+				'data' => $data,
+
+				//div Paging navigation
+				'page_size' => $per_page,
+				'pages' => $pages,
+				'item_count' => $count,
+			)
+		);
 	}
 
 	// Uncomment the following methods and override them if needed

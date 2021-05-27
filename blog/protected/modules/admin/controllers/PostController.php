@@ -93,6 +93,11 @@ class PostController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		$user = User::getAllUser();
+		// print_r($user);
+		$data = CHtml::listData($user, 'id', 'username');
 		$model = $this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -106,6 +111,7 @@ class PostController extends Controller
 
 		$this->render('update', array(
 			'model' => $model,
+			'data' => $data
 		));
 	}
 
