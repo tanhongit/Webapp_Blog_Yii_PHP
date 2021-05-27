@@ -7,4 +7,10 @@ class Category extends CategoryBase
 		$data = Category::model()->findAll();
 		return $data;
 	}
+
+	public function getCategoryByID($id)
+	{
+		$data = Category::model()->findByPk($id);
+		return $data;
+	}
 }

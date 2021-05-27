@@ -127,6 +127,16 @@ class ProductController extends Controller implements ViewInterFace
 	public function actionDetail($id)
 	{
 		$data = Product::getDetailProduct($id);
-		$this->render('detail', array('data' => $data));
+
+		$category_id = $data->category_id;
+		$cate_data = Category::getCategoryByID($category_id);
+
+		$related_data = Product::getProductByCategory($category_id);
+
+		$this->render('detail', array(
+			'data' => $data,
+			'cate_data' => $cate_data,
+			'related_data' => $related_data,
+		));
 	}
 }

@@ -18,7 +18,7 @@ $this->breadcrumbs = array(
 				<div class="col-md-3 col-sm-6">
 					<div class="single-shop-product">
 						<div class="product-upper">
-							<img src="<?= Yii::app()->request->baseUrl . $value->image ?>" alt="<?= $value->image ?>">
+							<a href="detail/<?= $value->id ?>"><img src="<?= Yii::app()->request->baseUrl . $value->image ?>" alt="<?= $value->image ?>"></a>
 						</div>
 						<h2><a href="detail/<?= $value->id ?>"><?= $value->name ?></a></h2>
 						<div class="product-carousel-price">
@@ -26,7 +26,7 @@ $this->breadcrumbs = array(
 						</div>
 
 						<div class="product-option-shop">
-							<a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" onclick="addtoCart(<?= $data->id ?>)">Add to cart</a>
+							<a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" onclick="addtoCart(<?= $value->id ?>)">Add to cart</a>
 						</div>
 					</div>
 				</div>
@@ -67,7 +67,7 @@ $this->breadcrumbs = array(
 print_r(get_BaseUrl());
 print_r(Yii::app()->cache->get('testquery')); ?>
 <script>
-	function addtoCart(id){
+	function addtoCart(id) {
 		alert('pro added cart');
 	}
 </script>
