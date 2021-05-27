@@ -123,4 +123,10 @@ class ProductController extends Controller implements ViewInterFace
 		isset($_REQUEST['go']) && Product::productQueryCaching();
 		$this->render('testCache');
 	}
+
+	public function actionDetail($id)
+	{
+		$data = Product::getDetailProduct($id);
+		$this->render('detail', array('data' => $data));
+	}
 }

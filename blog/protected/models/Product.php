@@ -80,4 +80,10 @@ class Product extends ProductBase
 			Yii::app()->cache->set('testquery', $rows, 20);
 		}
 	}
+
+	public function getDetailProduct($id)
+	{
+		$data = Product::model()->findByPk($id);
+		return $data;
+	}
 }
