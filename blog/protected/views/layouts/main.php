@@ -66,6 +66,7 @@ $this->actionSettings();
 									<li><a href="<?= dynamic_url_internationalization() ?>.en">English</a></li>
 									<li><a href="<?= dynamic_url_internationalization() ?>.fr">French</a></li>
 									<li><a href="<?= dynamic_url_internationalization() ?>.vi">Vietnamese</a></li>
+									<li><a href="<?= dynamic_url_internationalization() ?>.it">Italian</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -170,7 +171,7 @@ $this->actionSettings();
 						echo CHtml::dropDownList(
 							'language',
 							'empty',
-							array('empty' => 'Choose language', 'vi' => 'Vietnamese', 'en' => 'EN', 'fr' => 'French', 'more' => array('test 1', 'test 2')),
+							array('empty' => 'Choose language', 'vi' => 'Vietnamese', 'en' => 'EN', 'fr' => 'French', 'more' => array('it' => 'Italian', 'test 2')),
 							['onchange' => 'this.form.submit()']
 						); ?>
 						<?php $this->endWidget(); ?>
