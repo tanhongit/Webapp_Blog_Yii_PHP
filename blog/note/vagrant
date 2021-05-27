@@ -24,11 +24,33 @@ vagrant ssh
 
     ls /var/www/html/    //link data virtual machine vagrant
 
+    sudo apt install git
+
 -----------
 vagrant reload //use when Vagrantfile has a change
 
 
     
+
+
+-----------------------------
+Create virtual host in vagrant 
+
+https://www.digitalocean.com/community/tutorials/how-to-configure-the-apache-web-server-on-an-ubuntu-or-debian-vps
+
+tool create: https://www.youtube.com/watch?v=zKI8hD_R4Nw
+https://github.com/rakibtg/Apache-Virtual-Hosts-Creator
+
+sudo nano /etc/hosts
+cd /etc/apache2/sites-available
+ls
+sudo nano ...
+sudo nano /etc/apache2/sites-available/default
+
+service apache2 restart
+
+systemctl status apache2
+
 
 
 -----------------------------
@@ -40,6 +62,14 @@ https://stackoverflow.com/questions/40772779/how-to-start-already-provisioned-va
 Unable to lock the administration directory (/var/lib/dpkg/)
 https://vinasupport.com/sua-loi-unable-to-lock-the-administration-directory-var-lib-dpkg-ubuntu/
 
+Yii2 showScriptName remove index.php Not Found apache
+http://forum.isystems.am/post/269/yii2-showscriptname-remove-indexphp-not-found-apache
+
+
+
+
+
+
 -----------------------------
 Tutorial: 
 https://www.youtube.com/watch?v=NzvByqoreoc
@@ -48,6 +78,12 @@ https://www.youtube.com/watch?v=NzvByqoreoc&list=PLbup-MaQtodWsbllDXyHS4Cef4G8G5
 config: https://www.youtube.com/watch?v=Bma7P8q02KI&t=582s
 
 setup lamp: https://www.youtube.com/watch?v=9Gyt3G5wLAs&list=PLbup-MaQtodWsbllDXyHS4Cef4G8G5iNX&index=3
+
+
+
+
+
+
 
 
 -----------------------------
