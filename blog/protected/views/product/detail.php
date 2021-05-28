@@ -20,13 +20,13 @@ $this->breadcrumbs = array(
 
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Products</h2>
-                    <?php foreach ($related_data as $value) : ?>
+                    <?php foreach ($recent_data as $value) : ?>
 
                         <div class="thubmnail-recent">
                             <img id='imgProduct<?= $value->id ?>' src="<?= get_BaseUrl() . $value->image ?>" class="recent-thumb" alt="">
                             <h2><a href="<?= $value->id ?>"><?= $value->name ?></a></h2>
                             <div class="product-sidebar-price">
-                                <ins><?= number_format($value->price, 0, ',', '.') ?></ins> <del>$00.00</del>
+                                <ins><span id="price_<?= $value->id ?>"><?= number_format($value->price, 0, ',', '.') ?></span></ins> <del>$00.00</del>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -62,7 +62,7 @@ $this->breadcrumbs = array(
                         <div class="product-inner">
                             <h2 class="product-name"><?= $data->name ?></h2>
                             <div class="product-inner-price">
-                                <ins><?= number_format($data->price, 0, ',', '.') ?></ins> <del>0.00</del>
+                                <ins><span id="price_add_cart_<?= $data->id ?>"><?= number_format($data->price, 0, ',', '.') ?></span></ins> <del>0.00</del>
                             </div>
 
                             <form action="" class="cart">

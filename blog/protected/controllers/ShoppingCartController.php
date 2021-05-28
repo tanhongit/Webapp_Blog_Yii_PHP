@@ -37,6 +37,8 @@ class ShoppingCartController extends Controller
 	public function actionAddCart()
 	{
 		$product_id = Yii::app()->request->getParam('product_id');
-		echo $product_id;
+		Cart::addCart($product_id);
+		print_r('<pre>');
+		print_r(Yii::app()->session['cart']);
 	}
 }

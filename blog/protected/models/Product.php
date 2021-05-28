@@ -22,6 +22,7 @@ class Product extends ProductBase
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';
 		$criteria->condition = 'category_id = ' . $category_id;
+		$criteria->order = 'create_time DESC';
 		$data = Product::model()->findAll($criteria);
 		return $data;
 	}
@@ -92,7 +93,7 @@ class Product extends ProductBase
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';
 		$criteria->order = 'create_time DESC';
-		$criteria->limit = 6;
+		$criteria->limit = 5;
 		$data = Product::model()->findAll($criteria);
 		return $data;
 	}

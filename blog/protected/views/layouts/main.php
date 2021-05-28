@@ -265,6 +265,7 @@ $this->actionSettings();
 							<img data-src='#' class='thumbnail' id="img_add_Cart" alt="">
 						</div>
 						<div class="col-sm-6">
+							price <span id="price_add_cart_model"></span>
 						</div>
 					</div>
 				</div>
@@ -298,9 +299,11 @@ $this->actionSettings();
 
 		function addtoCart(id) {
 			// alert('pro added cart' + id);
-			imgSource = $('#imgProduct' + id).attr('src');
+			imgForProduct = $('#imgProduct' + id).attr('src');
+			priceForProduct = $('#price_add_cart_' + id).text();
+			$('#price_add_cart_model').text(priceForProduct);
 			$('#img_add_Cart').attr({
-				'src': imgSource
+				'src': imgForProduct
 			})
 			$.post(url + '/shoppingCart/addCart', {
 				'product_id': id
