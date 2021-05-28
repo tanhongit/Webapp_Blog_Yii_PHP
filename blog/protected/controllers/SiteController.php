@@ -29,7 +29,11 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$latest_product_data = Product::getLatestProduct();
+		
+		$this->render('index',array(
+			'latest_product_data' => $latest_product_data,
+		));
 	}
 
 	/**

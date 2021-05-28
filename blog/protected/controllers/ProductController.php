@@ -137,12 +137,15 @@ class ProductController extends Controller implements ViewInterFace
 
 		$recent_post_data = Post::getRecentPost();
 
+		$latest_data = Product::getLatestProduct();
+
 		$this->render('detail', array(
 			'data' => $data,
 			'cate_data' => $cate_data,
 			'related_data' => $related_data,
 			'recent_data' => $recent_data,
 			'recent_post_data' => $recent_post_data,
+			'latest_data' => $latest_data,
 		));
 	}
 }

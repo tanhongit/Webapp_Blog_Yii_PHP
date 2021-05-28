@@ -97,4 +97,14 @@ class Product extends ProductBase
 		$data = Product::model()->findAll($criteria);
 		return $data;
 	}
+
+	public function getLatestProduct()
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->order = 'create_time DESC';
+		$criteria->limit = 20;
+		$data = Product::model()->findAll($criteria);
+		return $data;
+	}
 }
