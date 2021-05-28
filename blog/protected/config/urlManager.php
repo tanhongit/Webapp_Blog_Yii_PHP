@@ -11,5 +11,6 @@ return array(
         'login' => 'site/login',
 
         'product/list/<id:\d+>',
+        'cart' => 'shoppingcart/index'
     ),
 );

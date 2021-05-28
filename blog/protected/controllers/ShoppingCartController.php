@@ -4,7 +4,18 @@ class ShoppingCartController extends Controller
 {
 	public function actionIndex()
 	{
-		$this->render('index');
+		$data = Yii::app()->session['cart'];
+		// print_r('<pre>');
+		// print_r($data);die;
+		$total_quality_cart = Cart::getTotalQualityProductCart();
+
+		$this->render(
+			'index',
+			array(
+				'data' => $data,
+				'total_quality_cart' => $total_quality_cart,
+			)
+		);
 	}
 
 	// Uncomment the following methods and override them if needed
@@ -38,7 +49,7 @@ class ShoppingCartController extends Controller
 	{
 		$product_id = Yii::app()->request->getParam('product_id');
 		Cart::addCart($product_id);
-		print_r('<pre>');
-		print_r(Yii::app()->session['cart']);
+		// print_r('<pre>');
+		// print_r(Yii::app()->session['cart']);
 	}
 }

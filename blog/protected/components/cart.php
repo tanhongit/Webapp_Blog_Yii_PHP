@@ -8,6 +8,7 @@ class Cart
 
         if (empty($cart)) {
             $cart[$id] = array(
+                'id' => $productInfo->id,
                 'quality' => $quality,
                 'price' => $productInfo->price,
                 'product_name' => $productInfo->name,
@@ -16,6 +17,7 @@ class Cart
         } else {
             if (array_key_exists($id, $cart)) {
                 $cart[$id] = array(
+                    'id' => $productInfo->id,
                     'quality' => (int)$cart[$id]['quality'] + (int)$quality,
                     'price' => $productInfo->price,
                     'product_name' => $productInfo->name,
@@ -23,6 +25,7 @@ class Cart
                 );
             } else {
                 $cart[$id] = array(
+                    'id' => $productInfo->id,
                     'quality' => $quality,
                     'price' => $productInfo->price,
                     'product_name' => $productInfo->name,
@@ -31,5 +34,17 @@ class Cart
             }
         }
         Yii::app()->session['cart'] = $cart;
+    }
+
+    public function getTotalQualityProductCart()
+    {
+        $total = 0;
+        if (!empty(Yii::app()->session['cart'])) {
+            $data = Yii::app()->session['cart'];
+            foreach ($data as $value) {
+                $total += (int)$value['quality'];
+            }
+        }
+        return $total;
     }
 }
