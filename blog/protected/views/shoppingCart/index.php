@@ -81,7 +81,7 @@ $this->breadcrumbs = array(
 									<?php foreach ($data as $value) : ?>
 										<tr class="cart_item">
 											<td class="product-remove">
-												<a title="Remove this item" class="remove" href="#">×</a>
+												<a title="Remove this item" class="remove" href="javascript:voice(0);">×</a>
 											</td>
 
 											<td class="product-thumbnail">

@@ -27,12 +27,20 @@ class Controller extends CController
 	 */
 	public function actionSettings()
 	{
-		//Internationalization by alias domain
-		$test_main_url = explode('.', $_SERVER['HTTP_HOST']);
-		!empty($test_main_url[2]) && Yii::app()->user->setState('applicationLanguage', $test_main_url[2]);
+		// //Internationalization by alias domain
+		// $test_main_url = explode('.', $_SERVER['HTTP_HOST']);
+		// !empty($test_main_url[2]) && Yii::app()->user->setState('applicationLanguage', $test_main_url[2]);
 
-		//Internationalization with custom by client users
-		isset($_POST['language']) && Yii::app()->user->setState('applicationLanguage', $_POST['language']);
+		// //Internationalization with custom by client users
+		// isset($_POST['language']) && Yii::app()->user->setState('applicationLanguage', $_POST['language']);
+
+		$test_main_url = explode('.', $_SERVER['HTTP_HOST']);
+		$pop_array_url = array_pop($test_main_url);
+		if (in_array($pop_array_url, language_codes())) {
+			Yii::app()->user->setState('applicationLanguage', $pop_array_url);
+		} elseif (isset($_POST['language'])) {
+			Yii::app()->user->setState('applicationLanguage', $_POST['language']);
+		}
 	}
 
 	public function showDateTimeFormat()

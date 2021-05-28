@@ -1,6 +1,6 @@
 <?php
 
-class SiteController extends Controller
+class SiteController extends Controller implements ViewInterFace
 {
 	/**
 	 * Declares class-based actions.

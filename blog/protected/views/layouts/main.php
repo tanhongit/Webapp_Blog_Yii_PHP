@@ -81,7 +81,7 @@ $this->actionSettings();
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="logo">
-						<h1><a href="./"><img src="/img/logo.png"></a></h1>
+						<h1><a href="<?= get_site_url() ?>"><img src="/img/logo.png"></a></h1>
 					</div>
 				</div>
 
@@ -123,11 +123,6 @@ $this->actionSettings();
 			</div>
 		</div>
 	</div> <!-- End mainmenu area -->
-
-	<?php if (isset($this->breadcrumbs)) : ?>
-
-		<!-- breadcrumbs -->
-	<?php endif ?>
 
 	<div class="product-big-title-area">
 		<style>

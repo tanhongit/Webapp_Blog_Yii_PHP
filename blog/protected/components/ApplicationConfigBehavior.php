@@ -1,5 +1,5 @@
 <?php
-
+require_once('protected/scripts/globals.php');
 /**
  * ApplicationConfigBehavior is a behavior for the application.
  * It loads additional config paramenters that cannot be statically 
@@ -25,7 +25,7 @@ class ApplicationConfigBehavior extends CBehavior
 	{
 		/*If you don't allow guest users to customize the language while visiting in the subdomain, remove the comment state here and edit the function actionsettings() in SiteController.php */
 		// $test_main_url = explode('.', $_SERVER['HTTP_HOST']);
-		!empty($test_main_url[2]) && Yii::app()->user->setState('applicationLanguage', $test_main_url[2]);
+		// !empty($test_main_url[2]) && Yii::app()->user->setState('applicationLanguage', $test_main_url[2]);
 
 		$this->owner->user->getState('applicationLanguage') ?
 			$this->owner->language = $this->owner->user->getState('applicationLanguage') :
