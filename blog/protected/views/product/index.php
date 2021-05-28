@@ -18,9 +18,9 @@ $this->breadcrumbs = array(
 				<div class="col-md-3 col-sm-6">
 					<div class="single-shop-product">
 						<div class="product-upper">
-							<a href="detail/<?= $value->id ?>"><img src="<?= Yii::app()->request->baseUrl . $value->image ?>" alt="<?= $value->image ?>"></a>
+							<a href="/product/detail/<?= $value->id ?>"><img src="<?= Yii::app()->request->baseUrl . $value->image ?>" alt="<?= $value->image ?>"></a>
 						</div>
-						<h2><a href="detail/<?= $value->id ?>"><?= $value->name ?></a></h2>
+						<h2><a href="/product/detail/<?= $value->id ?>"><?= $value->name ?></a></h2>
 						<div class="product-carousel-price">
 							<ins><?= number_format($value->price, 0, ',', '.') ?></ins> <del>$0.00</del>
 						</div>
@@ -51,7 +51,6 @@ $this->breadcrumbs = array(
 							'prevPageLabel' => '&laquo;',
 							'nextPageLabel' => '&raquo;',
 							'lastPageLabel' => '>|',
-
 						));
 						// print_r('<pre>');
 						// print_r(Yii::app()->user->getState('currentUserInfo'));

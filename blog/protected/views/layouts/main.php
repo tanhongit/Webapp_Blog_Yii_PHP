@@ -252,6 +252,30 @@ $this->actionSettings();
 		</div>
 	</div> <!-- End footer bottom area -->
 
+	<div class="modal fade" tabindex="-1" role="dialog" id="modal-show">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title"><?= Yii::t('product', 'model.product.info_add_cart') ?></h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<img data-src='#' class='thumbnail' id="img_add_Cart" alt="">
+						</div>
+						<div class="col-sm-6">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-info">Go to Cart</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
 	<!-- Latest jQuery form server -->
 	<script src="https://code.jquery.com/jquery.min.js"></script>
 
@@ -267,6 +291,24 @@ $this->actionSettings();
 
 	<!-- Main Script -->
 	<script src="<?= get_BaseUrl(); ?>/js/main.js"></script>
+
+	<!-- cart -->
+	<script>
+		var url = "<?= get_BaseUrl() ?>";
+
+		function addtoCart(id) {
+			// alert('pro added cart' + id);
+			imgSource = $('#imgProduct' + id).attr('src');
+			$('#img_add_Cart').attr({
+				'src': imgSource
+			})
+			$.post(url + '/shoppingCart/addCart', {
+				'product_id': id
+			}, function(data) {
+				$('#modal-show').modal('show');
+			});
+		}
+	</script>
 
 	<!-- Slider -->
 	<script type="text/javascript" src="<?= get_BaseUrl(); ?>/js/bxslider.min.js"></script>

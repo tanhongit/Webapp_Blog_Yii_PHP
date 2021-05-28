@@ -20,41 +20,23 @@ $this->breadcrumbs = array(
 
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Products</h2>
-                    <div class="thubmnail-recent">
-                        <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
+                    <?php foreach ($related_data as $value) : ?>
+
+                        <div class="thubmnail-recent">
+                            <img id='imgProduct<?= $value->id ?>' src="<?= get_BaseUrl() . $value->image ?>" class="recent-thumb" alt="">
+                            <h2><a href="<?= $value->id ?>"><?= $value->name ?></a></h2>
+                            <div class="product-sidebar-price">
+                                <ins><?= number_format($value->price, 0, ',', '.') ?></ins> <del>$00.00</del>
+                            </div>
                         </div>
-                    </div>
-                    <div class="thubmnail-recent">
-                        <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
-                    <div class="thubmnail-recent">
-                        <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
-                    <div class="thubmnail-recent">
-                        <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
 
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Recent Posts</h2>
                     <ul>
-                        <?php foreach ($recent_data as $value) : ?>
-                            <li><a href="<?= $value->id ?>"><?= $value->name ?></a></li>
+                        <?php foreach ($recent_post_data as $value) : ?>
+                            <li><a href="<?= $value->id ?>"><?= $value->title ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -65,7 +47,7 @@ $this->breadcrumbs = array(
                     <div class="col-sm-6">
                         <div class="product-images">
                             <div class="product-main-img">
-                                <img src="<?= get_BaseUrl()  . $data->image ?>" alt="">
+                                <img id='imgProduct<?= $data->id ?>' src="<?= get_BaseUrl()  . $data->image ?>" alt="">
                             </div>
 
                             <div class="product-gallery">
@@ -137,7 +119,7 @@ $this->breadcrumbs = array(
                         <?php foreach ($related_data as $value) : ?>
                             <div class="single-product">
                                 <div class="product-f-image">
-                                    <img src="<?= get_BaseUrl() . $value->image ?>" alt="">
+                                    <img id="imgProduct<?= $value->id ?>" src="<?= get_BaseUrl() . $value->image ?>" alt="">
                                     <div class="product-hover">
                                         <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                                         <a href="<?= $value->id ?>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
@@ -157,15 +139,3 @@ $this->breadcrumbs = array(
         </div>
     </div>
 </div>
-<script>
-    var url = "<?= get_BaseUrl() ?>";
-
-    function addtoCart(id) {
-        // alert('pro added cart' + id);
-        $.post(url + '', {
-            'product_id': id
-        }, function(data) {
-
-        })
-    }
-</script>
