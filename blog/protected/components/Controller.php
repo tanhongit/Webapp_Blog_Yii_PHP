@@ -53,7 +53,7 @@ class Controller extends CController
 		echo $app->dateFormatter->formatDateTime($time, 'full', 'full');
 	}
 
-	public function showDateFormat()
+	public function showDateFormat() 
 	{
 		$time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 		$app = Yii::app();

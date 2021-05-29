@@ -30,8 +30,8 @@ class SiteController extends Controller implements ViewInterFace
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$latest_product_data = Product::getLatestProduct();
-		
-		$this->render('index',array(
+
+		$this->render('index', array(
 			'latest_product_data' => $latest_product_data,
 		));
 	}
@@ -106,4 +106,8 @@ class SiteController extends Controller implements ViewInterFace
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
+	public function actionAbout()
+	{
+		$this->render('about');
+	}
 }
