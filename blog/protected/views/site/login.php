@@ -1,3 +1,8 @@
+<?php
+$this->breadcrumbs = array(
+	'Login',
+);
+?>
 <div class="container" style="padding: 50px;">
 	<?php $form = $this->beginWidget('CActiveForm', array(
 		'id' => 'login-form',

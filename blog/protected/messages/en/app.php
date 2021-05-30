@@ -11,5 +11,5 @@ return array(
 
 , 'model.tag.name'=> 'Name'
 , 'model.tag.frequency'=> 'Tần số'
-, 'index.hello.text' => 'The painting will be at your door approximately on',
+, 'index.hello.text' => 'The painting will be at your door approximately on'
 );

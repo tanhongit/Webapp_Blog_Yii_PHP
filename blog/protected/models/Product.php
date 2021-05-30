@@ -48,6 +48,7 @@ class Product extends ProductBase
 		$criteria->select = '*';
 		$criteria->limit  = $per_page;
 		$criteria->offset = ($page * $per_page);
+		$criteria->order = 'create_time DESC';
 		$data = Product::model()->findAll($criteria);
 		return $data;
 	}
@@ -59,6 +60,7 @@ class Product extends ProductBase
 		$criteria->condition = 'category_id = ' . $category_id;
 		$criteria->offset = ($page * $per_page);
 		$criteria->limit = $per_page;
+		$criteria->order = 'create_time DESC';
 		$data = Product::model()->findAll($criteria);
 		return $data;
 	}
