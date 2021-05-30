@@ -51,5 +51,7 @@ class ShoppingCartController extends Controller
 		Cart::addCart($product_id);
 		// print_r('<pre>');
 		// print_r(Yii::app()->session['cart']);
+		$total_quality_cart = Cart::getTotalQualityProductCart();
+		echo $total_quality_cart;
 	}
 }

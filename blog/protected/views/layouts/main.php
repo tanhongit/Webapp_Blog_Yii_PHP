@@ -214,6 +214,7 @@ $this->actionSettings();
 			$.post(url + '/shoppingCart/addCart', {
 				'product_id': id
 			}, function(data) {
+				$('#quality_cart').text(data);
 				$('#modal-show').modal('show');
 			});
 		}
