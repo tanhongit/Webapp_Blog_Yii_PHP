@@ -64,7 +64,7 @@ $this->breadcrumbs = array(
 
 			<div class="col-md-8">
 				<div class="product-content-right">
-					<div class="woocommerce">
+					<div class="woocommerce" id="the_cart_component">
 						<form method="post" action="#">
 							<table cellspacing="0" class="shop_table cart">
 								<thead>
@@ -222,6 +222,7 @@ $this->breadcrumbs = array(
 			'quality': number,
 		}, function(data) {
 			$('#quality_cart').text(data);
+			$('#the_cart_component').load(url + '/shoppingCart/index #the_cart_component');
 		});
 	}
 

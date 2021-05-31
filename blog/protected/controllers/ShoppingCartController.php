@@ -62,5 +62,6 @@ class ShoppingCartController extends Controller
 		Cart::updateItemCart($product_id, $quality);
 
 		$total_quality_cart = Cart::getTotalQualityProductCart();
+		echo $total_quality_cart; //for show  total count quality cart
 	}
 }
