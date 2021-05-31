@@ -172,10 +172,14 @@ $this->breadcrumbs = array(
 											<th>Shipping and Handling</th>
 											<td>Free Shipping</td>
 										</tr>
-
 										<tr class="order-total">
 											<th>Order Total</th>
 											<td><strong><span class="amount">£15.00</span></strong> </td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td> <?= convert_number_to_words(Cart::totalPriceCart()) ?></td>
 										</tr>
 									</tbody>
 								</table>
@@ -223,6 +227,7 @@ $this->breadcrumbs = array(
 		}, function(data) {
 			$('#quality_cart').text(data);
 			$('#the_cart_component').load(url + '/shoppingCart/index #the_cart_component');
+			// $('#shopping-item').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #shopping-item');
 		});
 	}
 
@@ -232,6 +237,7 @@ $this->breadcrumbs = array(
 		}, function(data) {
 			$('#quality_cart').text(data);
 			$('#the_cart_component').load(url + '/shoppingCart/index #the_cart_component');
+			// $('#shopping-item').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #shopping-item');
 		});
 	}
 </script>

@@ -48,6 +48,16 @@ class Cart
         return $total;
     }
 
+    public function totalPriceCart()
+    {
+        $cart = Yii::app()->session['cart'];
+        $total = 0.0;
+        foreach ($cart as $value) {
+            $total += $value['quality'] * $value['price'];
+        }
+        return $total;
+    }
+
     static function updateItemCart($id, $q)
     {
         $cart = Yii::app()->session['cart'];
