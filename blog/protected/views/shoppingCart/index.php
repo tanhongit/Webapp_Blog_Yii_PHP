@@ -179,7 +179,12 @@ $this->breadcrumbs = array(
 									</tbody>
 									<tbody>
 										<tr>
-											<td> <?= convert_number_to_words(Cart::totalPriceCart()) ?></td>
+											<td>
+												<?php
+												$convert = new ConvertNumberToWord();
+												echo $convert->convert(Cart::totalPriceCart());
+												?>
+											</td>
 										</tr>
 									</tbody>
 								</table>
