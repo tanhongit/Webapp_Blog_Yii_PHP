@@ -29,7 +29,7 @@ $this->breadcrumbs = array(
                         </div>
 
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" onclick="addtoCart(<?= $value->id ?>)">Add to cart</a>
+                            <a href="javascript:voice(0);" class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" onclick="addToCart(<?= $value->id ?>)">Add to cart</a>
                         </div>
                     </div>
                 </div>

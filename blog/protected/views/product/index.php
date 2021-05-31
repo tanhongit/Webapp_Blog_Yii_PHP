@@ -26,7 +26,7 @@ $this->breadcrumbs = array(
 						</div>
 
 						<div class="product-option-shop">
-							<a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" onclick="addtoCart(<?= $value->id ?>)">Add to cart</a>
+							<a class="add_to_cart_button" data-quantity="1" href="javascript:voice(0);" data-product_sku="" data-product_id="70" rel="nofollow" onclick="addtoCart(<?= $value->id ?>)">Add to cart</a>
 						</div>
 					</div>
 				</div>
@@ -65,8 +65,3 @@ $this->breadcrumbs = array(
 <?php
 print_r(get_BaseUrl());
 print_r(Yii::app()->cache->get('testquery')); ?>
-<script>
-	function addtoCart(id) {
-		alert('pro added cart');
-	}
-</script>

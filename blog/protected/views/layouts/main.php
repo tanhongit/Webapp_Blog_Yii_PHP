@@ -203,7 +203,7 @@ $this->actionSettings();
 	<script>
 		var url = "<?= get_BaseUrl() ?>";
 
-		function addtoCart(id) {
+		function addToCart(id) {
 			// alert('pro added cart' + id);
 			imgForProduct = $('#imgProduct' + id).attr('src');
 			priceForProduct = $('#price_add_cart_' + id).text();

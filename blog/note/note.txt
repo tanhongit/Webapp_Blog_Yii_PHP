@@ -68,6 +68,11 @@ yii1: echo CHtml::dropDownList('box', $value, $list, array('submit' => ''));
 yii2: echo Html::dropDownList('box', $value, $list, ['onchange'=>'this.form.submit()']);
 
 
+-------
+difference between Self and Static in PHP
+https://viblo.asia/p/su-khac-nhau-giua-self-va-static-trong-php-YWOZry4rKQ0
+
+
 
 
 

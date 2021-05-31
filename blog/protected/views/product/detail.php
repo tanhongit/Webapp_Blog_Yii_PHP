@@ -69,7 +69,7 @@ $this->breadcrumbs = array(
                                 <div class="quantity">
                                     <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
                                 </div>
-                                <a class="add_to_cart_button" onclick="addtoCart(<?= $data->id ?>)" href="javascript:voice(0);">Add to cart</a>
+                                <a class="add_to_cart_button" onclick="addToCart(<?= $data->id ?>)" href="javascript:voice(0);">Add to cart</a>
                             </form>
 
                             <div class="product-inner-category">
@@ -121,7 +121,7 @@ $this->breadcrumbs = array(
                                 <div class="product-f-image">
                                     <img id="imgProduct<?= $value->id ?>" src="<?= get_BaseUrl() . $value->image ?>" alt="">
                                     <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="javascript:voice(0);" onclick="addToCart(<?= $data->id ?>)" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                                         <a href="<?= $value->id ?>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
