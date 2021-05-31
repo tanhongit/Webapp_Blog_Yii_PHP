@@ -69,20 +69,18 @@ $this->breadcrumbs = array(
 							<table cellspacing="0" class="shop_table cart">
 								<thead>
 									<tr>
-										<th class="product-remove">&nbsp;</th>
+
 										<th class="product-thumbnail">&nbsp;</th>
 										<th class="product-name">Product</th>
 										<th class="product-price">Price</th>
 										<th class="product-quantity">Quantity</th>
+										<th class="product-remove">&nbsp;</th>
 										<th class="product-subtotal">Total</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach ($data as $value) : ?>
+									<?php foreach ($data as $key => $value) : ?>
 										<tr class="cart_item">
-											<td class="product-remove">
-												<a title="Remove this item" class="remove" href="javascript:voice(0);">×</a>
-											</td>
 
 											<td class="product-thumbnail">
 												<a href="product/detail/<?= $value['id'] ?>"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<?= get_BaseUrl() . $value['product_image'] ?>"></a>
@@ -99,10 +97,16 @@ $this->breadcrumbs = array(
 											<td class="product-quantity">
 												<div class="quantity buttons_added">
 													<input type="button" class="minus" value="-">
-													<input type="number" size="4" class="input-text qty text" title="Qty" value="<?= $value['quality'] ?>" min="0" step="1">
+													<input type="number" size="3" required name='quality_item_cart_<?= $key ?>' id="quality_item_cart_<?= $key ?>" class="input-text qty text" title="Qty" value="<?= $value['quality'] ?>" min="0" step="1">
 													<input type="button" class="plus" value="+">
-													<span>.</span>
+													<span>&nbsp;</span>
 												</div>
+											</td>
+
+											<td class="product-remove">
+												<a title="Update this item" class="glyphicon glyphicon-ok" href="javascript:voice(0);" onclick="editQtyCartItem(<?= $key ?>)"></a>
+												<hr>
+												<a title="Remove this item" class="remove" href="javascript:voice(0);" onclick="deleteCartItem(<?= $key ?>)">x</a>
 											</td>
 
 											<td class="product-subtotal">
@@ -201,8 +205,6 @@ $this->breadcrumbs = array(
 
 								</section>
 							</form>
-
-
 						</div>
 					</div>
 				</div>
@@ -210,3 +212,20 @@ $this->breadcrumbs = array(
 		</div>
 	</div>
 </div>
+<script>
+	var url = '<?php echo Yii::app()->request->baseUrl ?>';
+
+	function editQtyCartItem(id) {
+		number = $('#quality_item_cart_' + id).val();
+		$.post(url + '/shoppingCart/updateItemCart', {
+			'product_id': id,
+			'quality': number,
+		}, function(data) {
+			$('#quality_cart').text(data);
+		});
+	}
+
+	function deleteCartItem(id) {
+
+	}
+</script>

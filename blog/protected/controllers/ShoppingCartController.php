@@ -54,4 +54,13 @@ class ShoppingCartController extends Controller
 		$total_quality_cart = Cart::getTotalQualityProductCart();
 		echo $total_quality_cart;
 	}
+
+	public function actionUpdateItemCart()
+	{
+		$product_id = Yii::app()->request->getParam('product_id');
+		$quality = Yii::app()->request->getParam('quality');
+		Cart::updateItemCart($product_id, $quality);
+
+		$total_quality_cart = Cart::getTotalQualityProductCart();
+	}
 }

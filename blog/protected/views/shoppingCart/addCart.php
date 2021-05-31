@@ -1,0 +1,2 @@
+<?php
+//called addCart action
