@@ -28,7 +28,7 @@ class ApplicationConfigBehavior extends CBehavior
 		// !empty($test_main_url[2]) && Yii::app()->user->setState('applicationLanguage', $test_main_url[2]);
 
 		$this->owner->user->getState('applicationLanguage') ?
-			$this->owner->language = $this->owner->user->getState('applicationLanguage') :
-			$this->owner->language = 'es';
+			$this->owner->language = $this->owner->user->getState('applicationLanguage')
+			: $this->owner->language = 'en';
 	}
 }

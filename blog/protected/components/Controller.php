@@ -36,8 +36,13 @@ class Controller extends CController
 
 		$test_main_url = explode('.', $_SERVER['HTTP_HOST']);
 		$pop_array_url = array_pop($test_main_url);
+
+		$test_request_url = explode('/', $_SERVER['REQUEST_URI']);
+
 		if (in_array($pop_array_url, language_codes())) {
 			Yii::app()->user->setState('applicationLanguage', $pop_array_url);
+		} elseif (in_array($test_request_url[1], language_codes())) {
+			Yii::app()->user->setState('applicationLanguage', $test_request_url[1]);
 		} elseif (isset($_POST['language'])) {
 			Yii::app()->user->setState('applicationLanguage', $_POST['language']);
 		}
@@ -53,7 +58,7 @@ class Controller extends CController
 		echo $app->dateFormatter->formatDateTime($time, 'full', 'full');
 	}
 
-	public function showDateFormat() 
+	public function showDateFormat()
 	{
 		$time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 		$app = Yii::app();
