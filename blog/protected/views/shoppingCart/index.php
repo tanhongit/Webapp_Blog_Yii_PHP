@@ -227,6 +227,11 @@ $this->breadcrumbs = array(
 	}
 
 	function deleteCartItem(id) {
-
+		$.post(url + '/shoppingCart/deleteCartItem', {
+			'product_id': id,
+		}, function(data) {
+			$('#quality_cart').text(data);
+			$('#the_cart_component').load(url + '/shoppingCart/index #the_cart_component');
+		});
 	}
 </script>

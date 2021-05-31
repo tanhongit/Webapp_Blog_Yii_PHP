@@ -64,4 +64,13 @@ class ShoppingCartController extends Controller
 		$total_quality_cart = Cart::getTotalQualityProductCart();
 		echo $total_quality_cart; //for show  total count quality cart
 	}
+
+	public function actionDeleteCartItem()
+	{
+		$product_id = Yii::app()->request->getParam('product_id');
+		Cart::deleteCartItem($product_id);
+
+		$total_quality_cart = Cart::getTotalQualityProductCart();
+		echo $total_quality_cart; //for show  total count quality cart
+	}
 }
