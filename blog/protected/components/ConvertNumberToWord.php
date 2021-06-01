@@ -119,7 +119,7 @@ class ConvertNumberToWord
             }
         }
         if ($arr_So['ty'] > 0)
-            $result .= $this->convert($arr_So['ty']) . ' tỷ';
+            $result .= $this->m($arr_So['ty']) . ' tỷ';
         if ($arr_So['trieu'] > 0) {
             if ($arr_So['trieu'] >= 100 || $arr_So['ty'] > 0)
                 $result .= ' ' . $this->convert_three_number($arr_So['trieu']) . ' triệu';

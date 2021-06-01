@@ -4,7 +4,8 @@ class ShoppingCartController extends Controller
 {
 	public function actionIndex()
 	{
-		$data = Yii::app()->session['cart'];
+		$data = array();
+		Yii::app()->session['cart'] && $data = Yii::app()->session['cart'];
 		// print_r('<pre>');
 		// print_r($data);die;
 		$total_quality_cart = Cart::getTotalQualityProductCart();
@@ -72,5 +73,16 @@ class ShoppingCartController extends Controller
 
 		$total_quality_cart = Cart::getTotalQualityProductCart();
 		echo $total_quality_cart; //for show  total count quality cart
+	}
+
+	public function actionCheckOut()
+	{
+		$data = '';
+		$this->render(
+			'checkout',
+			array(
+				'data' => $data,
+			)
+		);
 	}
 }

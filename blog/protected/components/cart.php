@@ -51,11 +51,13 @@ class Cart
     public function totalPriceCart()
     {
         $cart = Yii::app()->session['cart'];
-        $total = 0.0;
-        foreach ($cart as $value) {
-            $total += $value['quality'] * $value['price'];
+        if (!empty($cart)) {
+            $total = 0.0;
+            foreach ($cart as $value) {
+                $total += $value['quality'] * $value['price'];
+            }
+            return $total;
         }
-        return $total;
     }
 
     static function updateItemCart($id, $q)

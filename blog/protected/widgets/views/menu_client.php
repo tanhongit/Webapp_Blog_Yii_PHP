@@ -7,7 +7,7 @@
 						<li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
 						<li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
 						<li><a href="/cart"><i class="fa fa-user"></i> My Cart</a></li>
-						<li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
+						<li><a href="/checkout"><i class="fa fa-user"></i> Checkout</a></li>
 						<li><a href="/login"><i class="fa fa-user"></i> Login</a></li>
 					</ul>
 				</div>
