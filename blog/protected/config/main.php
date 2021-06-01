@@ -109,5 +109,6 @@ return array(
 		'adminEmail' => 'webmaster@example.com',
 		'pager' => 2, //using for pagination
 		'pager_product' => 4, //using /product/index for pagination
+		'currency' => 'VND',
 	),
 );

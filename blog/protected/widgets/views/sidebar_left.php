@@ -17,9 +17,11 @@ $recent_post_data = Post::getRecentPost();
 
             <div class="thubmnail-recent">
                 <img id='imgProduct<?= $value->id ?>' src="<?= get_BaseUrl() . $value->image ?>" class="recent-thumb" alt="">
-                <h2><a href="<?= $value->id ?>"><?= $value->name ?></a></h2>
+                <h2><a href="/product/detail/<?= $value->id ?>"><?= $value->name ?></a></h2>
                 <div class="product-sidebar-price">
-                    <ins><span id="price_<?= $value->id ?>"><?= number_format($value->price, 0, ',', '.') ?></span></ins> <del>$00.00</del>
+                    <ins><span id="price_<?= $value->id ?>"><?php
+                                                            $cn = new CNumberFormatter('vi_VN');
+                                                            echo $cn->formatCurrency($value->price, Yii::app()->params->currency); ?></span></ins> <del>$00.00</del>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -29,8 +31,11 @@ $recent_post_data = Post::getRecentPost();
         <h2 class="sidebar-title">Recent Posts</h2>
         <ul>
             <?php foreach ($recent_post_data as $value) : ?>
-                <li><a href="<?= $value->id ?>"><?= $value->title ?></a></li>
+                <li><a href="/post/<?= $value->id ?>"><?= $value->title ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>
+    <!-- <?php
+            echo Yii::app()->numberFormatter->formatCurrency(12345678, Yii::app()->params->currency);
+            ?> -->
 </div>
