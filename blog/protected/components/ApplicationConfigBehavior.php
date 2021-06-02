@@ -30,5 +30,9 @@ class ApplicationConfigBehavior extends CBehavior
 		$this->owner->user->getState('applicationLanguage') ?
 			$this->owner->language = $this->owner->user->getState('applicationLanguage')
 			: $this->owner->language = 'en';
+
+		$this->owner->user->getState('applicationCurrency') ?
+			Yii::app()->params->currency = $this->owner->user->getState('applicationCurrency')
+			: Yii::app()->params->currency = 'USD';
 	}
 }

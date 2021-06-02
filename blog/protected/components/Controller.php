@@ -46,6 +46,10 @@ class Controller extends CController
 		} elseif (isset($_POST['language'])) {
 			Yii::app()->user->setState('applicationLanguage', $_POST['language']);
 		}
+
+		if (isset($_POST['currency_code'])) {
+			Yii::app()->user->setState('applicationCurrency', $_POST['currency_code']);
+		}
 	}
 
 	public function showDateTimeFormat()

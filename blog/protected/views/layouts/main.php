@@ -137,20 +137,23 @@ $this->actionSettings();
 					<div class="woocommerce">
 						<div id="customer_details" class="col2-set">
 							<div class="woocommerce-billing-fields">
-								<h3>Billing Details</h3>
+								<h3>Currency</h3>
 								<p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
-									<?php $form = $this->beginWidget('CActiveForm', array(
-										'id' => 'select_language',
+									<?php
+									$data_currency = array('empty' => 'Choose currency',);
+									foreach (CurrencyRate::getAllCurrency() as $value) {
+										$data_currency[$value['currency_code']] = $value['currency_code'] . '-' . $value['currency_name'];
+									}
+									$form = $this->beginWidget('CActiveForm', array(
+										'id' => 'select_currency',
 										'htmlOptions' => array(
 											'class' => 'country_to_state country_select',
 										),
 									));
 									echo CHtml::dropDownList(
-										'language',
+										'currency_code',
 										'empty',
-										array(
-											'empty' => 'Choose language', 'vi' => 'Vietnamese', 'en' => 'EN', 'fr' => 'French', 'more' => array('it' => 'Italian', 'test 2')
-										),
+										$data_currency,
 										['onchange' => 'this.form.submit()']
 									); ?>
 									<?php $this->endWidget(); ?>

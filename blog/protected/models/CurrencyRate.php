@@ -18,4 +18,13 @@ class CurrencyRate extends CurrencyRateBase
     {
         return '{{currency_rates}}';
     }
+
+    public function getAllCurrency()
+    {
+        $criteria = new CDbCriteria();
+        $criteria->select = '*';
+        $criteria->order = 'currency_code DESC';
+        $data = CurrencyRate::model()->findAll($criteria);
+        return $data;
+    }
 }
