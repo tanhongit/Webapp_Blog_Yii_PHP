@@ -383,7 +383,7 @@ $this->breadcrumbs = array(
                                         <p id="billing_phone_field" class="form-row form-row-last validate-required validate-phone">
                                             <label class="" for="billing_phone">Phone <abbr title="required" class="required">*</abbr>
                                             </label>
-                                            <input type="text" value="" placeholder="" id="billing_phone" name="billing_phone" class="input-text ">
+                                            <input type="number" value="" placeholder="" id="billing_phone" name="billing_phone" class="input-text ">
                                         </p>
                                         <div class="clear"></div>
 

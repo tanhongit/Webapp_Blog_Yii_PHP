@@ -29,7 +29,7 @@ class m210602_062822_order extends CDbMigration
 			'ship_address_optional' => 'varchar(255)',
 			'ship_city' => 'varchar(255)',
 			'ship_postcode' => 'varchar(255)',
-			'ship_email' => 'varchar(255)',
+			'order_comments' => 'varchar(500)',
 			'ship_phone' => 'int',
 		));
 	}

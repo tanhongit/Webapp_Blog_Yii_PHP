@@ -27,7 +27,7 @@
  * @property string $ship_address_optional
  * @property string $ship_city
  * @property string $ship_postcode
- * @property string $ship_email
+ * @property string $order_comments
  * @property integer $ship_phone
  */
 class OrderBase extends CActiveRecord
@@ -37,7 +37,7 @@ class OrderBase extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return OrderBase the static model class
 	 */
-	public static function model($className=__CLASS__)
+	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
 	}
@@ -58,13 +58,14 @@ class OrderBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, status, phone, ship_phone', 'numerical', 'integerOnly'=>true),
+			array('user_id, status, phone, ship_phone', 'numerical', 'integerOnly' => true),
 			array('total_price', 'numerical'),
-			array('first_name, last_name, country, address_street, address_optional, city, postcode, email, ship_first_name, ship_last_name, ship_country, ship_address_street, ship_address_optional, ship_city, ship_postcode, ship_email', 'length', 'max'=>255),
+			array('first_name, last_name, country, address_street, address_optional, city, postcode, email, ship_first_name, ship_last_name, ship_country, ship_address_street, ship_address_optional, ship_city, ship_postcode', 'length', 'max' => 255),
+			array('order_comments', 'length', 'max' => 500),
 			array('order_date, company_name, ship_company_name', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, order_date, status, total_price, first_name, last_name, country, company_name, address_street, address_optional, city, postcode, email, phone, ship_first_name, ship_last_name, ship_country, ship_company_name, ship_address_street, ship_address_optional, ship_city, ship_postcode, ship_email, ship_phone', 'safe', 'on'=>'search'),
+			array('id, user_id, order_date, status, total_price, first_name, last_name, country, company_name, address_street, address_optional, city, postcode, email, phone, ship_first_name, ship_last_name, ship_country, ship_company_name, ship_address_street, ship_address_optional, ship_city, ship_postcode, order_comments, ship_phone', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -75,8 +76,7 @@ class OrderBase extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-		);
+		return array();
 	}
 
 	/**
@@ -108,7 +108,7 @@ class OrderBase extends CActiveRecord
 			'ship_address_optional' => 'Ship Address Optional',
 			'ship_city' => 'Ship City',
 			'ship_postcode' => 'Ship Postcode',
-			'ship_email' => 'Ship Email',
+			'order_comments' => 'Order Comments',
 			'ship_phone' => 'Ship Phone',
 		);
 	}
@@ -122,36 +122,36 @@ class OrderBase extends CActiveRecord
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('order_date',$this->order_date,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('total_price',$this->total_price);
-		$criteria->compare('first_name',$this->first_name,true);
-		$criteria->compare('last_name',$this->last_name,true);
-		$criteria->compare('country',$this->country,true);
-		$criteria->compare('company_name',$this->company_name,true);
-		$criteria->compare('address_street',$this->address_street,true);
-		$criteria->compare('address_optional',$this->address_optional,true);
-		$criteria->compare('city',$this->city,true);
-		$criteria->compare('postcode',$this->postcode,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('phone',$this->phone);
-		$criteria->compare('ship_first_name',$this->ship_first_name,true);
-		$criteria->compare('ship_last_name',$this->ship_last_name,true);
-		$criteria->compare('ship_country',$this->ship_country,true);
-		$criteria->compare('ship_company_name',$this->ship_company_name,true);
-		$criteria->compare('ship_address_street',$this->ship_address_street,true);
-		$criteria->compare('ship_address_optional',$this->ship_address_optional,true);
-		$criteria->compare('ship_city',$this->ship_city,true);
-		$criteria->compare('ship_postcode',$this->ship_postcode,true);
-		$criteria->compare('ship_email',$this->ship_email,true);
-		$criteria->compare('ship_phone',$this->ship_phone);
+		$criteria->compare('id', $this->id);
+		$criteria->compare('user_id', $this->user_id);
+		$criteria->compare('order_date', $this->order_date, true);
+		$criteria->compare('status', $this->status);
+		$criteria->compare('total_price', $this->total_price);
+		$criteria->compare('first_name', $this->first_name, true);
+		$criteria->compare('last_name', $this->last_name, true);
+		$criteria->compare('country', $this->country, true);
+		$criteria->compare('company_name', $this->company_name, true);
+		$criteria->compare('address_street', $this->address_street, true);
+		$criteria->compare('address_optional', $this->address_optional, true);
+		$criteria->compare('city', $this->city, true);
+		$criteria->compare('postcode', $this->postcode, true);
+		$criteria->compare('email', $this->email, true);
+		$criteria->compare('phone', $this->phone);
+		$criteria->compare('ship_first_name', $this->ship_first_name, true);
+		$criteria->compare('ship_last_name', $this->ship_last_name, true);
+		$criteria->compare('ship_country', $this->ship_country, true);
+		$criteria->compare('ship_company_name', $this->ship_company_name, true);
+		$criteria->compare('ship_address_street', $this->ship_address_street, true);
+		$criteria->compare('ship_address_optional', $this->ship_address_optional, true);
+		$criteria->compare('ship_city', $this->ship_city, true);
+		$criteria->compare('ship_postcode', $this->ship_postcode, true);
+		$criteria->compare('order_comments', $this->order_comments, true);
+		$criteria->compare('ship_phone', $this->ship_phone);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
 		));
 	}
 }
