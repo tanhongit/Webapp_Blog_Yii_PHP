@@ -153,4 +153,17 @@ function convert_number_to_words($number)
     return $string;
 }
 
+function get_price_apply_i18n($price)
+{
+    $data_lang_code = LanguageCode::getAllLanguageCode();
+    $code_postal = '';
 
+    $lang_code = '';
+    !empty(Yii::app()->language) ? $lang_code = Yii::app()->language : $lang_code = 'en';
+
+    foreach ($data_lang_code as $value) {
+        $lang_code == $value['first_code'] && $code_postal = $value['second_code'];
+    }
+    $number = new CNumberFormatter($lang_code . '_' . $code_postal);
+    echo $number->formatCurrency($price, Yii::app()->params->currency);
+}

@@ -115,7 +115,7 @@ $this->actionSettings();
 									<?php
 									$data_lang_code = array('empty' => 'Choose language');
 									foreach (LanguageCode::getAllLanguageCode() as $value) {
-										$data_lang_code[$value['first_code']] = $value['name'];
+										$data_lang_code[$value['first_code']] = $value['first_code'] . '-' . $value['name'];
 									}
 									$form = $this->beginWidget('CActiveForm', array(
 										'id' => 'select_language',

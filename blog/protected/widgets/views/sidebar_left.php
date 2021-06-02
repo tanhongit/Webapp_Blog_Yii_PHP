@@ -19,9 +19,10 @@ $recent_post_data = Post::getRecentPost();
                 <img id='imgProduct<?= $value->id ?>' src="<?= get_BaseUrl() . $value->image ?>" class="recent-thumb" alt="">
                 <h2><a href="/product/detail/<?= $value->id ?>"><?= $value->name ?></a></h2>
                 <div class="product-sidebar-price">
-                    <ins><span id="price_<?= $value->id ?>"><?php
-                                                            $cn = new CNumberFormatter('vi_VN');
-                                                            echo $cn->formatCurrency($value->price, Yii::app()->params->currency); ?></span></ins> <del>$00.00</del>
+                    <ins><span id="price_<?= $value->id ?>">
+                            <?php get_price_apply_i18n($value->price); ?>
+                        </span>
+                    </ins> <del>$00.00</del>
                 </div>
             </div>
         <?php endforeach; ?>
