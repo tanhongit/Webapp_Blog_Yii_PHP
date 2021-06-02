@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 25, 2021 lúc 11:57 AM
--- Phiên bản máy phục vụ: 10.4.6-MariaDB
--- Phiên bản PHP: 7.0.33
+-- Host: 127.0.0.1
+-- Generation Time: Jun 02, 2021 at 09:10 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.0.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `blogbasic`
+-- Database: `blogbasic`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_categories`
+-- Table structure for table `tbl_categories`
 --
 
 CREATE TABLE `tbl_categories` (
@@ -40,18 +40,19 @@ CREATE TABLE `tbl_categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_categories`
+-- Dumping data for table `tbl_categories`
 --
 
 INSERT INTO `tbl_categories` (`id`, `name`, `description`, `status`, `meta_key`, `meta_description`, `create_time`, `update_time`) VALUES
-(1, 'Dell', 'May tính dell chat luong cao\r\n', 1, 'dell may tinh dell ', 'dell may tinh dell ', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'Asus', 'May tính Asus chính hãng', 1, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 'HP', 'Máy tính HP chính hãng', 1, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'Lenovo', 'sếtgr', 1, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'Dell', '', 1, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 'Asus', '', NULL, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 'HP', '', NULL, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_comment`
+-- Table structure for table `tbl_comment`
 --
 
 CREATE TABLE `tbl_comment` (
@@ -68,7 +69,7 @@ CREATE TABLE `tbl_comment` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_lookup`
+-- Table structure for table `tbl_lookup`
 --
 
 CREATE TABLE `tbl_lookup` (
@@ -82,7 +83,7 @@ CREATE TABLE `tbl_lookup` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_migration`
+-- Table structure for table `tbl_migration`
 --
 
 CREATE TABLE `tbl_migration` (
@@ -91,26 +92,61 @@ CREATE TABLE `tbl_migration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_migration`
+-- Dumping data for table `tbl_migration`
 --
 
 INSERT INTO `tbl_migration` (`version`, `apply_time`) VALUES
-('m000000_000000_base', 1621578978),
-('m210514_021022_lookup', 1621578980),
-('m210514_021723_user', 1621578980),
-('m210514_022239_post', 1621578981),
-('m210514_022656_comment', 1621578981),
-('m210514_023450_tag', 1621578981),
-('m210514_024239_post_foreigin_key', 1621578982),
-('m210514_024701_comment_foreigin_key', 1621578983),
-('m210521_080731_product', 1621586304),
-('m210521_082103_category', 1621586304),
-('m210521_082404_product_category_foreigin_key', 1621586346);
+('m000000_000000_base', 1622098175),
+('m210514_021022_lookup', 1622098179),
+('m210514_021723_user', 1622098179),
+('m210514_022239_post', 1622098180),
+('m210514_022656_comment', 1622098180),
+('m210514_023450_tag', 1622098180),
+('m210514_024239_post_foreigin_key', 1622098181),
+('m210514_024701_comment_foreigin_key', 1622098182),
+('m210521_080731_product', 1622098182),
+('m210521_082103_category', 1622098182),
+('m210521_082404_product_category_foreigin_key', 1622098184),
+('m210602_062822_order', 1622617744);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_post`
+-- Table structure for table `tbl_order`
+--
+
+CREATE TABLE `tbl_order` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `order_date` date DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `total_price` float DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_name` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_optional` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postcode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` int(11) DEFAULT NULL,
+  `ship_first_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_company_name` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_address_street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_address_optional` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_postcode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship_phone` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_post`
 --
 
 CREATE TABLE `tbl_post` (
@@ -125,17 +161,16 @@ CREATE TABLE `tbl_post` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_post`
+-- Dumping data for table `tbl_post`
 --
 
 INSERT INTO `tbl_post` (`id`, `title`, `content`, `tag`, `status`, `create_time`, `update_time`, `author_id`) VALUES
-(1, 'aa1', 'segre', '1', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3),
-(2, 'aa1', 'hhhh', '1', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2);
+(3, 'The First Post', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio obcaecati eius necessitatibus rerum, harum, fugiat ducimus eos consequatur aliquam repellendus perferendis dolor iure esse ipsum nobis! Nobis aspernatur atque ex?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio obcaecati eius necessitatibus rerum, harum, fugiat ducimus eos consequatur aliquam repellendus perferendis dolor iure esse ipsum nobis! Nobis aspernatur atque ex?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio obcaecati eius necessitatibus rerum, harum, fugiat ducimus eos consequatur aliquam repellendus perferendis dolor iure esse ipsum nobis! Nobis aspernatur atque ex?\r\n\r\nLorem ipsum dolor sit amet consectetur, adipisicing elit. Odio obcaecati eius necessitatibus rerum, harum, fugiat ducimus eos consequatur aliquam repellendus perferendis dolor iure esse ip', '1', 1, '2021-05-28 17:17:34', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_product`
+-- Table structure for table `tbl_product`
 --
 
 CREATE TABLE `tbl_product` (
@@ -157,22 +192,22 @@ CREATE TABLE `tbl_product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_product`
+-- Dumping data for table `tbl_product`
 --
 
 INSERT INTO `tbl_product` (`id`, `name`, `description`, `category_id`, `price`, `image`, `image2`, `image3`, `image4`, `status`, `meta_key`, `meta_description`, `create_time`, `update_time`, `author_id`) VALUES
-(1, 'Dell M4700', 'Mô tả', 1, 15000000, '/uploads/1621592521_23.jpg', '', '', '', 1, 'dell', 'dell', '2021-05-21 17:16:07', '2021-05-21 17:16:07', NULL),
-(2, 'Dell M4700', 'régr', 1, 16000000, '/uploads/1621592521_23.jpg', '', '', '', NULL, '', '', '2021-05-21 17:22:01', '2021-05-21 17:22:01', NULL),
-(3, 'Dell M4800', 'Dell', 1, 19000000, '/uploads/1621592743_15747326_637547476452773_2952732291714805388_n.jpg', '', '', '', NULL, '', '', '2021-05-21 17:25:43', '0000-00-00 00:00:00', NULL),
-(4, 'Dell M4800 VGA K2000', 'fsgr', 1, 18000000, '/uploads/1621786175_15871797_1844085952497042_2268302554702200215_n.jpg', '', '', '', 1, '', '', '2021-05-23 23:09:35', '0000-00-00 00:00:00', NULL),
-(5, 'Máy tính HP 1', 'ágr', 3, 13000000, '/uploads/1621787280_15873111_1629647334007118_7182697210787296855_n.jpg', '', '', '', NULL, '', '', '2021-05-23 23:28:00', '0000-00-00 00:00:00', NULL),
-(6, 'Máy tính Asus 1', 'dsegar', 2, 15000000, '/uploads/1621787321_received_469919476697486.png', '', '', '', NULL, '', '', '2021-05-23 23:28:41', '0000-00-00 00:00:00', NULL),
-(7, 'Máy Asus 2', '36', 2, 19500000, '/uploads/1621933513_15027901_193892291067116_4947140266958793894_n.jpg', '', '', '', NULL, '', '', '2021-05-25 16:05:13', '0000-00-00 00:00:00', NULL);
+(1, 'Dell M4700', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum voluptas laudantium minus? Quidem, corporis sunt asperiores similique, obcaecati magnam mollitia ad voluptatibus a omnis ducimus minima ipsa necessitatibus temporibus voluptate.', 2, 15000000, '/uploads/1622098297_1-thiet-ke-ben-ngoai-cua-dell-precision-m4800.jpg', '', '', '', NULL, '', '', '2021-05-27 13:51:37', '0000-00-00 00:00:00', 1),
+(2, 'Dell M4800', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum voluptas laudantium minus? Quidem, corporis sunt asperiores similique, obcaecati magnam mollitia ad voluptatibus a omnis ducimus minima ipsa necessitatibus temporibus voluptate.', 2, 18000000, '/uploads/1622098363_1-thiet-ke-ben-ngoai-cua-dell-precision-m4800.jpg', '', '', '', 1, '', '', '2021-05-27 13:52:43', '0000-00-00 00:00:00', NULL),
+(3, 'Dell M4800 VGA K2000', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum voluptas laudantium minus? Quidem, corporis sunt asperiores similique, obcaecati magnam mollitia ad voluptatibus a omnis ducimus minima ipsa necessitatibus temporibus voluptate.', 2, 18000000, '/uploads/1622098389_1-thiet-ke-ben-ngoai-cua-dell-precision-m4800.jpg', '', '', '', NULL, '', '', '2021-05-27 13:53:09', '0000-00-00 00:00:00', NULL),
+(4, 'Máy tính HP 1', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum voluptas laudantium minus? Quidem, corporis sunt asperiores similique, obcaecati magnam mollitia ad voluptatibus a omnis ducimus minima ipsa necessitatibus temporibus voluptate.', 4, 18000000, '/uploads/1622098411_1-thiet-ke-ben-ngoai-cua-dell-precision-m4800.jpg', '', '', '', NULL, '', '', '2021-05-27 13:53:31', '0000-00-00 00:00:00', NULL),
+(5, 'Laptop  Dell Precision 7710 Core I7', 'Laptop  Dell Precision 7710 Core I7Laptop  Dell Precision 7710 Core I7Laptop  Dell Precision 7710 Core I7', 2, 14500000, '/uploads/1622124648_laptop-cu-dell-precision-7710-core-i7-3.jpg', '', '', '', NULL, '', '', '2021-05-27 21:10:48', '0000-00-00 00:00:00', NULL),
+(6, 'LAPTOP HP Elitebook 820-G2', 'LAPTOP HP Elitebook 820-G2LAPTOP HP Elitebook 820-G2LAPTOP HP Elitebook 820-G2', 4, 15000000, '/uploads/1622124836_LAPTOP-HP-Elitebook-820-G2.jpg', '', '', '', NULL, '', '', '2021-05-27 21:13:56', '0000-00-00 00:00:00', NULL),
+(7, 'Laptop Asus Vivobook X509JP i5 1035G1 2020', 'Laptop Asus Vivobook X509JP i5 1035G1 2020Laptop Asus Vivobook X509JP i5 1035G1 2020Laptop Asus Vivobook X509JP i5 1035G1 2020Laptop Asus Vivobook X509JP i5 1035G1 2020Laptop Asus Vivobook X509JP i5 1035G1 2020', 3, 19500000, '/uploads/1622124995_121277701_352157449201209_8169048760513127722_n.jpg', '', '', '', NULL, '', '', '2021-05-27 21:16:35', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_tag`
+-- Table structure for table `tbl_tag`
 --
 
 CREATE TABLE `tbl_tag` (
@@ -184,7 +219,7 @@ CREATE TABLE `tbl_tag` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_user`
+-- Table structure for table `tbl_user`
 --
 
 CREATE TABLE `tbl_user` (
@@ -196,134 +231,143 @@ CREATE TABLE `tbl_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_user`
+-- Dumping data for table `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id`, `username`, `password`, `email`, `profile`) VALUES
-(1, 'ahihi', 'ahihi', 'ahihi@â.com', ''),
-(2, 'tan', '5b2d4484498235e80d61a233a7c04991', 'tan@f.c', ''),
-(3, 'trieu', '517697eb0e931c8a84682d125b213709', 'trieu@g.v', ''),
-(4, 'admin', '12345', '', NULL);
+(1, 'admin', 'admin', '', NULL);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `tbl_categories`
+-- Indexes for table `tbl_categories`
 --
 ALTER TABLE `tbl_categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `tbl_comment`
+-- Indexes for table `tbl_comment`
 --
 ALTER TABLE `tbl_comment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_comment_post` (`post_id`);
 
 --
--- Chỉ mục cho bảng `tbl_lookup`
+-- Indexes for table `tbl_lookup`
 --
 ALTER TABLE `tbl_lookup`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `tbl_migration`
+-- Indexes for table `tbl_migration`
 --
 ALTER TABLE `tbl_migration`
   ADD PRIMARY KEY (`version`);
 
 --
--- Chỉ mục cho bảng `tbl_post`
+-- Indexes for table `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_post`
 --
 ALTER TABLE `tbl_post`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_user_post` (`author_id`);
 
 --
--- Chỉ mục cho bảng `tbl_product`
+-- Indexes for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_product_category` (`category_id`);
 
 --
--- Chỉ mục cho bảng `tbl_tag`
+-- Indexes for table `tbl_tag`
 --
 ALTER TABLE `tbl_tag`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `tbl_user`
+-- Indexes for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `tbl_categories`
+-- AUTO_INCREMENT for table `tbl_categories`
 --
 ALTER TABLE `tbl_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_comment`
+-- AUTO_INCREMENT for table `tbl_comment`
 --
 ALTER TABLE `tbl_comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_lookup`
+-- AUTO_INCREMENT for table `tbl_lookup`
 --
 ALTER TABLE `tbl_lookup`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_post`
+-- AUTO_INCREMENT for table `tbl_order`
 --
-ALTER TABLE `tbl_post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `tbl_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_product`
+-- AUTO_INCREMENT for table `tbl_post`
+--
+ALTER TABLE `tbl_post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_tag`
+-- AUTO_INCREMENT for table `tbl_tag`
 --
 ALTER TABLE `tbl_tag`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_user`
+-- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `tbl_comment`
+-- Constraints for table `tbl_comment`
 --
 ALTER TABLE `tbl_comment`
   ADD CONSTRAINT `FK_comment_post` FOREIGN KEY (`post_id`) REFERENCES `tbl_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `tbl_post`
+-- Constraints for table `tbl_post`
 --
 ALTER TABLE `tbl_post`
   ADD CONSTRAINT `FK_user_post` FOREIGN KEY (`author_id`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `tbl_product`
+-- Constraints for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
   ADD CONSTRAINT `FK_product_category` FOREIGN KEY (`category_id`) REFERENCES `tbl_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
