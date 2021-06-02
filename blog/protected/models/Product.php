@@ -2,6 +2,24 @@
 
 class Product extends ProductBase
 {
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @param string $className active record class name.
+	 * @return Product the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return '{{product}}';
+	}
+
 	public function getAllProduct()
 	{
 		$data = Product::model()->findAll();
