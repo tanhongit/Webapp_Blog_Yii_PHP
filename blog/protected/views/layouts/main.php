@@ -89,19 +89,7 @@ $this->actionSettings();
 						</ul>
 					</div>
 					<div class="footer-menu">
-						<?php $form = $this->beginWidget('CActiveForm', array(
-							'id' => '',
-							'htmlOptions' => array(
-								'class' => 'country_to_state country_select',
-							),
-						));
-						echo CHtml::dropDownList(
-							'language',
-							'empty',
-							array('empty' => 'Choose language', 'vi' => 'Vietnamese', 'en' => 'EN', 'fr' => 'French', 'more' => array('it' => 'Italian', 'test 2')),
-							['onchange' => 'this.form.submit()']
-						); ?>
-						<?php $this->endWidget(); ?>
+
 					</div>
 				</div>
 
@@ -119,14 +107,55 @@ $this->actionSettings();
 				</div>
 
 				<div class="col-md-3 col-sm-6">
-					<div class="footer-newsletter">
-						<h2 class="footer-wid-title">Newsletter</h2>
-						<p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
-						<div class="newsletter-form">
-							<form action="#">
-								<input type="email" placeholder="Type your email">
-								<input type="submit" value="Subscribe">
-							</form>
+					<div class="woocommerce">
+						<div id="customer_details" class="col2-set">
+							<div class="woocommerce-billing-fields">
+								<h3>Languages</h3>
+								<p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
+									<?php
+									$data_lang_code = array('empty' => 'Choose language');
+									foreach (LanguageCode::getAllLanguageCode() as $value) {
+										$data_lang_code[$value['first_code']] = $value['name'];
+									}
+									$form = $this->beginWidget('CActiveForm', array(
+										'id' => 'select_language',
+										'htmlOptions' => array(
+											'class' => 'country_to_state country_select',
+										),
+									));
+									echo CHtml::dropDownList(
+										'language',
+										'empty',
+										$data_lang_code,
+										['onchange' => 'this.form.submit()']
+									); ?>
+									<?php $this->endWidget(); ?>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="woocommerce">
+						<div id="customer_details" class="col2-set">
+							<div class="woocommerce-billing-fields">
+								<h3>Billing Details</h3>
+								<p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
+									<?php $form = $this->beginWidget('CActiveForm', array(
+										'id' => 'select_language',
+										'htmlOptions' => array(
+											'class' => 'country_to_state country_select',
+										),
+									));
+									echo CHtml::dropDownList(
+										'language',
+										'empty',
+										array(
+											'empty' => 'Choose language', 'vi' => 'Vietnamese', 'en' => 'EN', 'fr' => 'French', 'more' => array('it' => 'Italian', 'test 2')
+										),
+										['onchange' => 'this.form.submit()']
+									); ?>
+									<?php $this->endWidget(); ?>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>

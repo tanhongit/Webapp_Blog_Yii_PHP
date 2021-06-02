@@ -1,15 +1,34 @@
 <?php
 
 /**
- * This is the model class for table "{{tag}}".
+ * This is the model class for table "{{language_codes}}".
  *
- * The followings are the available columns in table '{{tag}}':
+ * The followings are the available columns in table '{{language_codes}}':
  * @property integer $id
  * @property string $name
- * @property integer $frequency
+ * @property string $first_code
+ * @property string $second_code
  */
-class TagBase extends CActiveRecord
+class LanguageCodeBase extends CActiveRecord
 {
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @param string $className active record class name.
+	 * @return LanguageCodeBase the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return '{{language_codes}}';
+	}
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -18,12 +37,11 @@ class TagBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('frequency', 'required'),
-			array('frequency', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
+			array('name, first_code, second_code', 'required'),
+			array('name, first_code, second_code', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, frequency', 'safe', 'on'=>'search'),
+			array('id, name, first_code, second_code', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,8 +63,9 @@ class TagBase extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => Yii::t('app','model.tag.name'),
-			'frequency' => Yii::t('app','model.tag.frequency'),
+			'name' => 'Name',
+			'first_code' => 'First Code',
+			'second_code' => 'Second Code',
 		);
 	}
 
@@ -63,7 +82,8 @@ class TagBase extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('frequency',$this->frequency);
+		$criteria->compare('first_code',$this->first_code,true);
+		$criteria->compare('second_code',$this->second_code,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
