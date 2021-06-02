@@ -47,7 +47,7 @@ class UserIdentity extends CUserIdentity
 			$this->id = $user->id;
 			$this->username = $user->username;
 			$this->errorCode = self::ERROR_NONE;
-			Yii::app()->user->setState('currentUserInfo', $user);
+			Yii::app()->user->setState('currentUserInfo', $user->attributes);
 		}
 		return $this->errorCode == self::ERROR_NONE;
 	}

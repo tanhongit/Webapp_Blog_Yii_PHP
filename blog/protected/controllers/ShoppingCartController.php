@@ -77,12 +77,15 @@ class ShoppingCartController extends Controller
 
 	public function actionCheckOut()
 	{
-		$data = array();
+		
 		Yii::app()->session['cart'] && $data = Yii::app()->session['cart'];
 		// print_r('<pre>');
 		// print_r($data);die;
 		$total_quality_cart = Cart::getTotalQualityProductCart();
-
+		if(isset($_POST['woocommerce_checkout_place_order'])){
+			
+		}
+		$data = array();
 		$this->render(
 			'checkout',
 			array(

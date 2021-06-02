@@ -10,6 +10,11 @@ function get_server_name()
     return $_SERVER['HTTP_HOST'];
 }
 
+function get_request_url()
+{
+    return $_SERVER['REQUEST_URI'];
+}
+
 function get_site_url()
 {
     $protocol =  $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";;

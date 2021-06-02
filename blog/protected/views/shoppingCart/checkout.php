@@ -63,7 +63,7 @@ $this->breadcrumbs = array(
                             <div class="clear"></div>
                         </form>
 
-                        <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+                        <form enctype="multipart/form-data" action="<?= get_BaseUrl() . get_request_url() ?>" class="checkout" method="post" name="checkout">
 
                             <div id="customer_details" class="col2-set">
                                 <div class="col-1">
@@ -332,6 +332,13 @@ $this->breadcrumbs = array(
                                             </label>
                                             <input type="text" value="" placeholder="" id="billing_last_name" name="billing_last_name" class="input-text ">
                                         </p>
+                                        <?php if (!Yii::app()->user->isGuest) : ?>
+                                            <p id="billing_username_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_username_field">User Name <abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="<?= Yii::app()->user->currentUserInfo['username'] ?>" placeholder="" id="billing_username_field" name="billing_username_field" class="input-text ">
+                                            </p>
+                                        <?php endif; ?>
                                         <div class="clear"></div>
 
                                         <p id="billing_company_field" class="form-row form-row-wide">
@@ -794,9 +801,7 @@ $this->breadcrumbs = array(
 
                                     <div class="form-row place-order">
 
-                                        <input type="submit" data-value="Place order" value="Place order" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-
-
+                                        <input type="submit" data-value="Place order" value="Place order" id="place_order" name="woocommerce_checkout_place_order" class="button alt" >
                                     </div>
 
                                     <div class="clear"></div>
