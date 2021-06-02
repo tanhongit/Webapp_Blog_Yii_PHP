@@ -130,7 +130,7 @@ $this->breadcrumbs = array(
 									</tbody>
 									<tbody>
 										<tr>
-											<td>
+											<td colspan="2">
 												<?php
 												$convert = new ConvertNumberToWord();
 												echo $convert->convert(Cart::totalPriceCart());

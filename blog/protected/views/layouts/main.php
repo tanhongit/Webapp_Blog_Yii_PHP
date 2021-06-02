@@ -201,6 +201,7 @@ $this->actionSettings();
 
 	<!-- cart -->
 	<script>
+		$('#shipping_address_div').hide();
 		var url = "<?= get_BaseUrl() ?>";
 
 		function addToCart(id) {
@@ -218,6 +219,16 @@ $this->actionSettings();
 				$('#modal-show').modal('show');
 			});
 		}
+
+		jQuery(document).ready(function($) {
+			$('#ship-to-different-address-checkbox').bind('change', function() {
+				if ($(this).is(':checked')) {
+					$('#shipping_address_div').show();
+				} else {
+					$('#shipping_address_div').hide();
+				}
+			});
+		});
 	</script>
 
 	<!-- Slider -->
