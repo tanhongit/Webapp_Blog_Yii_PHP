@@ -73,7 +73,7 @@ $this->breadcrumbs = array(
 												<input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
 											</div>
 											<input type="submit" value="Update Cart" name="update_cart" class="button">
-											<input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
+											<a type="submit" name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
 										</td>
 									</tr>
 								</tbody>
