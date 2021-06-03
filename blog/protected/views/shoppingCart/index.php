@@ -14,6 +14,17 @@ $this->breadcrumbs = array(
 			<?php $this->widget('application.widgets.sidebar_left'); ?>
 
 			<div class="col-md-9">
+				<?php if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) : ?>
+					<div class="row">
+						<div class="create-account" style="text-align: center; text-decoration: none;">
+							<p>Your cart is currently empty.</p>
+							<br>
+							<p><a style="text-decoration: none;" class="button" href="/" type="submit" name="calc_shipping">Go to shop</a>
+							</p>
+							<div class="clear"></div>
+						</div>
+					</div>
+				<?php endif; ?>
 				<div class="product-content-right">
 					<div class="woocommerce" id="the_cart_component">
 						<form method="post" action="#">
@@ -115,25 +126,33 @@ $this->breadcrumbs = array(
 								<table cellspacing="0">
 									<tbody>
 										<tr class="cart-subtotal">
-											<th>Cart Subtotal</th>
+											<th>Quality Subtotal</th>
 											<td><span class="amount"><?= $total_quality_cart ?></span></td>
 										</tr>
-
+										<tr class="order-total">
+											<th>Price Subtotal</th>
+											<td><strong><span class="amount"><?= get_price_apply_i18n(Cart::totalPriceCart()) ?></span></strong> </td>
+										</tr>
 										<tr class="shipping">
 											<th>Shipping and Handling</th>
 											<td>Free Shipping</td>
-										</tr>
-										<tr class="order-total">
-											<th>Order Total</th>
-											<td><strong><span class="amount">£15.00</span></strong> </td>
 										</tr>
 									</tbody>
 									<tbody>
 										<tr>
 											<td colspan="2">
 												<?php
+												$currency_name_data = CurrencyRate::getCurrencyByCode(Yii::app()->params->currency);
+												$data_currency = '';
+												foreach ($currency_name_data as $value) {
+													$data_currency = $value['currency_name'];
+												}
 												$convert = new ConvertNumberToWord();
-												echo $convert->convert(Cart::totalPriceCart()) . ' đô la mỹ';
+												if (!empty(Cart::totalPriceCart())) {
+													echo ucwords(strtolower($convert->convert(get_total_price_i18n()) . ' ' . $data_currency));
+												} else {
+													echo 'None';
+												}
 												?>
 											</td>
 										</tr>

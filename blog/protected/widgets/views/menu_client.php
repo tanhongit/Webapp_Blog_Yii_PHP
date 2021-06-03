@@ -16,17 +16,7 @@
 			<div class="col-md-4">
 				<div class="header-right">
 					<ul class="list-unstyled list-inline">
-						<li class="dropdown dropdown-small">
-							<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<form method="post">
-									<?php foreach (LanguageCode::getAllLanguageCode() as $value) : ?>
-										<li><input style="border: none;cursor: pointer; " value="<?= $value['first_code'] ?>" type="text"></li>
-									<?php endforeach; ?>
-							</ul>
-							</form>
-						</li>
-
+						
 						<li class="dropdown dropdown-small">
 							<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
 							<ul class="dropdown-menu">

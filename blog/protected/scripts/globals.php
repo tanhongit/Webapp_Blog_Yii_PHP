@@ -179,3 +179,16 @@ function get_price_apply_i18n($price)
     $number = new CNumberFormatter($lang_code . '_' . $code_postal);
     echo $number->formatCurrency($currency_price, Yii::app()->params->currency);
 }
+
+function get_total_price_i18n()
+{
+    //check currency code
+    $data_current_rate = CurrencyRate::getAllCurrency();
+    $current_rate = 0.0;
+    foreach ($data_current_rate as $value) {
+        Yii::app()->params->currency == $value['currency_code'] && $current_rate = $value['rate'];
+    }
+    $currency_price = Cart::totalPriceCart() * $current_rate;
+    $currency_price = round($currency_price, 0);
+    return  $currency_price;
+}

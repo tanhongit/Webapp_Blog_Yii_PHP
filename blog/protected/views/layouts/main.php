@@ -212,7 +212,7 @@ $this->actionSettings();
 							<img data-src='#' class='thumbnail' id="img_add_Cart" alt="">
 						</div>
 						<div class="col-sm-6">
-							price <span id="price_add_cart_model"></span>
+							Price: <span id="price_add_cart_model"></span>
 						</div>
 					</div>
 				</div>
