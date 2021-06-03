@@ -14,6 +14,7 @@
  * @property string $image3
  * @property string $image4
  * @property integer $status
+ * @property integer $view
  * @property string $meta_key
  * @property string $meta_description
  * @property string $create_time
@@ -34,13 +35,13 @@ class ProductBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, category_id, price, image', 'required'),
-			array('category_id, status, author_id', 'numerical', 'integerOnly'=>true),
+			array('category_id, status, view, author_id', 'numerical', 'integerOnly' => true),
 			array('price', 'numerical'),
-			array('name, image, image2, image3, image4', 'length', 'max'=>255),
+			array('name, image, image2, image3, image4', 'length', 'max' => 255),
 			array('description, meta_key, meta_description, create_time, update_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, category_id, price, image, image2, image3, image4, status, meta_key, meta_description, create_time, update_time, author_id', 'safe', 'on'=>'search'),
+			array('id, name, description, category_id, price, image, image2, image3, image4, status, view, meta_key, meta_description, create_time, update_time, author_id', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -72,6 +73,7 @@ class ProductBase extends CActiveRecord
 			'image3' => 'Image3',
 			'image4' => 'Image4',
 			'status' => 'Status',
+			'view' => 'View',
 			'meta_key' => 'Meta Key',
 			'meta_description' => 'Meta Description',
 			'create_time' => 'Create Time',
@@ -89,26 +91,27 @@ class ProductBase extends CActiveRecord
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('category_id',$this->category_id);
-		$criteria->compare('price',$this->price);
-		$criteria->compare('image',$this->image,true);
-		$criteria->compare('image2',$this->image2,true);
-		$criteria->compare('image3',$this->image3,true);
-		$criteria->compare('image4',$this->image4,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('meta_key',$this->meta_key,true);
-		$criteria->compare('meta_description',$this->meta_description,true);
-		$criteria->compare('create_time',$this->create_time,true);
-		$criteria->compare('update_time',$this->update_time,true);
-		$criteria->compare('author_id',$this->author_id);
+		$criteria->compare('id', $this->id);
+		$criteria->compare('name', $this->name, true);
+		$criteria->compare('description', $this->description, true);
+		$criteria->compare('category_id', $this->category_id);
+		$criteria->compare('price', $this->price);
+		$criteria->compare('image', $this->image, true);
+		$criteria->compare('image2', $this->image2, true);
+		$criteria->compare('image3', $this->image3, true);
+		$criteria->compare('image4', $this->image4, true);
+		$criteria->compare('status', $this->status);
+		$criteria->compare('view', $this->view);
+		$criteria->compare('meta_key', $this->meta_key, true);
+		$criteria->compare('meta_description', $this->meta_description, true);
+		$criteria->compare('create_time', $this->create_time, true);
+		$criteria->compare('update_time', $this->update_time, true);
+		$criteria->compare('author_id', $this->author_id);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
 		));
 	}
 }

@@ -7,7 +7,7 @@ class Product extends ProductBase
 	 * @param string $className active record class name.
 	 * @return Product the static model class
 	 */
-	public static function model($className=__CLASS__)
+	public static function model($className = __CLASS__)
 	{
 		return parent::model($className);
 	}
@@ -124,6 +124,25 @@ class Product extends ProductBase
 		$criteria->select = '*';
 		$criteria->order = 'create_time DESC';
 		$criteria->limit = 20;
+		$data = Product::model()->findAll($criteria);
+		return $data;
+	}
+
+	public function getTopViewProduct()
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->order = 'view DESC';
+		$criteria->limit = 4;
+		$data = Product::model()->findAll($criteria);
+		return $data;
+	}
+
+	public function getAllTopViewProduct()
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->order = 'view DESC';
 		$data = Product::model()->findAll($criteria);
 		return $data;
 	}

@@ -124,6 +124,13 @@ class ProductController extends Controller implements ViewInterFace
 		$this->render('testCache');
 	}
 
+	public function actionTopView()
+	{
+		$data = Product::getAllTopViewProduct();
+
+		$this->render('topview', array('data' => $data)); // Ex: app//product/list?id=2
+	}
+
 	public function actionDetail($id)
 	{
 		$data = Product::getDetailProduct($id);
@@ -139,6 +146,10 @@ class ProductController extends Controller implements ViewInterFace
 
 		$latest_data = Product::getLatestProduct();
 
+		$model = $this->loadModel($id);
+		$model->view += 1;
+		$model->save();
+
 		$this->render('detail', array(
 			'data' => $data,
 			'cate_data' => $cate_data,
@@ -147,5 +158,12 @@ class ProductController extends Controller implements ViewInterFace
 			'recent_post_data' => $recent_post_data,
 			'latest_data' => $latest_data,
 		));
+	}
+	public function loadModel($id)
+	{
+		$model = Product::model()->findByPk($id);
+		if ($model === null)
+			throw new CHttpException(404, 'The requested page does not exist.');
+		return $model;
 	}
 }
