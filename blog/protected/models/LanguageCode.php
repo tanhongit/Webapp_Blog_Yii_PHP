@@ -27,4 +27,13 @@ class LanguageCode extends LanguageCodeBase
         $data = LanguageCode::model()->findAll($criteria);
         return $data;
     }
+
+    public function getLanguageByCode($code)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->select = '*';
+        $criteria->condition = 'first_code = "' . $code . '"';
+        $data = LanguageCode::model()->findAll($criteria);
+        return $data;
+    }
 }

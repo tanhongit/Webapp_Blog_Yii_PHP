@@ -27,4 +27,13 @@ class CurrencyRate extends CurrencyRateBase
         $data = CurrencyRate::model()->findAll($criteria);
         return $data;
     }
+
+    public function getCurrencyByCode($code)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->select = '*';
+        $criteria->condition = 'currency_code = "' . $code . '"';
+        $data = CurrencyRate::model()->findAll($criteria);
+        return $data;
+    }
 }

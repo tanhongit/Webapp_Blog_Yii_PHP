@@ -154,7 +154,7 @@
 			<div class="col-md-4">
 				<div class="single-product-widget">
 					<h2 class="product-wid-title">Top Views</h2>
-					<a href="#" class="wid-view-more">View All</a>
+					<a href="/product/topview" class="wid-view-more">View All</a>
 					<?php foreach (Product::getTopViewProduct() as $value) : ?>
 						<div class="single-wid-product">
 							<a href="/product/detail/<?= $value->id ?>"><img src="<?= get_BaseUrl() . $value->image ?>" alt="" class="product-thumb"></a>
