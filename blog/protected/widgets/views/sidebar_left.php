@@ -2,7 +2,7 @@
 $recent_data = Product::getRecentProduct();
 $recent_post_data = Post::getRecentPost();
 ?>
-<div class="col-md-4">
+<div class="col-md-3">
     <div class="single-sidebar">
         <h2 class="sidebar-title">Search Products</h2>
         <form action="">

@@ -110,7 +110,7 @@ $this->actionSettings();
 					<div class="woocommerce">
 						<div id="customer_details" class="col2-set">
 							<div class="woocommerce-billing-fields">
-								<h3>Languages</h3>
+								<h3>Set Languages</h3>
 								<p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
 									<?php
 									$data_lang_code = array('empty' => 'Choose language');
@@ -137,7 +137,7 @@ $this->actionSettings();
 					<div class="woocommerce">
 						<div id="customer_details" class="col2-set">
 							<div class="woocommerce-billing-fields">
-								<h3>Currency</h3>
+								<h3>Set Currency</h3>
 								<p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
 									<?php
 									$data_currency = array('empty' => 'Choose currency',);

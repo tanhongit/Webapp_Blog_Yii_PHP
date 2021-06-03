@@ -29,38 +29,53 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
-                            <div class="woocommerce-info">Returning customer? <a class="showlogin" data-toggle="collapse" href="#login-form-wrap" aria-expanded="false" aria-controls="login-form-wrap">Click here to login</a>
-                            </div>
+                            <?php if (Yii::app()->user->isGuest) : ?>
+                                <div class="woocommerce-info">Returning customer? <a class="showlogin" data-toggle="collapse" href="#login-form-wrap" aria-expanded="false" aria-controls="login-form-wrap">Click here to login</a>
+                                </div>
 
-                            <form id="login-form-wrap" class="login collapse" method="post">
-
-
+                                <?php $form = $this->beginWidget('CActiveForm', array(
+                                    'id' => 'login-form-wrap',
+                                    'enableClientValidation' => true,
+                                    'htmlOptions' => array(
+                                        'class' => 'login collapse',
+                                    ),
+                                    'clientOptions' => array(
+                                        'validateOnSubmit' => true,
+                                    ),
+                                    'focus' => array($model, 'username'),
+                                ));
+                                ?>
                                 <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing &amp; Shipping section.</p>
-
-                                <p class="form-row form-row-first">
-                                    <label for="username">Username or email <span class="required">*</span>
-                                    </label>
-                                    <input type="text" id="username" name="username" class="input-text">
+                                <div class="woocommerce-info">
+                                    <?php echo $form->errorSummary($model); ?>
+                                </div>
+                                <p class="form-row form-row-last">
+                                    <?php echo $form->labelEx($model, 'username'); ?>
+                                    <?php echo $form->textField($model, 'username', array('class' => "input-text", 'placeholder' => 'Ten dang nhap')); ?>
+                                    <?php echo $form->error($model, 'username', array('class' => "form-text text-muted")); ?>
                                 </p>
                                 <p class="form-row form-row-last">
-                                    <label for="password">Password <span class="required">*</span>
-                                    </label>
-                                    <input type="password" id="password" name="password" class="input-text">
+                                    <?php echo $form->labelEx($model, 'password'); ?>
+                                    <?php echo $form->passwordField($model, 'password', array('class' => "input-text", 'placeholder' => 'Password')); ?>
+                                    <?php echo $form->error($model, 'password', array('class' => "form-text text-muted")); ?>
                                 </p>
                                 <div class="clear"></div>
 
 
                                 <p class="form-row">
-                                    <input type="submit" value="Login" name="login" class="button">
-                                    <label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme" name="rememberme"> Remember me </label>
+                                    <?php echo $form->checkBox($model, 'rememberMe', array('class' => "form-check-input")); ?>
+                                    <?php echo $form->label($model, 'rememberMe', array('class' => "form-check-label")); ?>
                                 </p>
-                                <p class="lost_password">
+                                <?php echo CHtml::submitButton('Login', array('class' => "button")); ?>
+                                <!-- <p class="lost_password">
                                     <a href="#">Lost your password?</a>
-                                </p>
-
+                                </p> -->
                                 <div class="clear"></div>
-                            </form>
-
+                                <?php $this->endWidget(); ?>
+                            <?php else : ?>
+                                <div class="woocommerce-info">You are logged in with the user <span style="color: #80a3d6;"><?= Yii::app()->user->currentUserInfo['username'] ?></span>. Do you want <a href="/site/logout">Logout</a> ?
+                                </div>
+                            <?php endif; ?>
                             <div class="woocommerce-info">Have a coupon? <a class="showcoupon" data-toggle="collapse" href="#coupon-collapse-wrap" aria-expanded="false" aria-controls="coupon-collapse-wrap">Click here to enter your code</a>
                             </div>
 
@@ -350,7 +365,7 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                                                 <p id="billing_username_field" class="form-row form-row-first validate-required">
                                                     <label class="" for="billing_username_field">User Name <abbr title="required" class="required">*</abbr>
                                                     </label>
-                                                    <input type="text" value="<?= Yii::app()->user->currentUserInfo['username'] ?>" placeholder="" id="billing_username_field" name="billing_username_field" class="input-text ">
+                                                    <input disabled type="text" value="<?= Yii::app()->user->currentUserInfo['username'] ?>" placeholder="" id="billing_username_field" name="billing_username_field" class="input-text ">
                                                 </p>
                                             <?php endif; ?>
                                             <div class="clear"></div>

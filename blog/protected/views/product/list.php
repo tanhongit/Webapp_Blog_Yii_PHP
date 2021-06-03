@@ -25,7 +25,7 @@ $this->breadcrumbs = array(
                         </div>
                         <h2><a href="/product/detail/<?= $value->id ?>"><?= $value->name ?></a></h2>
                         <div class="product-carousel-price">
-                            <ins><span id="price_add_cart_<?= $value->id ?>"><?= number_format($value->price, 0, ',', '.') ?></span></ins> <del>$0.00</del>
+                            <ins><span id="price_add_cart_<?= $value->id ?>"><?= get_price_apply_i18n($value->price) ?></span></ins> <del>$0.00</del>
                         </div>
 
                         <div class="product-option-shop">

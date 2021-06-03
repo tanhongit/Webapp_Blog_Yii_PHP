@@ -77,7 +77,24 @@ class ShoppingCartController extends Controller
 
 	public function actionCheckOut()
 	{
+		//login
+		$model = new LoginForm;
 
+		// if it is ajax validation request
+		if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+
+		// collect user input data
+		if (isset($_POST['LoginForm'])) {
+			$model->attributes = $_POST['LoginForm'];
+			// validate user input and redirect to the previous page if valid
+			if ($model->validate() && $model->login())
+				$this->redirect(Yii::app()->user->returnUrl);
+		}
+
+		//checkout
 		Yii::app()->session['cart'] && $data = Yii::app()->session['cart'];
 		// print_r('<pre>');
 		// print_r($data);die;
@@ -111,7 +128,7 @@ class ShoppingCartController extends Controller
 			$modalOrder->ship_postcode = $_POST['shipping_postcode'];
 			$modalOrder->order_comments = $_POST['order_comments'];
 			$modalOrder->ship_phone = $_POST['shipping_phone'];
-			if($modalOrder->save()){
+			if ($modalOrder->save()) {
 				//insert order detail
 			}
 		}
@@ -120,6 +137,7 @@ class ShoppingCartController extends Controller
 			'checkout',
 			array(
 				'data' => $data,
+				'model' => $model,
 				'total_quality_cart' => $total_quality_cart,
 			)
 		);

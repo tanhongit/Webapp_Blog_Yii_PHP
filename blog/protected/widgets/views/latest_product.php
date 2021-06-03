@@ -19,7 +19,7 @@
                                 <h2><a href="/product/detail/<?= $value->id ?>"><?= $value->name ?></a></h2>
 
                                 <div class="product-carousel-price">
-                                    <span id="price_add_cart_<?= $value->id ?>"><?= number_format($value->price, 0, ',', '.') ?></span></ins> <del>$100.00</del>
+                                    <span id="price_add_cart_<?= $value->id ?>"><?= get_price_apply_i18n($value->price) ?></span></ins> <del>$100.00</del>
                                 </div>
                             </div>
                         <?php endforeach; ?>

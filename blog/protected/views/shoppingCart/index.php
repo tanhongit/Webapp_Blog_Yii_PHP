@@ -13,7 +13,7 @@ $this->breadcrumbs = array(
 			<!-- Sidebar -->
 			<?php $this->widget('application.widgets.sidebar_left'); ?>
 
-			<div class="col-md-8">
+			<div class="col-md-9">
 				<div class="product-content-right">
 					<div class="woocommerce" id="the_cart_component">
 						<form method="post" action="#">
@@ -42,7 +42,7 @@ $this->breadcrumbs = array(
 											</td>
 
 											<td class="product-price">
-												<span class="amount"><?= $value['price'] ?></span>
+												<span class="amount"><?= get_price_apply_i18n($value['price']) ?></span>
 											</td>
 
 											<td class="product-quantity">
@@ -61,7 +61,7 @@ $this->breadcrumbs = array(
 											</td>
 
 											<td class="product-subtotal">
-												<span class="amount"><?= $value['quality'] * $value['price'] ?></span>
+												<span class="amount"><?= get_price_apply_i18n($value['quality'] * $value['price']) ?></span>
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -133,7 +133,7 @@ $this->breadcrumbs = array(
 											<td colspan="2">
 												<?php
 												$convert = new ConvertNumberToWord();
-												echo $convert->convert(Cart::totalPriceCart());
+												echo $convert->convert(Cart::totalPriceCart()) . ' đô la mỹ';
 												?>
 											</td>
 										</tr>
