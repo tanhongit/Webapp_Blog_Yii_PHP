@@ -259,7 +259,28 @@ require_once('protected/scripts/globals.php');
 				$('#modal-show').modal('show');
 				$('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
 			});
-			
+		}
+
+		function addToCartDetail(id) {
+			// alert('pro added cart' + id);
+			imgForProduct = $('#imgProduct' + id).attr('src');
+			priceForProduct = $('#price_add_cart_' + id).text();
+			$('#price_add_cart_model').text(priceForProduct);
+			$('#img_add_Cart').attr({
+				'src': imgForProduct
+			})
+			if ($('#quantity_for_product')) {
+				qty = Number($('#quantity_for_product').val());
+			} else qty = 1;
+
+			$.post(url + '/shoppingCart/AddCartDetail', {
+				'product_id': id,
+				'quantity': qty,
+			}, function(data) {
+				$('#quality_cart').text(data);
+				$('#modal-show').modal('show');
+				$('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
+			});
 		}
 
 		jQuery(document).ready(function($) {

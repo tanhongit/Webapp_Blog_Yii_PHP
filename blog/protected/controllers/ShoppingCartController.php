@@ -56,6 +56,15 @@ class ShoppingCartController extends Controller
 		echo $total_quality_cart;
 	}
 
+	public function actionAddCartDetail()
+	{
+		$product_id = Yii::app()->request->getParam('product_id');
+		$quantity = Yii::app()->request->getParam('quantity');
+		Cart::addCart($product_id, $quantity);
+		$total_quality_cart = Cart::getTotalQualityProductCart();
+		echo $total_quality_cart;
+	}
+
 	public function actionUpdateItemCart()
 	{
 		$product_id = Yii::app()->request->getParam('product_id');
@@ -143,12 +152,12 @@ class ShoppingCartController extends Controller
 		);
 	}
 
-	public function actionAddCoupon(){
+	public function actionAddCoupon()
+	{
 		$coupon_code = Yii::app()->request->getParam('coupon_code');
 		$data_db = Coupon::getAllCoupon();
-		foreach($data_db as $value){
-			if($coupon_code == $value['code']){
-				
+		foreach ($data_db as $value) {
+			if ($coupon_code == $value['code']) {
 			}
 		}
 	}

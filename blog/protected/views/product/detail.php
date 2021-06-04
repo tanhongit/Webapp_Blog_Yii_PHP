@@ -38,9 +38,9 @@ $this->breadcrumbs = array(
 
                             <form action="" class="cart">
                                 <div class="quantity">
-                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" id="quantity_for_product" name="quantity" min="1" step="1">
                                 </div>
-                                <a class="add_to_cart_button" onclick="addToCart(<?= $data->id ?>)" href="javascript:voice(0);">Add to cart</a>
+                                <a class="add_to_cart_button" onclick="addToCartDetail(<?= $data->id ?>)" href="javascript:voice(0);">Add to cart</a>
                             </form>
 
                             <div class="product-inner-category">
