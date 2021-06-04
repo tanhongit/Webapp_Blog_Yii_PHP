@@ -1,7 +1,6 @@
 <?php
 require_once('protected/scripts/globals.php');
 /* @var $this Controller */
-$this->actionSettings();
 ?>
 <!DOCTYPE html>
 <html lang="en">

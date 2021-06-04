@@ -149,7 +149,7 @@ $this->breadcrumbs = array(
 												}
 												$convert = new ConvertNumberToWord();
 												if (!empty(Cart::totalPriceCart())) {
-													echo ucwords(strtolower($convert->convert(get_total_price_i18n()) . ' ' . $data_currency));
+													echo ucwords(strtolower($convert->convert(get_total_price_cart_i18n()) . ' ' . $data_currency));
 												} else {
 													echo 'None';
 												}
@@ -184,6 +184,7 @@ $this->breadcrumbs = array(
 
 								</section>
 							</form>
+							<a type="submit" name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
 						</div>
 					</div>
 				</div>

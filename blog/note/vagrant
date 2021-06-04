@@ -26,6 +26,8 @@ vagrant ssh
 
     sudo apt install git
 
+    sudo apt install php-cli unzip
+
 -----------
 vagrant reload //use when Vagrantfile has a change
 

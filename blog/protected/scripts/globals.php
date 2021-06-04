@@ -180,7 +180,7 @@ function get_price_apply_i18n($price)
     echo $number->formatCurrency($currency_price, Yii::app()->params->currency);
 }
 
-function get_total_price_i18n()
+function get_total_price_cart_i18n()
 {
     //check currency code
     $data_current_rate = CurrencyRate::getAllCurrency();
