@@ -38,7 +38,10 @@ $this->breadcrumbs = array(
 
                             <form action="" class="cart">
                                 <div class="quantity">
+                                    <input type="button" id="minus_quality_input_<?= $data->id ?>" class="minus" value="-" onclick="minusCartItemDetail(<?= $data->id ?>)">
                                     <input type="number" size="4" class="input-text qty text" title="Qty" value="1" id="quantity_for_product" name="quantity" min="1" step="1">
+                                    <input type="button" onclick="plusCartItemDetail(<?= $data->id  ?>)" class="plus" value="+">
+
                                 </div>
                                 <a class="add_to_cart_button" onclick="addToCartDetail(<?= $data->id ?>)" href="javascript:voice(0);">Add to cart</a>
                             </form>
@@ -110,3 +113,14 @@ $this->breadcrumbs = array(
         </div>
     </div>
 </div>
+<script>
+    function plusCartItemDetail(id) {
+        const total_qty = new Number($('#quantity_for_product').val());
+        $('#quantity_for_product').val((total_qty + 1));
+    }
+
+    function minusCartItemDetail(id) {
+        const total_qty = new Number($('#quantity_for_product').val());
+        $('#quantity_for_product').val((total_qty - 1));
+    }
+</script>

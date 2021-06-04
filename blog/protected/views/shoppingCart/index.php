@@ -161,7 +161,7 @@ $this->breadcrumbs = array(
 							</div>
 
 
-							<form method="post" action="#" class="shipping_calculator">
+							<!-- <form method="post" action="#" class="shipping_calculator">
 								<h2><a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap" aria-expanded="false" aria-controls="calcalute-shipping-wrap">Calculate Shipping</a></h2>
 
 								<section id="calcalute-shipping-wrap" class="shipping-calculator-form collapse">
@@ -183,7 +183,7 @@ $this->breadcrumbs = array(
 									<p><button class="button" value="1" name="calc_shipping" type="submit">Update Totals</button></p>
 
 								</section>
-							</form>
+							</form> -->
 							<a type="submit" name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
 						</div>
 					</div>
