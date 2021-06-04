@@ -257,7 +257,9 @@ require_once('protected/scripts/globals.php');
 			}, function(data) {
 				$('#quality_cart').text(data);
 				$('#modal-show').modal('show');
+				$('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
 			});
+			
 		}
 
 		jQuery(document).ready(function($) {

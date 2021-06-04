@@ -58,9 +58,9 @@ $this->breadcrumbs = array(
 
 											<td class="product-quantity">
 												<div class="quantity buttons_added">
-													<input type="button" class="minus" value="-">
+													<input type="button" id="minus_quality_input_<?= $key ?>" class="minus" value="-" onclick="minusCartItem(<?= $key ?>)">
 													<input type="number" size="3" required name='quality_item_cart_<?= $key ?>' id="quality_item_cart_<?= $key ?>" class="input-text qty text" title="Qty" value="<?= $value['quality'] ?>" min="0" step="1">
-													<input type="button" class="plus" value="+">
+													<input type="button" onclick="plusCartItem(<?= $key ?>)" id="plus_quality_input_<?= $key ?>" class="plus" value="+">
 													<span>&nbsp;</span>
 												</div>
 											</td>
@@ -203,8 +203,18 @@ $this->breadcrumbs = array(
 		}, function(data) {
 			$('#quality_cart').text(data);
 			$('#the_cart_component').load(url + '/shoppingCart/index #the_cart_component');
-			// $('#shopping-item').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #shopping-item');
+			$('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
 		});
+	}
+
+	function plusCartItem(id) {
+		const total_qty = new Number($('#quality_item_cart_' + id).val());
+		$('#quality_item_cart_' + id).val((total_qty + 1));
+	}
+
+	function minusCartItem(id) {
+		const total_qty = new Number($('#quality_item_cart_' + id).val());
+		$('#quality_item_cart_' + id).val((total_qty - 1));
 	}
 
 	function deleteCartItem(id) {
@@ -213,7 +223,7 @@ $this->breadcrumbs = array(
 		}, function(data) {
 			$('#quality_cart').text(data);
 			$('#the_cart_component').load(url + '/shoppingCart/index #the_cart_component');
-			// $('#shopping-item').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #shopping-item');
+			$('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
 		});
 	}
 </script>
