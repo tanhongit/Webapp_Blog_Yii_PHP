@@ -142,4 +142,14 @@ class ShoppingCartController extends Controller
 			)
 		);
 	}
+
+	public function actionAddCoupon(){
+		$coupon_code = Yii::app()->request->getParam('coupon_code');
+		$data_db = Coupon::getAllCoupon();
+		foreach($data_db as $value){
+			if($coupon_code == $value['code']){
+				
+			}
+		}
+	}
 }
