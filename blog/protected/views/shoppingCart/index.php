@@ -27,7 +27,7 @@ $this->breadcrumbs = array(
 				<?php endif; ?>
 				<div class="product-content-right">
 					<div class="woocommerce" id="the_cart_component">
-						<form method="post" action="#">
+						<form method="post">
 							<table cellspacing="0" class="shop_table cart">
 								<thead>
 									<tr>
@@ -81,21 +81,25 @@ $this->breadcrumbs = array(
 											<div class="coupon">
 												<label for="coupon_code">Coupon:</label>
 												<input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
-												<button type="submit" onclick="addCouponCart()" name="apply_coupon" class="button">Apply Coupon</button>
+												<input type="submit" onclick="addCouponCart()" name="apply_coupon" value="Apply Coupon" class="button">
 											</div>
 											<input type="submit" value="Update Cart" name="update_cart" class="button">
 											<a type="submit" name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
 										</td>
 									</tr>
-									<tr>
-										<td><span id="result_add_coupon">
-												<?php if (Yii::app()->session['result_add_coupon']) {
-													echo Yii::app()->session['result_add_coupon'];
-												} ?>
-											</span>
-										</td>
-									</tr>
 								</tbody>
+								<?php if (Yii::app()->session['result_add_coupon']) { ?>
+									<tbody>
+										<tr>
+											<td colspan="6"><span id="result_add_coupon" style="font-weight: bold;color:red;">
+													<?php
+													echo Yii::app()->session['result_add_coupon'];
+													?>
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								<?php } ?>
 							</table>
 						</form>
 

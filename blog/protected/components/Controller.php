@@ -70,4 +70,9 @@ class Controller extends CController
 
 		echo $app->dateFormatter->formatDateTime($time, 'short', null);
 	}
+
+	public function saveCouponParamCart($coupon)
+	{
+		Yii::app()->user->setState('coupon_cart_add_1', $coupon);
+	}
 }

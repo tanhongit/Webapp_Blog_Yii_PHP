@@ -159,11 +159,7 @@ class ShoppingCartController extends Controller
 		} else {
 			$coupon_code = Yii::app()->request->getParam('coupon_code');
 
-			// if (in_array($coupon_code, Yii::app()->session['coupon_cart'])) {
-			// 	Yii::app()->session['result_add_coupon'] = 'Failed, discount code has been applied before';
-			// } else {
 			$data_db = Coupon::getAllCoupon();
-			$array_coupon_cart = Yii::app()->session['coupon_cart'];
 			$discount_price = 0.0;
 
 			foreach ($data_db as $value) {
@@ -189,12 +185,14 @@ class ShoppingCartController extends Controller
 					if ($check_status_apply_coupon == false) {
 						Yii::app()->session['result_add_coupon'] = 'Discount coupon code does not apply to current products';
 					} else {
-						if (!empty($array_coupon_cart)) {
+
+						if (Yii::app()->params->the_coupon_1 != 'none') {
 							$limit = true;
 						} else {
 							$limit = false;
-							$array_coupon_cart = (string)$coupon_code;
+							Controller::saveCouponParamCart($coupon_code);
 						}
+
 						if ($limit == true) {
 							Yii::app()->session['result_add_coupon'] = 'The number of coupon code applications has reached the limit';
 						} else {
@@ -208,7 +206,6 @@ class ShoppingCartController extends Controller
 					Yii::app()->session['result_add_coupon'] = 'This discount code has expired or is not valid';
 				}
 			}
-			// }
 		}
 	}
 }

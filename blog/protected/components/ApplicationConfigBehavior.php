@@ -51,9 +51,8 @@ class ApplicationConfigBehavior extends CBehavior
 			Yii::app()->params->currency = $this->owner->user->getState('applicationCurrency')
 			: Yii::app()->params->currency = 'USD';
 
-		isset(Yii::app()->session['coupon_cart']) || !empty(Yii::app()->session['coupon_cart'])
-			? ''
-			:	Yii::app()->session['coupon_cart'] = ''
-			;
+		$this->owner->user->getState('coupon_cart_add_1')
+			? Yii::app()->params->the_coupon_1 = $this->owner->user->getState('coupon_cart_add_1')
+			: Yii::app()->params->the_coupon_1 = 'none';
 	}
 }

@@ -110,5 +110,6 @@ return array(
 		'pager' => 2, //using for pagination
 		'pager_product' => 4, //using /product/index for pagination
 		'currency' => 'VND',
+		'the_coupon_1' => 'none',
 	),
 );
