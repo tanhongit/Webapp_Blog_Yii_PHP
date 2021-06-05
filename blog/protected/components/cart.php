@@ -48,7 +48,7 @@ class Cart
         return $total;
     }
 
-    public function totalPriceCart()
+    public function totalPriceCartNotDiscount()
     {
         $cart = Yii::app()->session['cart'];
         if (!empty($cart)) {
@@ -57,6 +57,15 @@ class Cart
                 $total += $value['quality'] * $value['price'];
             }
             return $total;
+        }
+    }
+
+    public function totalPriceCart()
+    {
+        if (!Yii::app()->session['cart_discount'] || empty(Yii::app()->session['cart_discount'])) {
+            return Cart::totalPriceCartNotDiscount();
+        } else {
+            return Cart::totalPriceCartNotDiscount() - Yii::app()->session['cart_discount'];
         }
     }
 

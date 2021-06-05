@@ -154,11 +154,61 @@ class ShoppingCartController extends Controller
 
 	public function actionAddCoupon()
 	{
-		$coupon_code = Yii::app()->request->getParam('coupon_code');
-		$data_db = Coupon::getAllCoupon();
-		foreach ($data_db as $value) {
-			if ($coupon_code == $value['code']) {
+		if (empty(Yii::app()->session['cart'])) {
+			Yii::app()->session['result_add_coupon'] = 'Your cart is currently empty';
+		} else {
+			$coupon_code = Yii::app()->request->getParam('coupon_code');
+
+			// if (in_array($coupon_code, Yii::app()->session['coupon_cart'])) {
+			// 	Yii::app()->session['result_add_coupon'] = 'Failed, discount code has been applied before';
+			// } else {
+			$data_db = Coupon::getAllCoupon();
+			$array_coupon_cart = Yii::app()->session['coupon_cart'];
+			$discount_price = 0.0;
+
+			foreach ($data_db as $value) {
+				if ($coupon_code == $value['code']) {
+
+					if (empty($value['product_id']) || $value['product_id'] < 1) {
+						$discount_price = $value['discount'];
+						$check_status_apply_coupon = true;
+					} else {
+						$cart = Yii::app()->session['cart'];
+
+						foreach ($cart as $value_cart) {
+							if ($value['product_id'] != $value_cart['id']) {
+								$check_status_apply_coupon = false;
+							} else {
+								$discount_price = $value['discount'] * $value_cart['quality'];
+								$check_status_apply_coupon = true;
+								break;
+							}
+						}
+					}
+
+					if ($check_status_apply_coupon == false) {
+						Yii::app()->session['result_add_coupon'] = 'Discount coupon code does not apply to current products';
+					} else {
+						if (!empty($array_coupon_cart)) {
+							$limit = true;
+						} else {
+							$limit = false;
+							$array_coupon_cart = (string)$coupon_code;
+						}
+						if ($limit == true) {
+							Yii::app()->session['result_add_coupon'] = 'The number of coupon code applications has reached the limit';
+						} else {
+							Yii::app()->session['cart_discount'] += $discount_price;
+
+							Yii::app()->session['result_add_coupon'] = 'Discount coupon code applied successfully';
+						}
+					}
+					break;
+				} else {
+					Yii::app()->session['result_add_coupon'] = 'This discount code has expired or is not valid';
+				}
 			}
+			// }
 		}
 	}
 }

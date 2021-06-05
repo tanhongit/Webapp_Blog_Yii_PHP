@@ -81,10 +81,18 @@ $this->breadcrumbs = array(
 											<div class="coupon">
 												<label for="coupon_code">Coupon:</label>
 												<input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
-												<input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
+												<button type="submit" onclick="addCouponCart()" name="apply_coupon" class="button">Apply Coupon</button>
 											</div>
 											<input type="submit" value="Update Cart" name="update_cart" class="button">
 											<a type="submit" name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
+										</td>
+									</tr>
+									<tr>
+										<td><span id="result_add_coupon">
+												<?php if (Yii::app()->session['result_add_coupon']) {
+													echo Yii::app()->session['result_add_coupon'];
+												} ?>
+											</span>
 										</td>
 									</tr>
 								</tbody>
@@ -131,11 +139,15 @@ $this->breadcrumbs = array(
 										</tr>
 										<tr class="order-total">
 											<th>Price Subtotal</th>
-											<td><strong><span class="amount"><?= get_price_apply_i18n(Cart::totalPriceCart()) ?></span></strong> </td>
+											<td><strong><span class="amount"><?= get_price_apply_i18n(Cart::totalPriceCartNotDiscount()) ?></span></strong> </td>
 										</tr>
 										<tr class="shipping">
 											<th>Shipping and Handling</th>
 											<td>Free Shipping</td>
+										</tr>
+										<tr class="cart-subtotal">
+											<th>Quality Total</th>
+											<td><?= get_price_apply_i18n(Cart::totalPriceCart()) ?></td>
 										</tr>
 									</tbody>
 									<tbody>
@@ -222,6 +234,16 @@ $this->breadcrumbs = array(
 			'product_id': id,
 		}, function(data) {
 			$('#quality_cart').text(data);
+			$('#the_cart_component').load(url + '/shoppingCart/index #the_cart_component');
+			$('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
+		});
+	}
+
+	function addCouponCart() {
+		var coupon_code = $('#coupon_code').val();
+		$.post(url + '/shoppingCart/AddCoupon', {
+			'coupon_code': coupon_code,
+		}, function(data) {
 			$('#the_cart_component').load(url + '/shoppingCart/index #the_cart_component');
 			$('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
 		});
