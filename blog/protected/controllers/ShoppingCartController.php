@@ -141,11 +141,11 @@ class ShoppingCartController extends Controller
 				//insert order detail
 			}
 		}
-		$data = array();
+		$data_cart = Yii::app()->session['cart'];
 		$this->render(
 			'checkout',
 			array(
-				'data' => $data,
+				'data_cart' => $data_cart,
 				'model' => $model,
 				'total_quality_cart' => $total_quality_cart,
 			)

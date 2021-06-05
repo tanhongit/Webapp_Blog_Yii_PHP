@@ -82,13 +82,17 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                             <form id="coupon-collapse-wrap" method="post" class="checkout_coupon collapse">
 
                                 <p class="form-row form-row-first">
-                                    <input type="text" value="" id="coupon_code" placeholder="Coupon code" class="input-text" name="coupon_code">
+                                    <input type="text" value="<?= Yii::app()->session['input_add_coupon'] ?>" id="coupon_code" placeholder="Coupon code" class="input-text" name="coupon_code">
                                 </p>
 
                                 <p class="form-row form-row-last">
-                                    <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
+                                    <input onclick="addCouponCart()" type="submit" value="Apply Coupon" name="apply_coupon" class="button">
                                 </p>
-
+                                <p class="form-row form-row-first">
+                                    <?php
+                                    echo Yii::app()->session['result_add_coupon'];
+                                    ?>
+                                </p>
                                 <div class="clear"></div>
                             </form>
 
@@ -353,13 +357,13 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">First Name <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+                                                <input type="text" required value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
                                             </p>
 
                                             <p id="billing_last_name_field" class="form-row form-row-last validate-required">
                                                 <label class="" for="billing_last_name">Last Name <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_last_name" name="billing_last_name" class="input-text ">
+                                                <input type="text" required value="" placeholder="" id="billing_last_name" name="billing_last_name" class="input-text ">
                                             </p>
                                             <?php if (!Yii::app()->user->isGuest) : ?>
                                                 <p id="billing_username_field" class="form-row form-row-first validate-required">
@@ -378,7 +382,7 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                                             <p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
                                                 <label class="" for="billing_address_1">Address <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="Street address" id="billing_address_1" name="billing_address_1" class="input-text ">
+                                                <input type="text" required value="" placeholder="Street address" id="billing_address_1" name="billing_address_1" class="input-text ">
                                             </p>
 
                                             <p id="billing_address_2_field" class="form-row form-row-wide address-field">
@@ -388,7 +392,7 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                                             <p id="billing_city_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
                                                 <label class="" for="billing_city">Town / City <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="Town / City" id="billing_city" name="billing_city" class="input-text ">
+                                                <input type="text" required value="" placeholder="Town / City" id="billing_city" name="billing_city" class="input-text ">
                                             </p>
 
                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
@@ -406,13 +410,13 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                                             <p id="billing_email_field" class="form-row form-row-first validate-required validate-email">
                                                 <label class="" for="billing_email">Email Address <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_email" name="billing_email" class="input-text ">
+                                                <input type="text" value="" required placeholder="" id="billing_email" name="billing_email" class="input-text ">
                                             </p>
 
                                             <p id="billing_phone_field" class="form-row form-row-last validate-required validate-phone">
                                                 <label class="" for="billing_phone">Phone <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_phone" name="billing_phone" class="input-text ">
+                                                <input type="text" value="" required placeholder="" id="billing_phone" name="billing_phone" class="input-text ">
                                             </p>
                                             <div class="clear"></div>
 
@@ -757,19 +761,21 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="cart_item">
-                                                <td class="product-name">
-                                                    Ship Your Idea <strong class="product-quantity">× 1</strong> </td>
-                                                <td class="product-total">
-                                                    <span class="amount">£15.00</span>
-                                                </td>
-                                            </tr>
+                                            <?php foreach ($data_cart as $key => $value) : ?>
+                                                <tr class="cart_item">
+                                                    <td class="product-name">
+                                                        <?= substr($value['product_name'], 0, 27) ?> <strong class="product-quantity">× <?= $value['quality'] ?></strong> </td>
+                                                    <td class="product-total">
+                                                        <span class="amount"><?= get_price_apply_i18n($value['quality'] * $value['price']) ?></span>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </tbody>
                                         <tfoot>
 
                                             <tr class="cart-subtotal">
                                                 <th>Cart Subtotal</th>
-                                                <td><span class="amount">£15.00</span>
+                                                <td><span class="amount"><?= get_price_apply_i18n(Cart::totalPriceCartNotDiscount()) ?></span>
                                                 </td>
                                             </tr>
 
@@ -781,11 +787,22 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                                                     <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
                                                 </td>
                                             </tr>
+                                            <tr class="cart-subtotal">
+                                                <td colspan="2">
+                                                </td>
+                                            </tr>
 
-
+                                            <tr class="cart-subtotal">
+                                                <th colspan="2">Coupons</th>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="text-align: center;">
+                                                    <strong><?= Yii::app()->params->the_coupon_1 ?></strong>
+                                                </td>
+                                            </tr>
                                             <tr class="order-total">
                                                 <th>Order Total</th>
-                                                <td><strong><span class="amount">£15.00</span></strong> </td>
+                                                <td><strong><span class="amount"><?= get_price_apply_i18n(Cart::totalPriceCart()) ?></span></strong> </td>
                                             </tr>
 
                                         </tfoot>
@@ -837,3 +854,14 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
     </div>
 
 <?php endif; ?>
+<script>
+    function addCouponCart() {
+        var coupon_code = $('#coupon_code').val();
+        $.post(url + '/shoppingCart/AddCoupon', {
+            'coupon_code': coupon_code,
+        }, function(data) {
+            $('#the_cart_component').load(url + '/shoppingCart/index #coupon-collapse-wrap');
+            $('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
+        });
+    }
+</script>
