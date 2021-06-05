@@ -158,7 +158,7 @@ class ShoppingCartController extends Controller
 			Yii::app()->session['result_add_coupon'] = 'Your cart is currently empty';
 		} else {
 			$coupon_code = Yii::app()->request->getParam('coupon_code');
-
+			Yii::app()->session['input_add_coupon'] = $coupon_code;
 			$data_db = Coupon::getAllCoupon();
 			$discount_price = 0.0;
 

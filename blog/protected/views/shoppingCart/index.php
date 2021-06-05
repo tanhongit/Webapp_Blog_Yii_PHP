@@ -80,7 +80,7 @@ $this->breadcrumbs = array(
 										<td class="actions" colspan="6">
 											<div class="coupon">
 												<label for="coupon_code">Coupon:</label>
-												<input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
+												<input type="text" placeholder="Coupon code" value="<?= Yii::app()->session['input_add_coupon'] ?>" id="coupon_code" class="input-text" name="coupon_code">
 												<input type="submit" onclick="addCouponCart()" name="apply_coupon" value="Apply Coupon" class="button">
 											</div>
 											<input type="submit" value="Update Cart" name="update_cart" class="button">
@@ -149,12 +149,22 @@ $this->breadcrumbs = array(
 											<th>Shipping and Handling</th>
 											<td>Free Shipping</td>
 										</tr>
+									</tbody>
+									<tbody>
 										<tr class="cart-subtotal">
-											<th>Quality Total</th>
-											<td><?= get_price_apply_i18n(Cart::totalPriceCart()) ?></td>
+											<th colspan="2">Coupons</th>
+										</tr>
+										<tr>
+											<td colspan="2" style="text-align: center;">
+												<strong><?= Yii::app()->params->the_coupon_1 ?></strong>
+											</td>
 										</tr>
 									</tbody>
 									<tbody>
+										<tr class="cart-subtotal">
+											<th>Quality Total</th>
+											<td><strong><?= get_price_apply_i18n(Cart::totalPriceCart()) ?></strong></td>
+										</tr>
 										<tr>
 											<td colspan="2">
 												<?php
