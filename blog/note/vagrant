@@ -43,10 +43,26 @@ https://www.digitalocean.com/community/tutorials/how-to-configure-the-apache-web
 tool create: https://www.youtube.com/watch?v=zKI8hD_R4Nw
 https://github.com/rakibtg/Apache-Virtual-Hosts-Creator
 
+
+cd /var/www/html/
+
+sudo python avhCreator.py
+
+choose domain name
+
+enter
+
+change location
+
+edit C:\Windows\System32\drivers\etc\host (add domain)
+
+
+-----
+cd ~
 sudo nano /etc/hosts
 cd /etc/apache2/sites-available
 ls
-sudo nano ...
+sudo nano ...(file)
 sudo nano /etc/apache2/sites-available/default
 
 service apache2 restart
@@ -77,13 +93,19 @@ Tutorial:
 https://www.youtube.com/watch?v=NzvByqoreoc
 https://www.youtube.com/watch?v=NzvByqoreoc&list=PLbup-MaQtodWsbllDXyHS4Cef4G8G5iNX
 
+--------
 config: https://www.youtube.com/watch?v=Bma7P8q02KI&t=582s
 
+--------
 setup lamp: https://www.youtube.com/watch?v=9Gyt3G5wLAs&list=PLbup-MaQtodWsbllDXyHS4Cef4G8G5iNX&index=3
 
+--------
 How to save/remove existing Vagrant box and restore the saved vagrant box https://www.webfoobar.com/node/52
 
-
+--------
+Chuyển phiên bản php trên dòng lệnh ubuntu 
+https://qastack.vn/programming/42619312/switch-php-versions-on-commandline-ubuntu-16-04
+sudo update-alternatives --config php
 
 
 

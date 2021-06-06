@@ -1,5 +1,8 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class ShoppingCartController extends Controller
 {
 	public function actionIndex()
@@ -150,6 +153,38 @@ class ShoppingCartController extends Controller
 					if (!$modalDetail->save()) {
 						//notice 
 					} else {
+						include 'protected/libs/setting_mail.php';
+						$mail = new PHPMailer(true);
+						try {
+							//content
+							$htmlStr = "hiiiiiiiiiiiiii";
+							//Server settings
+							$mail->CharSet = "UTF-8";
+							$mail->SMTPDebug = 0; // Enable verbose debug output (0 : ko hiện debug, 1 hiện)
+							$mail->isSMTP(); // Set mailer to use SMTP
+							$mail->Host = SMTP_HOST;  // Specify main and backup SMTP servers
+							$mail->SMTPAuth = true; // Enable SMTP authentication
+							$mail->Username = SMTP_UNAME; // SMTP username
+							$mail->Password = SMTP_PWORD; // SMTP password
+							$mail->SMTPSecure = 'ssl'; // Enable TLS encryption, `ssl` also accepted
+							$mail->Port = SMTP_PORT; // TCP port to connect to
+							//Recipients
+							$mail->setFrom(SMTP_UNAME, "PHP TRAINING");
+							$mail->addAddress('tan.nguyen@ceresolutions.com', 'tan.nguyen@ceresolutions.com');     // Add a recipient | name is option tên người nhận
+							$mail->addReplyTo(SMTP_UNAME, 'PHP TRAINING');
+							//$mail->addCC('CCemail@gmail.com');
+							//$mail->addBCC('BCCemail@gmail.com');
+							$mail->isHTML(true); // Set email format to HTML
+							$mail->Subject = 'You have Change your Password | PHP TRAINING | By Tân TEAM D';
+							$mail->Body = $htmlStr;
+							$mail->AltBody = $htmlStr; //None HTML
+							$result = $mail->send();
+							if (!$result) {
+								$error = "Có lỗi xảy ra trong quá trình gửi mail";
+							}
+						} catch (Exception $e) {
+							echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+						}
 					}
 				}
 			}

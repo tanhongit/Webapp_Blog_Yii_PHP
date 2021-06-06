@@ -99,6 +99,17 @@ https://www.youtube.com/watch?v=vuFWq5antbw&list=PLdfhvjWV26rSOGtrj3OHqpfXr4Sdz9
 RBAC: https://www.youtube.com/watch?v=7fGUtvwofU8&list=PLdfhvjWV26rQBM9gUAPG1BnTrDGsReQSr
 
 
+//////////////////////////////////
+Composer works just fine with Yii 1.1. I'm using it with several older Yii projects. Just add these lines to your index.php:
+$composer=dirname(__FILE__).'/protected/vendor/autoload.php';
+require_once($composer);
+Your composer.json file needs to point to your vendor folder using:
+"config": {
+"vendor-dir": "protected/vendor"
+}
+//////////////////////////////////
+
+
 
 ------------------------------------------------------------------------------------------
 ==========================================================================================
