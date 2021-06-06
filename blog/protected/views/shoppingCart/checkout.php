@@ -79,7 +79,7 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                             <div class="woocommerce-info">Have a coupon? <a class="showcoupon" data-toggle="collapse" href="#coupon-collapse-wrap" aria-expanded="false" aria-controls="coupon-collapse-wrap">Click here to enter your code</a>
                             </div>
 
-                            <form id="coupon-collapse-wrap" method="post" class="checkout_coupon collapse">
+                            <div id="coupon-collapse-wrap" class="checkout_coupon collapse">
 
                                 <p class="form-row form-row-first">
                                     <input type="text" value="<?= Yii::app()->session['input_add_coupon'] ?>" id="coupon_code" placeholder="Coupon code" class="input-text" name="coupon_code">
@@ -88,13 +88,12 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                                 <p class="form-row form-row-last">
                                     <input onclick="addCouponCart()" type="submit" value="Apply Coupon" name="apply_coupon" class="button">
                                 </p>
-                                <p class="form-row form-row-first">
+                                <p id="coupon_result" class="form-row form-row-first">
                                     <?php
                                     echo Yii::app()->session['result_add_coupon'];
                                     ?>
                                 </p>
-                                <div class="clear"></div>
-                            </form>
+                            </div>
 
                             <form enctype="multipart/form-data" action="<?= get_BaseUrl() . get_request_url() ?>" class="checkout" method="post" name="checkout">
 
@@ -775,7 +774,7 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
 
                                             <tr class="cart-subtotal">
                                                 <th>Cart Subtotal</th>
-                                                <td><span class="amount"><?= get_price_apply_i18n(Cart::totalPriceCartNotDiscount()) ?></span>
+                                                <td><span class="amount"><strong><?= get_price_apply_i18n(Cart::totalPriceCartNotDiscount()) ?></strong></span>
                                                 </td>
                                             </tr>
 
@@ -860,7 +859,7 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
         $.post(url + '/shoppingCart/AddCoupon', {
             'coupon_code': coupon_code,
         }, function(data) {
-            $('#the_cart_component').load(url + '/shoppingCart/index #coupon-collapse-wrap');
+            $('#coupon_result').load(url + '/shoppingCart/checkout #coupon_result');
             $('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
         });
     }

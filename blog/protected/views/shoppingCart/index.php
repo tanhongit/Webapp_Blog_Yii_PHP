@@ -27,81 +27,79 @@ $this->breadcrumbs = array(
 				<?php endif; ?>
 				<div class="product-content-right">
 					<div class="woocommerce" id="the_cart_component">
-						<form method="post">
-							<table cellspacing="0" class="shop_table cart">
-								<thead>
-									<tr>
+						<table cellspacing="0" class="shop_table cart">
+							<thead>
+								<tr>
 
-										<th class="product-thumbnail">&nbsp;</th>
-										<th class="product-name">Product</th>
-										<th class="product-price">Price</th>
-										<th class="product-quantity">Quantity</th>
-										<th class="product-remove">&nbsp;</th>
-										<th class="product-subtotal">Total</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php foreach ($data as $key => $value) : ?>
-										<tr class="cart_item">
+									<th class="product-thumbnail">&nbsp;</th>
+									<th class="product-name">Product</th>
+									<th class="product-price">Price</th>
+									<th class="product-quantity">Quantity</th>
+									<th class="product-remove">&nbsp;</th>
+									<th class="product-subtotal">Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($data as $key => $value) : ?>
+									<tr class="cart_item">
 
-											<td class="product-thumbnail">
-												<a href="product/detail/<?= $value['id'] ?>"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<?= get_BaseUrl() . $value['product_image'] ?>"></a>
-											</td>
+										<td class="product-thumbnail">
+											<a href="product/detail/<?= $value['id'] ?>"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<?= get_BaseUrl() . $value['product_image'] ?>"></a>
+										</td>
 
-											<td class="product-name">
-												<a href="product/detail/<?= $value['id'] ?>"><?= substr($value['product_name'], 0, 27) ?></a>
-											</td>
+										<td class="product-name">
+											<a href="product/detail/<?= $value['id'] ?>"><?= substr($value['product_name'], 0, 27) ?></a>
+										</td>
 
-											<td class="product-price">
-												<span class="amount"><?= get_price_apply_i18n($value['price']) ?></span>
-											</td>
+										<td class="product-price">
+											<span class="amount"><?= get_price_apply_i18n($value['price']) ?></span>
+										</td>
 
-											<td class="product-quantity">
-												<div class="quantity buttons_added">
-													<input type="button" id="minus_quality_input_<?= $key ?>" class="minus" value="-" onclick="minusCartItem(<?= $key ?>)">
-													<input type="number" size="3" required name='quality_item_cart_<?= $key ?>' id="quality_item_cart_<?= $key ?>" class="input-text qty text" title="Qty" value="<?= $value['quality'] ?>" min="0" step="1">
-													<input type="button" onclick="plusCartItem(<?= $key ?>)" id="plus_quality_input_<?= $key ?>" class="plus" value="+">
-													<span>&nbsp;</span>
-												</div>
-											</td>
-
-											<td class="product-remove">
-												<a title="Update this item" class="glyphicon glyphicon-ok" href="javascript:voice(0);" onclick="editQtyCartItem(<?= $key ?>)"></a>
-												<hr>
-												<a title="Remove this item" class="remove" href="javascript:voice(0);" onclick="deleteCartItem(<?= $key ?>)">x</a>
-											</td>
-
-											<td class="product-subtotal">
-												<span class="amount"><?= get_price_apply_i18n($value['quality'] * $value['price']) ?></span>
-											</td>
-										</tr>
-									<?php endforeach; ?>
-									<tr>
-										<td class="actions" colspan="6">
-											<div class="coupon">
-												<label for="coupon_code">Coupon:</label>
-												<input type="text" placeholder="Coupon code" value="<?= Yii::app()->session['input_add_coupon'] ?>" id="coupon_code" class="input-text" name="coupon_code">
-												<input type="submit" onclick="addCouponCart()" name="apply_coupon" value="Apply Coupon" class="button">
+										<td class="product-quantity">
+											<div class="quantity buttons_added">
+												<input type="button" id="minus_quality_input_<?= $key ?>" class="minus" value="-" onclick="minusCartItem(<?= $key ?>)">
+												<input type="number" size="3" required name='quality_item_cart_<?= $key ?>' id="quality_item_cart_<?= $key ?>" class="input-text qty text" title="Qty" value="<?= $value['quality'] ?>" min="0" step="1">
+												<input type="button" onclick="plusCartItem(<?= $key ?>)" id="plus_quality_input_<?= $key ?>" class="plus" value="+">
+												<span>&nbsp;</span>
 											</div>
-											<input type="submit" value="Update Cart" name="update_cart" class="button">
-											<a type="submit" name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
+										</td>
+
+										<td class="product-remove">
+											<a title="Update this item" class="glyphicon glyphicon-ok" href="javascript:voice(0);" onclick="editQtyCartItem(<?= $key ?>)"></a>
+											<hr>
+											<a title="Remove this item" class="remove" href="javascript:voice(0);" onclick="deleteCartItem(<?= $key ?>)">x</a>
+										</td>
+
+										<td class="product-subtotal">
+											<span class="amount"><?= get_price_apply_i18n($value['quality'] * $value['price']) ?></span>
+										</td>
+									</tr>
+								<?php endforeach; ?>
+								<tr>
+									<td class="actions" colspan="6">
+										<div class="coupon">
+											<label for="coupon_code">Coupon:</label>
+											<input type="text" placeholder="Coupon code" value="<?= Yii::app()->session['input_add_coupon'] ?>" id="coupon_code" class="input-text" name="coupon_code">
+											<input type="submit" onclick="addCouponCart()" name="apply_coupon" value="Apply Coupon" class="button">
+										</div>
+										<input type="submit" value="Update Cart" name="update_cart" class="button">
+										<a type="submit" name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
+									</td>
+								</tr>
+							</tbody>
+							<?php if (Yii::app()->session['result_add_coupon']) { ?>
+								<tbody>
+									<tr>
+										<td colspan="6"><span id="result_add_coupon" style="font-weight: bold;color:red;">
+												<?php
+												echo Yii::app()->session['result_add_coupon'];
+												?>
+											</span>
 										</td>
 									</tr>
 								</tbody>
-								<?php if (Yii::app()->session['result_add_coupon']) { ?>
-									<tbody>
-										<tr>
-											<td colspan="6"><span id="result_add_coupon" style="font-weight: bold;color:red;">
-													<?php
-													echo Yii::app()->session['result_add_coupon'];
-													?>
-												</span>
-											</td>
-										</tr>
-									</tbody>
-								<?php } ?>
-							</table>
-						</form>
+							<?php } ?>
+						</table>
 
 						<div class="cart-collaterals">
 
