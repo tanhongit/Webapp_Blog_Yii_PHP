@@ -107,7 +107,7 @@ class ShoppingCartController extends Controller
 		Yii::app()->session['cart'] && $data = Yii::app()->session['cart'];
 		// print_r('<pre>');
 		// print_r($data);die;
-		$total_quality_cart = Cart::getTotalQualityProductCart();
+		$total_quality_cart = Cart::totalPriceCart();
 		if (isset($_POST['woocommerce_checkout_place_order'])) {
 			$modalOrder = new Order;
 			$modalOrder->user_id = !Yii::app()->user->isGuest
@@ -139,6 +139,19 @@ class ShoppingCartController extends Controller
 			$modalOrder->ship_phone = $_POST['shipping_phone'];
 			if ($modalOrder->save()) {
 				//insert order detail
+				$order_id = $modalOrder->id;
+				foreach ($data as $key => $value) {
+					$modalDetail = new OrderDetail;
+					$modalDetail->order_id_id = $order_id;
+					$modalDetail->product_id = $key;
+					$modalDetail->price = $value['price'];
+					$modalDetail->quantity = $value['quality'];
+					$modalDetail->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
+					if (!$modalDetail->save()) {
+						//notice 
+					} else {
+					}
+				}
 			}
 		}
 		$data_cart = Yii::app()->session['cart'];
