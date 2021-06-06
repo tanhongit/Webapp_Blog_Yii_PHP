@@ -18,7 +18,7 @@ $this->breadcrumbs = array(
 						<div class="product-upper">
 							<a href="/product/detail/<?= $value->id ?>"><img id="imgProduct<?= $value->id ?>" src="<?= Yii::app()->request->baseUrl . $value->image ?>" alt="<?= $value->image ?>"></a>
 						</div>
-						<h2><a href="/product/detail/<?= $value->id ?>"><?= $value->name ?></a></h2>
+						<h2><a href="/product/detail/<?= $value->id ?>"><span id="product_name_for_modal_<?= $value->id ?>"><?= $value->name ?></span></a></h2>
 						<div class="product-carousel-price">
 							<ins><span id="price_add_cart_<?= $value->id ?>"><?= get_price_apply_i18n($value->price) ?></span></ins> <del>$0.00</del>
 						</div>

@@ -31,7 +31,7 @@ $this->breadcrumbs = array(
 
                     <div class="col-sm-6">
                         <div class="product-inner">
-                            <h2 class="product-name"><?= $data->name ?></h2>
+                            <h2 class="product-name"><span id="product_name_for_modal"><span id="product_name_for_modal_<?= $data->id ?>"><?= $data->name ?></span></span></h2>
                             <div class="product-inner-price">
                                 <ins><span id="price_add_cart_<?= $data->id ?>"><?= get_price_apply_i18n($data->price) ?></span></ins> <del>0.00</del>
                             </div>

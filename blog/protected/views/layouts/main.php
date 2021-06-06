@@ -209,7 +209,13 @@ require_once('protected/scripts/globals.php');
 							<img data-src='#' class='thumbnail' id="img_add_Cart" alt="">
 						</div>
 						<div class="col-sm-6">
-							Price: <span id="price_add_cart_model"></span>
+							<h2 class="product-name" id="product-name-modal-cart"></h2>
+							<div class="product-inner-price">
+								Price: <ins><span id="price_add_cart_model"></span></ins> <del>0.00</del>
+							</div>
+							<div>
+								Quantity add cart: <span id="quantity_cart_modal"></span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -246,7 +252,10 @@ require_once('protected/scripts/globals.php');
 			// alert('pro added cart' + id);
 			imgForProduct = $('#imgProduct' + id).attr('src');
 			priceForProduct = $('#price_add_cart_' + id).text();
+			product_name = $('#product_name_for_modal_' + id).text();
 			$('#price_add_cart_model').text(priceForProduct);
+			$('#product-name-modal-cart').text(product_name);
+			$('#quantity_cart_modal').text(1);
 			$('#img_add_Cart').attr({
 				'src': imgForProduct
 			})
@@ -263,6 +272,11 @@ require_once('protected/scripts/globals.php');
 			// alert('pro added cart' + id);
 			imgForProduct = $('#imgProduct' + id).attr('src');
 			priceForProduct = $('#price_add_cart_' + id).text();
+			product_name = $('#product_name_for_modal_' + id).text();
+			quantity = $('#quantity_for_product').val();
+
+			$('#product-name-modal-cart').text(product_name);
+			$('#quantity_cart_modal').text(quantity);
 			$('#price_add_cart_model').text(priceForProduct);
 			$('#img_add_Cart').attr({
 				'src': imgForProduct

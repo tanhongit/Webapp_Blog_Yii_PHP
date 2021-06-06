@@ -157,8 +157,8 @@
 					<a href="/product/topview" class="wid-view-more">View All</a>
 					<?php foreach (Product::getTopViewProduct() as $value) : ?>
 						<div class="single-wid-product">
-							<a href="/product/detail/<?= $value->id ?>"><img src="<?= get_BaseUrl() . $value->image ?>" alt="" class="product-thumb"></a>
-							<h2><a href="/product/detail/<?= $value->id ?>"><?= $value['name'] ?></a></h2>
+							<a href="/product/detail/<?= $value->id ?>"><img id="imgProduct<?= $value->id ?>" src="<?= get_BaseUrl() . $value->image ?>" alt="" class="product-thumb"></a>
+							<h2><a href="/product/detail/<?= $value->id ?>"><span id="product_name_for_modal_<?= $value->id ?>"><?= $value->name ?></span></a></h2>
 							<!-- <div class="product-wid-rating">
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
