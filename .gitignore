@@ -2,3 +2,4 @@
 /blog/assets/*
 /blog/protected/runtime/cache
 /blog/protected/runtime
+/blog/protected/libs/setting_mail.php
