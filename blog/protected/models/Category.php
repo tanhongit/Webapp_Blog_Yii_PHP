@@ -31,4 +31,14 @@ class Category extends CategoryBase
 		$data = Category::model()->findByPk($id);
 		return $data;
 	}
+
+	public function getCategoryForWidget()
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->order = 'id DESC';
+		$criteria->limit = 5;
+		$data = Category::model()->findAll($criteria);
+		return $data;
+	}
 }

@@ -105,6 +105,8 @@ class ProductController extends Controller implements ViewInterFace
 
 		$data = Product::getProductByCategoryUsePagi($id, $page, $per_page);
 
+		$category_name = Category::getCategoryByID($id)['name'];
+
 		$this->render(
 			'list',
 			array(
@@ -114,6 +116,7 @@ class ProductController extends Controller implements ViewInterFace
 				'page_size' => $per_page,
 				'pages' => $pages,
 				'item_count' => $count,
+				'category_name' => $category_name,
 			)
 		); // app//product/list/2
 	}

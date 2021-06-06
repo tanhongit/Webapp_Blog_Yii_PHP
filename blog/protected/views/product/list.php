@@ -7,7 +7,7 @@
 require_once('protected/scripts/globals.php');
 $this->breadcrumbs = array(
     'Product',
-    'List'
+    $category_name,
 );
 ?>
 

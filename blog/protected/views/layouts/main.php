@@ -96,11 +96,9 @@ require_once('protected/scripts/globals.php');
 					<div class="footer-menu">
 						<h2 class="footer-wid-title">Categories</h2>
 						<ul>
-							<li><a href="#">Mobile Phone</a></li>
-							<li><a href="#">Home accesseries</a></li>
-							<li><a href="#">LED TV</a></li>
-							<li><a href="#">Computer</a></li>
-							<li><a href="#">Gadets</a></li>
+							<?php foreach (Category::getCategoryForWidget() as $value) : ?>
+								<li><a href="/category/list/<?= $value['id'] ?>"><?= $value['name'] ?></a></li>
+							<?php endforeach; ?>
 						</ul>
 					</div>
 				</div>

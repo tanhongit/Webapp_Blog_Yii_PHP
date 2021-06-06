@@ -10,8 +10,9 @@ return array(
         'contact' => 'site/contact',
         'login' => 'site/login',
 
-        'product/list/<id:\d+>',
+        // 'product/list/<id:\d+>',
         'cart' => 'shoppingcart/index',
         'checkout' => 'shoppingcart/checkout',
+        'category' => 'category/index',
     ),
 );
