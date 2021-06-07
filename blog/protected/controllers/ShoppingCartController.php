@@ -141,8 +141,27 @@ class ShoppingCartController extends Controller
 			$modalOrder->order_comments = $_POST['order_comments'];
 			$modalOrder->ship_phone = $_POST['shipping_phone'];
 			if ($modalOrder->save()) {
+				include 'protected/libs/setting_mail.php';
+				$htmlStr = '';
 				//insert order detail
 				$order_id = $modalOrder->id;
+
+				//content
+				$htmlStr .= '<div class="product-content-right">
+				<div class="woocommerce" id="the_cart_component">
+					<table cellspacing="0" class="shop_table cart">
+						<thead>
+							<tr>
+								<th class="product-thumbnail">&nbsp;</th>
+								<th class="product-name">Product</th>
+								<th class="product-price">Price</th>
+								<th class="product-quantity">Quantity</th>
+								<th class="product-remove">&nbsp;</th>
+								<th class="product-subtotal">Total</th>
+							</tr>
+						</thead>
+						<tbody>';
+
 				foreach ($data as $key => $value) {
 					$modalDetail = new OrderDetail;
 					$modalDetail->order_id_id = $order_id;
@@ -150,42 +169,73 @@ class ShoppingCartController extends Controller
 					$modalDetail->price = $value['price'];
 					$modalDetail->quantity = $value['quality'];
 					$modalDetail->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
+					$total_price_product = ($value['quality'] * $value['price']);
+					$htmlStr .= '<tr class="cart_item">';
+					$htmlStr .= '<td class="product-thumbnail">
+					<a href="product/detail/' . $value['id'] . '">
+						<img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="http://webapp-yii.demo.tanhongit.com/' . $value['product_image'] . '">
+					</a>
+					</td>
+
+					<td class="product-name">
+						<a href="http://webapp-yii.demo.tanhongit.com/product/detail/' . $value['id'] . '">' . $value['product_name'] . '</a>
+					</td>
+
+					<td class="product-price">
+						<span class="amount">' . $value['price'] . '</span>
+					</td>
+
+					<td class="product-quantity">'
+						. $value['quality']
+						. '</td>
+
+					<td class="product-subtotal">
+					<span class="amount">' . $total_price_product . '
+					</span>
+					</td>';
+
+
+					$htmlStr .= '</tr>';
+
 					if (!$modalDetail->save()) {
 						//notice 
 					} else {
-						include 'protected/libs/setting_mail.php';
-						$mail = new PHPMailer(true);
-						try {
-							//content
-							$htmlStr = "hiiiiiiiiiiiiii";
-							//Server settings
-							$mail->CharSet = "UTF-8";
-							$mail->SMTPDebug = 0; // Enable verbose debug output (0 : ko hiện debug, 1 hiện)
-							$mail->isSMTP(); // Set mailer to use SMTP
-							$mail->Host = SMTP_HOST;  // Specify main and backup SMTP servers
-							$mail->SMTPAuth = true; // Enable SMTP authentication
-							$mail->Username = SMTP_UNAME; // SMTP username
-							$mail->Password = SMTP_PWORD; // SMTP password
-							$mail->SMTPSecure = 'ssl'; // Enable TLS encryption, `ssl` also accepted
-							$mail->Port = SMTP_PORT; // TCP port to connect to
-							//Recipients
-							$mail->setFrom(SMTP_UNAME, "PHP TRAINING");
-							$mail->addAddress('tan.nguyen@ceresolutions.com', 'tan.nguyen@ceresolutions.com');     // Add a recipient | name is option tên người nhận
-							$mail->addReplyTo(SMTP_UNAME, 'PHP TRAINING');
-							//$mail->addCC('CCemail@gmail.com');
-							//$mail->addBCC('BCCemail@gmail.com');
-							$mail->isHTML(true); // Set email format to HTML
-							$mail->Subject = 'You have Change your Password | PHP TRAINING | By Tân TEAM D';
-							$mail->Body = $htmlStr;
-							$mail->AltBody = $htmlStr; //None HTML
-							$result = $mail->send();
-							if (!$result) {
-								$error = "Có lỗi xảy ra trong quá trình gửi mail";
-							}
-						} catch (Exception $e) {
-							echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
-						}
 					}
+				}
+				$htmlStr .= '</tbody>
+				</table>
+				</div>
+				</div>';
+
+				include 'protected/libs/setting_mail.php';
+				$mail = new PHPMailer(true);
+				try {
+					//Server settings
+					$mail->CharSet = "UTF-8";
+					$mail->SMTPDebug = 0; // Enable verbose debug output (0 : ko hiện debug, 1 hiện)
+					$mail->isSMTP(); // Set mailer to use SMTP
+					$mail->Host = SMTP_HOST;  // Specify main and backup SMTP servers
+					$mail->SMTPAuth = true; // Enable SMTP authentication
+					$mail->Username = SMTP_UNAME; // SMTP username
+					$mail->Password = SMTP_PWORD; // SMTP password
+					$mail->SMTPSecure = 'ssl'; // Enable TLS encryption, `ssl` also accepted
+					$mail->Port = SMTP_PORT; // TCP port to connect to
+					//Recipients
+					$mail->setFrom(SMTP_UNAME, "WEBAPP YII");
+					$mail->addAddress($_POST['billing_email'], $_POST['billing_last_name'] . $_POST['billing_first_name']);     // Add a recipient | name is option tên người nhận
+					$mail->addReplyTo(SMTP_UNAME, 'WEBAPP YII');
+					//$mail->addCC('CCemail@gmail.com');
+					//$mail->addBCC('BCCemail@gmail.com');
+					$mail->isHTML(true); // Set email format to HTML
+					$mail->Subject = 'Order information | WEBAPP YII';
+					$mail->Body = $htmlStr;
+					$mail->AltBody = $htmlStr; //None HTML
+					$result = $mail->send();
+					if (!$result) {
+						$error = "Có lỗi xảy ra trong quá trình gửi mail";
+					}
+				} catch (Exception $e) {
+					echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 				}
 			}
 		}
