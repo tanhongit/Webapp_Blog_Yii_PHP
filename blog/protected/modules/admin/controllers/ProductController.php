@@ -71,7 +71,7 @@ class ProductController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		$category = Category::getAllCategory();
+		$category = Category::model()->getAllCategory();
 		// print_r($user);
 		$data = CHtml::listData($category, 'id', 'name');
 
@@ -106,7 +106,7 @@ class ProductController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		$category = Category::getAllCategory();
+		$category = Category::model()->getAllCategory();
 		// print_r($user);
 		$data = CHtml::listData($category, 'id', 'name');
 

@@ -25,14 +25,14 @@ class CategoryController extends Controller
 		$page = (isset($params) ? $params - 1 : 0);
 
 		//get count
-		$count = Product::getTotalProductRecord();
+		$count = Product::model()->getTotalProductRecord();
 
 		//count page
 		$pages = new CPagination($count);
 		$per_page = Yii::app()->params['pager_product']; //Required config params in main.php
 		$pages->setPageSize($per_page);
 
-		$data = Product::getAllProductUsePagination($page, $per_page);
+		$data = Product::model()->getAllProductUsePagination($page, $per_page);
 
 		$this->render(
 			'index',
@@ -54,16 +54,16 @@ class CategoryController extends Controller
 		$page = (isset($params) ? $params - 1 : 0);
 
 		//get count
-		$count = Product::getTotalProductRecordByCategory($id);
+		$count = Product::model()->getTotalProductRecordByCategory($id);
 
 		//count page
 		$pages = new CPagination($count);
 		$per_page = Yii::app()->params['pager']; //Required config params in main.php
 		$pages->setPageSize($per_page);
 
-		$data = Product::getProductByCategoryUsePagi($id, $page, $per_page);
+		$data = Product::model()->getProductByCategoryUsePagi($id, $page, $per_page);
 
-		$category_name = Category::getCategoryByID($id)['name'];
+		$category_name = Category::model()->getCategoryByID($id)['name'];
 
 		$this->render(
 			'list',
@@ -85,16 +85,16 @@ class CategoryController extends Controller
 		$page = (isset($params) ? $params - 1 : 0);
 
 		//get count
-		$count = Product::getTotalProductRecordByCategory($id);
+		$count = Product::model()->getTotalProductRecordByCategory($id);
 
 		//count page
 		$pages = new CPagination($count);
 		$per_page = Yii::app()->params['pager']; //Required config params in main.php
 		$pages->setPageSize($per_page);
 
-		$data = Product::getProductByCategoryUsePagi($id, $page, $per_page);
+		$data = Product::model()->getProductByCategoryUsePagi($id, $page, $per_page);
 
-		$category_name = Category::getCategoryByID($id)['name'];
+		$category_name = Category::model()->getCategoryByID($id)['name'];
 
 		$this->render(
 			'view',

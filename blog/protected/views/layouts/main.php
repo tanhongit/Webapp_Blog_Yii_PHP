@@ -96,7 +96,7 @@ require_once('protected/scripts/globals.php');
 					<div class="footer-menu">
 						<h2 class="footer-wid-title">Categories</h2>
 						<ul>
-							<?php foreach (Category::getCategoryForWidget() as $value) : ?>
+							<?php foreach (Category::model()->getCategoryForWidget() as $value) : ?>
 								<li><a href="/category/<?= $value['id'] ?>"><?= $value['name'] ?></a></li>
 							<?php endforeach; ?>
 						</ul>
@@ -110,12 +110,12 @@ require_once('protected/scripts/globals.php');
 								<h3>Set Languages</h3>
 								<p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
 									<?php
-									$language_name_data = LanguageCode::getLanguageByCode(Yii::app()->language);
+									$language_name_data = LanguageCode::model()->getLanguageByCode(Yii::app()->language);
 									$data_lang_code = array();
 									foreach ($language_name_data as $value) {
 										$data_lang_code[$value['first_code']] = $value['name'];
 									}
-									foreach (LanguageCode::getAllLanguageCode() as $value) {
+									foreach (LanguageCode::model()->getAllLanguageCode() as $value) {
 										$data_lang_code[$value['first_code']] = $value['first_code'] . '-' . $value['name'];
 									}
 									$form = $this->beginWidget('CActiveForm', array(
@@ -141,13 +141,13 @@ require_once('protected/scripts/globals.php');
 								<h3>Set Currency</h3>
 								<p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
 									<?php
-									$currency_name_data = CurrencyRate::getCurrencyByCode(Yii::app()->params->currency);
+									$currency_name_data = CurrencyRate::model()->getCurrencyByCode(Yii::app()->params->currency);
 									$data_currency = array();
 									foreach ($currency_name_data as $value) {
 										$data_currency[$value['currency_code']] = $value['currency_name'];
 									}
 
-									foreach (CurrencyRate::getAllCurrency() as $value) {
+									foreach (CurrencyRate::model()->getAllCurrency() as $value) {
 										$data_currency[$value['currency_code']] = $value['currency_code'] . '-' . $value['currency_name'];
 									}
 									$form = $this->beginWidget('CActiveForm', array(

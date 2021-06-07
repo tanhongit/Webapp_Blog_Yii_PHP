@@ -156,7 +156,7 @@ function convert_number_to_words($number)
 function get_price_apply_i18n($price)
 {
     //check lang code
-    $data_lang_code = LanguageCode::getAllLanguageCode();
+    $data_lang_code = LanguageCode::model()->getAllLanguageCode();
     $code_postal = '';
 
     $lang_code = '';
@@ -167,7 +167,7 @@ function get_price_apply_i18n($price)
     }
 
     //check currency code
-    $data_current_rate = CurrencyRate::getAllCurrency();
+    $data_current_rate = CurrencyRate::model()->getAllCurrency();
     $current_rate = 0.0;
     foreach ($data_current_rate as $value) {
         Yii::app()->params->currency == $value['currency_code'] && $current_rate = $value['rate'];
@@ -183,7 +183,7 @@ function get_price_apply_i18n($price)
 function get_total_price_cart_i18n()
 {
     //check currency code
-    $data_current_rate = CurrencyRate::getAllCurrency();
+    $data_current_rate = CurrencyRate::model()->getAllCurrency();
     $current_rate = 0.0;
     foreach ($data_current_rate as $value) {
         Yii::app()->params->currency == $value['currency_code'] && $current_rate = $value['rate'];

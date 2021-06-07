@@ -9,14 +9,14 @@ class ProductController extends Controller implements ViewInterFace
 		$page = (isset($params) ? $params - 1 : 0);
 
 		//get count
-		$count = Product::getTotalProductRecord();
+		$count = Product::model()->model()->getTotalProductRecord();
 
 		//count page
 		$pages = new CPagination($count);
 		$per_page = Yii::app()->params['pager_product']; //Required config params in main.php
 		$pages->setPageSize($per_page);
 
-		$data = Product::getAllProductUsePagination($page, $per_page);
+		$data = Product::model()->model()->getAllProductUsePagination($page, $per_page);
 
 		$this->render(
 			'index',
@@ -61,7 +61,7 @@ class ProductController extends Controller implements ViewInterFace
 	/** get all product data by category  */
 	public function actionList1()
 	{
-		$data = Product::getProductHomePage();
+		$data = Product::model()->model()->getProductHomePage();
 
 		$this->render('list', array('data' => $data));
 	}
@@ -70,7 +70,7 @@ class ProductController extends Controller implements ViewInterFace
 	public function actionList2()
 	{
 		$id = $_REQUEST['id'];
-		$data = Product::getProductByCategory($id);
+		$data = Product::model()->getProductByCategory($id);
 
 		$this->render('list', array('data' => $data)); // Ex: app//product/list?id=2
 	}
@@ -82,7 +82,7 @@ class ProductController extends Controller implements ViewInterFace
 	{
 		//Required config rule url manager in main.php
 		// 'product/list/<id:\d+>',
-		$data = Product::getProductByCategory($id);
+		$data = Product::model()->getProductByCategory($id);
 
 		$this->render('list', array('data' => $data)); // app//product/list/2
 	}
@@ -96,16 +96,16 @@ class ProductController extends Controller implements ViewInterFace
 		$page = (isset($params) ? $params - 1 : 0);
 
 		//get count
-		$count = Product::getTotalProductRecordByCategory($id);
+		$count = Product::model()->getTotalProductRecordByCategory($id);
 
 		//count page
 		$pages = new CPagination($count);
 		$per_page = Yii::app()->params['pager']; //Required config params in main.php
 		$pages->setPageSize($per_page);
 
-		$data = Product::getProductByCategoryUsePagi($id, $page, $per_page);
+		$data = Product::model()->getProductByCategoryUsePagi($id, $page, $per_page);
 
-		$category_name = Category::getCategoryByID($id)['name'];
+		$category_name = Category::model()->getCategoryByID($id)['name'];
 
 		$this->render(
 			'list',
@@ -123,31 +123,31 @@ class ProductController extends Controller implements ViewInterFace
 
 	public function actionTestCache()
 	{
-		isset($_REQUEST['go']) && Product::productQueryCaching();
+		isset($_REQUEST['go']) && Product::model()->productQueryCaching();
 		$this->render('testCache');
 	}
 
 	public function actionTopView()
 	{
-		$data = Product::getAllTopViewProduct();
+		$data = Product::model()->getAllTopViewProduct();
 
 		$this->render('topview', array('data' => $data)); // Ex: app//product/list?id=2
 	}
 
 	public function actionDetail($id)
 	{
-		$data = Product::getDetailProduct($id);
+		$data = Product::model()->getDetailProduct($id);
 
 		$category_id = $data->category_id;
-		$cate_data = Category::getCategoryByID($category_id);
+		$cate_data = Category::model()->getCategoryByID($category_id);
 
-		$related_data = Product::getProductByCategory($category_id);
+		$related_data = Product::model()->getProductByCategory($category_id);
 
-		$recent_data = Product::getRecentProduct();
+		$recent_data = Product::model()->getRecentProduct();
 
-		$recent_post_data = Post::getRecentPost();
+		$recent_post_data = Post::model()->getRecentPost();
 
-		$latest_data = Product::getLatestProduct();
+		$latest_data = Product::model()->getLatestProduct();
 
 		$model = $this->loadModel($id);
 		$model->view += 1;
@@ -164,7 +164,7 @@ class ProductController extends Controller implements ViewInterFace
 	}
 	public function loadModel($id)
 	{
-		$model = Product::model()->findByPk($id);
+		$model = Product::model()->model()->findByPk($id);
 		if ($model === null)
 			throw new CHttpException(404, 'The requested page does not exist.');
 		return $model;

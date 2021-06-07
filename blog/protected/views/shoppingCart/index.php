@@ -166,7 +166,7 @@ $this->breadcrumbs = array(
 										<tr>
 											<td colspan="2">
 												<?php
-												$currency_name_data = CurrencyRate::getCurrencyByCode(Yii::app()->params->currency);
+												$currency_name_data = CurrencyRate::model()->getCurrencyByCode(Yii::app()->params->currency);
 												$data_currency = '';
 												foreach ($currency_name_data as $value) {
 													$data_currency = $value['currency_name'];

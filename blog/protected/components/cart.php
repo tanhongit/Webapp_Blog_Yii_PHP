@@ -4,7 +4,7 @@ class Cart
     static function addCart($id, $quality = 1)
     {
         $cart = Yii::app()->session['cart'];
-        $productInfo = Product::getDetailProduct($id);
+        $productInfo = Product::model()->getDetailProduct($id);
 
         if (empty($cart)) {
             $cart[$id] = array(
@@ -36,7 +36,7 @@ class Cart
         Yii::app()->session['cart'] = $cart;
     }
 
-    public function getTotalQualityProductCart()
+    static function getTotalQualityProductCart()
     {
         $total = 0;
         if (!empty(Yii::app()->session['cart'])) {
@@ -48,7 +48,7 @@ class Cart
         return $total;
     }
 
-    public function totalPriceCartNotDiscount()
+    static function totalPriceCartNotDiscount()
     {
         $cart = Yii::app()->session['cart'];
         if (!empty($cart)) {
@@ -60,7 +60,7 @@ class Cart
         }
     }
 
-    public function totalPriceCart()
+    static function totalPriceCart()
     {
         if (!Yii::app()->session['cart_discount'] || empty(Yii::app()->session['cart_discount'])) {
             return Cart::totalPriceCartNotDiscount();
@@ -72,7 +72,7 @@ class Cart
     static function updateItemCart($id, $q)
     {
         $cart = Yii::app()->session['cart'];
-        $productInfo = Product::getDetailProduct($id);
+        $productInfo = Product::model()->getDetailProduct($id);
         if ($q > 0) {
             if (array_key_exists($id, $cart)) {
                 $cart[$id] = array(
