@@ -26,7 +26,7 @@ class Category extends CategoryBase
 		return $data;
 	}
 
-	public function getCategoryByID($id)
+	public function getByID($id)
 	{
 		$data = Category::model()->findByPk($id);
 		return $data;

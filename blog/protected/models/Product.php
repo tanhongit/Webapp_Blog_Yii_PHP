@@ -20,13 +20,13 @@ class Product extends ProductBase
 		return '{{product}}';
 	}
 
-	public function getAllProduct()
+	public function getAll()
 	{
 		$data = Product::model()->findAll();
 		return $data;
 	}
 
-	public function getProductHomePage()
+	public function getForHomePage()
 	{
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';
@@ -35,7 +35,7 @@ class Product extends ProductBase
 		return $data;
 	}
 
-	public function getProductByCategory($category_id)
+	public function getByCategory($category_id)
 	{
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';

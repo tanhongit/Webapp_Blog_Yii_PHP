@@ -63,7 +63,7 @@ class CategoryController extends Controller
 
 		$data = Product::model()->getProductByCategoryUsePagi($id, $page, $per_page);
 
-		$category_name = Category::model()->getCategoryByID($id)['name'];
+		$category_name = Category::model()->getByID($id)['name'];
 
 		$this->render(
 			'list',
@@ -94,7 +94,7 @@ class CategoryController extends Controller
 
 		$data = Product::model()->getProductByCategoryUsePagi($id, $page, $per_page);
 
-		$category_name = Category::model()->getCategoryByID($id)['name'];
+		$category_name = Category::model()->getByID($id)['name'];
 
 		$this->render(
 			'view',

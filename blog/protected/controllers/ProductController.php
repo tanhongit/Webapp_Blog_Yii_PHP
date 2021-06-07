@@ -16,7 +16,7 @@ class ProductController extends Controller implements ViewInterFace
 		$per_page = Yii::app()->params['pager_product']; //Required config params in main.php
 		$pages->setPageSize($per_page);
 
-		$data = Product::model()->model()->getAllProductUsePagination($page, $per_page);
+		$data = Product::model()->getAllProductUsePagination($page, $per_page);
 
 		$this->render(
 			'index',
@@ -61,7 +61,7 @@ class ProductController extends Controller implements ViewInterFace
 	/** get all product data by category  */
 	public function actionList1()
 	{
-		$data = Product::model()->model()->getProductHomePage();
+		$data = Product::model()->getForHomePage();
 
 		$this->render('list', array('data' => $data));
 	}
@@ -70,7 +70,7 @@ class ProductController extends Controller implements ViewInterFace
 	public function actionList2()
 	{
 		$id = $_REQUEST['id'];
-		$data = Product::model()->getProductByCategory($id);
+		$data = Product::model()->getByCategory($id);
 
 		$this->render('list', array('data' => $data)); // Ex: app//product/list?id=2
 	}
@@ -82,7 +82,7 @@ class ProductController extends Controller implements ViewInterFace
 	{
 		//Required config rule url manager in main.php
 		// 'product/list/<id:\d+>',
-		$data = Product::model()->getProductByCategory($id);
+		$data = Product::model()->getByCategory($id);
 
 		$this->render('list', array('data' => $data)); // app//product/list/2
 	}
@@ -105,7 +105,7 @@ class ProductController extends Controller implements ViewInterFace
 
 		$data = Product::model()->getProductByCategoryUsePagi($id, $page, $per_page);
 
-		$category_name = Category::model()->getCategoryByID($id)['name'];
+		$category_name = Category::model()->getByID($id)['name'];
 
 		$this->render(
 			'list',
@@ -139,9 +139,9 @@ class ProductController extends Controller implements ViewInterFace
 		$data = Product::model()->getDetailProduct($id);
 
 		$category_id = $data->category_id;
-		$cate_data = Category::model()->getCategoryByID($category_id);
+		$cate_data = Category::model()->getByID($category_id);
 
-		$related_data = Product::model()->getProductByCategory($category_id);
+		$related_data = Product::model()->getByCategory($category_id);
 
 		$recent_data = Product::model()->getRecentProduct();
 
