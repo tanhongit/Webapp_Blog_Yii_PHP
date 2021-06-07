@@ -35,6 +35,7 @@ https://www.youtube.com/watch?v=QaCf8EO30CE (Need virtual host)
 
 http://www.bsourcecode.com/2013/04/yii-url-manager-configuration/
 
+https://www.yiiframework.com/doc/api/1.1/CUrlManager (CUrlManager)
 
 -------
 Format datetime:

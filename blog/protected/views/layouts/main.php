@@ -97,7 +97,7 @@ require_once('protected/scripts/globals.php');
 						<h2 class="footer-wid-title">Categories</h2>
 						<ul>
 							<?php foreach (Category::getCategoryForWidget() as $value) : ?>
-								<li><a href="/category/list/<?= $value['id'] ?>"><?= $value['name'] ?></a></li>
+								<li><a href="/category/<?= $value['id'] ?>"><?= $value['name'] ?></a></li>
 							<?php endforeach; ?>
 						</ul>
 					</div>
