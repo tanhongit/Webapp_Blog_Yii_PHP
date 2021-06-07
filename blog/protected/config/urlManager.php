@@ -11,8 +11,8 @@ return array(
         'login' => 'site/login',
 
         // 'product/list/<id:\d+>',
-        'cart' => 'shoppingcart/index',
-        'checkout' => 'shoppingcart/checkout',
+        'cart' => 'shoppingCart/index',
+        'checkout' => 'shoppingCart/checkout',
         'category' => 'category/index',
         // 'category/<id:\d+>/*' => 'category',
 

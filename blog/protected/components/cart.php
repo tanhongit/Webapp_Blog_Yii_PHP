@@ -1,5 +1,5 @@
 <?php
-class Cart
+class Cart extends CActiveRecord
 {
     static function addCart($id, $quality = 1)
     {
