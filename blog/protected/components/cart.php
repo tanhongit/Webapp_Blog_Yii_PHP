@@ -4,7 +4,7 @@ class Cart extends CActiveRecord
     static function addCart($id, $quality = 1)
     {
         $cart = Yii::app()->session['cart'];
-        $productInfo = Product::model()->getDetailProduct($id);
+        $productInfo = Product::model()->getDetail($id);
 
         if (empty($cart)) {
             $cart[$id] = array(
@@ -72,7 +72,7 @@ class Cart extends CActiveRecord
     static function updateItemCart($id, $q)
     {
         $cart = Yii::app()->session['cart'];
-        $productInfo = Product::model()->getDetailProduct($id);
+        $productInfo = Product::model()->getDetail($id);
         if ($q > 0) {
             if (array_key_exists($id, $cart)) {
                 $cart[$id] = array(

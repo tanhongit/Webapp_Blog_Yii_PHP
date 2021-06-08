@@ -25,14 +25,14 @@ class CategoryController extends Controller
 		$page = (isset($params) ? $params - 1 : 0);
 
 		//get count
-		$count = Product::model()->getTotalProductRecord();
+		$count = Product::model()->getTotalRecord();
 
 		//count page
 		$pages = new CPagination($count);
 		$per_page = Yii::app()->params['pager_product']; //Required config params in main.php
 		$pages->setPageSize($per_page);
 
-		$data = Product::model()->getAllProductUsePagination($page, $per_page);
+		$data = Product::model()->getAllUsePagination($page, $per_page);
 
 		$this->render(
 			'index',
@@ -54,7 +54,7 @@ class CategoryController extends Controller
 		$page = (isset($params) ? $params - 1 : 0);
 
 		//get count
-		$count = Product::model()->getTotalProductRecordByCategory($id);
+		$count = Product::model()->getTotalRecordByCategory($id);
 
 		//count page
 		$pages = new CPagination($count);
@@ -85,7 +85,7 @@ class CategoryController extends Controller
 		$page = (isset($params) ? $params - 1 : 0);
 
 		//get count
-		$count = Product::model()->getTotalProductRecordByCategory($id);
+		$count = Product::model()->getTotalRecordByCategory($id);
 
 		//count page
 		$pages = new CPagination($count);

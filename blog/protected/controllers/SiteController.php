@@ -29,7 +29,7 @@ class SiteController extends Controller implements ViewInterFace
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$latest_product_data = Product::model()->getLatestProduct();
+		$latest_product_data = Product::model()->getLatest();
 
 		$this->render('index', array(
 			'latest_product_data' => $latest_product_data,

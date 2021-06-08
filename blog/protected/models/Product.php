@@ -45,13 +45,13 @@ class Product extends ProductBase
 		return $data;
 	}
 
-	public function getTotalProductRecord()
+	public function getTotalRecord()
 	{
 		$data = Product::model()->count();
 		return $data;
 	}
 
-	public function getTotalProductRecordByCategory($category_id)
+	public function getTotalRecordByCategory($category_id)
 	{
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';
@@ -60,7 +60,7 @@ class Product extends ProductBase
 		return $data;
 	}
 
-	public function getAllProductUsePagination($page = 0, $per_page = 0)
+	public function getAllUsePagination($page = 0, $per_page = 0)
 	{
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';
@@ -76,6 +76,28 @@ class Product extends ProductBase
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';
 		$criteria->condition = 'category_id = ' . $category_id;
+		$criteria->offset = ($page * $per_page);
+		$criteria->limit = $per_page;
+		$criteria->order = 'create_time DESC';
+		$data = Product::model()->findAll($criteria);
+		return $data;
+	}
+
+	public function getAllSearch($keyword)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->condition = "name LIKE '%" . $keyword . "%' or price LIKE '%" . $keyword . "%'";
+		$criteria->order = 'create_time DESC';
+		$data = Product::model()->count($criteria);
+		return $data;
+	}
+
+	public function searchUsePagination($keyword, $page = 0, $per_page = 0)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->condition = "name LIKE '%" . $keyword . "%' or price LIKE '%" . $keyword . "%'";
 		$criteria->offset = ($page * $per_page);
 		$criteria->limit = $per_page;
 		$criteria->order = 'create_time DESC';
@@ -102,13 +124,13 @@ class Product extends ProductBase
 		}
 	}
 
-	public function getDetailProduct($id)
+	public function getDetail($id)
 	{
 		$data = Product::model()->findByPk($id);
 		return $data;
 	}
 
-	public function getRecentProduct()
+	public function getRecent()
 	{
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';
@@ -118,7 +140,7 @@ class Product extends ProductBase
 		return $data;
 	}
 
-	public function getLatestProduct()
+	public function getLatest()
 	{
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';
@@ -128,7 +150,7 @@ class Product extends ProductBase
 		return $data;
 	}
 
-	public function getTopViewProduct()
+	public function getTopView()
 	{
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';
@@ -138,7 +160,7 @@ class Product extends ProductBase
 		return $data;
 	}
 
-	public function getAllTopViewProduct()
+	public function getAllTopView()
 	{
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';

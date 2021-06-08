@@ -9,14 +9,14 @@ class ProductController extends Controller implements ViewInterFace
 		$page = (isset($params) ? $params - 1 : 0);
 
 		//get count
-		$count = Product::model()->model()->getTotalProductRecord();
+		$count = Product::model()->model()->getTotalRecord();
 
 		//count page
 		$pages = new CPagination($count);
 		$per_page = Yii::app()->params['pager_product']; //Required config params in main.php
 		$pages->setPageSize($per_page);
 
-		$data = Product::model()->getAllProductUsePagination($page, $per_page);
+		$data = Product::model()->getAllUsePagination($page, $per_page);
 
 		$this->render(
 			'index',
@@ -96,7 +96,7 @@ class ProductController extends Controller implements ViewInterFace
 		$page = (isset($params) ? $params - 1 : 0);
 
 		//get count
-		$count = Product::model()->getTotalProductRecordByCategory($id);
+		$count = Product::model()->getTotalRecordByCategory($id);
 
 		//count page
 		$pages = new CPagination($count);
@@ -129,25 +129,25 @@ class ProductController extends Controller implements ViewInterFace
 
 	public function actionTopView()
 	{
-		$data = Product::model()->getAllTopViewProduct();
+		$data = Product::model()->getAllTopView();
 
 		$this->render('topview', array('data' => $data)); // Ex: app//product/list?id=2
 	}
 
 	public function actionDetail($id)
 	{
-		$data = Product::model()->getDetailProduct($id);
+		$data = Product::model()->getDetail($id);
 
 		$category_id = $data->category_id;
 		$cate_data = Category::model()->getByID($category_id);
 
 		$related_data = Product::model()->getByCategory($category_id);
 
-		$recent_data = Product::model()->getRecentProduct();
+		$recent_data = Product::model()->getRecent();
 
 		$recent_post_data = Post::model()->getRecentPost();
 
-		$latest_data = Product::model()->getLatestProduct();
+		$latest_data = Product::model()->getLatest();
 
 		$model = $this->loadModel($id);
 		$model->view += 1;

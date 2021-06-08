@@ -1,12 +1,12 @@
 <?php
-$recent_data = Product::model()->getRecentProduct();
+$recent_data = Product::model()->getRecent();
 $recent_post_data = Post::model()->getRecentPost();
 ?>
 <div class="col-md-3">
     <div class="single-sidebar">
         <h2 class="sidebar-title">Search Products</h2>
-        <form action="">
-            <input type="text" placeholder="Search products...">
+        <form method="GET" action="/search">
+            <input type="text" name="keyword" id="keyword" placeholder="Search products...">
             <input type="submit" value="Search">
         </form>
     </div>

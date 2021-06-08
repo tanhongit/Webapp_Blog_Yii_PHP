@@ -6,7 +6,7 @@
                 <div class="latest-product">
                     <h2 class="section-title">Latest Products</h2>
                     <div class="product-carousel">
-                        <?php foreach (Product::model()->getLatestProduct() as $value) : ?>
+                        <?php foreach (Product::model()->getLatest() as $value) : ?>
                             <div class="single-product">
                                 <div class="product-f-image">
                                     <img id="imgProduct<?= $value->id ?>" src="<?= get_BaseUrl() . $value->image ?>" alt="">

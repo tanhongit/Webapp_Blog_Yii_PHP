@@ -155,7 +155,7 @@
 				<div class="single-product-widget">
 					<h2 class="product-wid-title">Top Views</h2>
 					<a href="/product/topview" class="wid-view-more">View All</a>
-					<?php foreach (Product::model()->getTopViewProduct() as $value) : ?>
+					<?php foreach (Product::model()->getTopView() as $value) : ?>
 						<div class="single-wid-product">
 							<a href="/product/detail/<?= $value->id ?>"><img id="imgProduct<?= $value->id ?>" src="<?= get_BaseUrl() . $value->image ?>" alt="" class="product-thumb"></a>
 							<h2><a href="/product/detail/<?= $value->id ?>"><span id="product_name_for_modal_<?= $value->id ?>"><?= $value->name ?></span></a></h2>
