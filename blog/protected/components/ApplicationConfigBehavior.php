@@ -28,6 +28,17 @@ class ApplicationConfigBehavior extends CBehavior
 
 		$test_request_url = explode('/', $_SERVER['REQUEST_URI']);
 
+		//check language
+		$iso_code = MaxMindDB::getCityByIP()['registered_country']['iso_code'];
+		$language_name_data = LanguageCode::model()->getLanguageByCode(Yii::app()->language);
+		$lang_code = '';
+		foreach ($language_name_data as $value) {
+			$value['second_code'] == $iso_code && $lang_code = $value['first_code'];
+		}
+		if (!empty($lang_code)) {
+			Yii::app()->user->setState('applicationLanguage', $lang_code);
+		}
+
 		if (in_array($pop_array_url, language_codes())) {
 			Yii::app()->user->setState('applicationLanguage', $pop_array_url);
 		} elseif (in_array($test_request_url[1], language_codes())) {
@@ -36,6 +47,7 @@ class ApplicationConfigBehavior extends CBehavior
 			Yii::app()->user->setState('applicationLanguage', $_POST['language']);
 		}
 
+		/*CHECK CURRENCY*/
 		if (isset($_POST['currency_code'])) {
 			Yii::app()->user->setState('applicationCurrency', $_POST['currency_code']);
 		}
@@ -43,14 +55,17 @@ class ApplicationConfigBehavior extends CBehavior
 		// $test_main_url = explode('.', $_SERVER['HTTP_HOST']);
 		// !empty($test_main_url[2]) && Yii::app()->user->setState('applicationLanguage', $test_main_url[2]);
 
+		/*SET LANGUAGE*/
 		$this->owner->user->getState('applicationLanguage') ?
 			$this->owner->language = $this->owner->user->getState('applicationLanguage')
 			: $this->owner->language = 'en';
 
+		//set currency
 		$this->owner->user->getState('applicationCurrency') ?
 			Yii::app()->params->currency = $this->owner->user->getState('applicationCurrency')
 			: Yii::app()->params->currency = 'USD';
 
+		//set coupon cart
 		$this->owner->user->getState('coupon_cart_add_1')
 			? Yii::app()->params->the_coupon_1 = $this->owner->user->getState('coupon_cart_add_1')
 			: Yii::app()->params->the_coupon_1 = 'none';

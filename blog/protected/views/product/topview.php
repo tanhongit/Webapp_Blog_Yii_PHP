@@ -14,6 +14,12 @@ $this->breadcrumbs = array(
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
+    
+        <!-- <?php
+        echo '<pre>';
+        print_r(MaxMindDB::getCityByIP('24.24.24.24'));
+        echo '</pre>'; ?> -->
+
         <div class="row">
             <?php
             foreach ($data as $value) :
