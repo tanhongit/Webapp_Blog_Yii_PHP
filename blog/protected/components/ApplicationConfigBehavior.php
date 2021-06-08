@@ -29,8 +29,8 @@ class ApplicationConfigBehavior extends CBehavior
 		$test_request_url = explode('/', $_SERVER['REQUEST_URI']);
 
 		//check language
-		$iso_code = MaxMindDB::getCityByIP()['registered_country']['iso_code'];
-		$language_name_data = LanguageCode::model()->getLanguageByCode(Yii::app()->language);
+		$iso_code = MaxMindDB::getCityByIP()['country']['iso_code'];
+		$language_name_data = LanguageCode::model()->getAll();
 		$lang_code = '';
 		foreach ($language_name_data as $value) {
 			$value['second_code'] == $iso_code && $lang_code = $value['first_code'];

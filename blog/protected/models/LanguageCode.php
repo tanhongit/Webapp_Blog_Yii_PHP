@@ -19,7 +19,7 @@ class LanguageCode extends LanguageCodeBase
         return '{{language_codes}}';
     }
 
-    public function getAllLanguageCode()
+    public function getAll()
     {
         $criteria = new CDbCriteria();
         $criteria->select = '*';
@@ -28,7 +28,7 @@ class LanguageCode extends LanguageCodeBase
         return $data;
     }
 
-    public function getLanguageByCode($code)
+    public function getByCode($code)
     {
         $criteria = new CDbCriteria();
         $criteria->select = '*';

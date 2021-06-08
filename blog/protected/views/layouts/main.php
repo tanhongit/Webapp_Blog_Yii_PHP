@@ -110,12 +110,12 @@ require_once('protected/scripts/globals.php');
 								<h3>Set Languages</h3>
 								<p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
 									<?php
-									$language_name_data = LanguageCode::model()->getLanguageByCode(Yii::app()->language);
+									$language_name_data = LanguageCode::model()->getByCode(Yii::app()->language);
 									$data_lang_code = array();
 									foreach ($language_name_data as $value) {
 										$data_lang_code[$value['first_code']] = $value['name'];
 									}
-									foreach (LanguageCode::model()->getAllLanguageCode() as $value) {
+									foreach (LanguageCode::model()->getAll() as $value) {
 										$data_lang_code[$value['first_code']] = $value['first_code'] . '-' . $value['name'];
 									}
 									$form = $this->beginWidget('CActiveForm', array(

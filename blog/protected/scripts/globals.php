@@ -156,7 +156,7 @@ function convert_number_to_words($number)
 function get_price_apply_i18n($price)
 {
     //check lang code
-    $data_lang_code = LanguageCode::model()->getAllLanguageCode();
+    $data_lang_code = LanguageCode::model()->getAll();
     $code_postal = '';
 
     $lang_code = '';
