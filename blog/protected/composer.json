@@ -1,6 +1,7 @@
 {
     "require": {
-        "phpmailer/phpmailer": "^6.4"
+        "phpmailer/phpmailer": "^6.4",
+        "maxmind-db/reader": "1.6.0"
     },
     "config": {
         "vendor-dir": "vendor"

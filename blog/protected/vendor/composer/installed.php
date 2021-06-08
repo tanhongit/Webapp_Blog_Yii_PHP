@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '5b35f84557391610c426caefe552263bf917ffc5',
+    'reference' => '9f78a0f3b22b25be2694816673d5886f06e3fbeb',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '5b35f84557391610c426caefe552263bf917ffc5',
+      'reference' => '9f78a0f3b22b25be2694816673d5886f06e3fbeb',
+    ),
+    'maxmind-db/reader' => 
+    array (
+      'pretty_version' => 'v1.6.0',
+      'version' => '1.6.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'febd4920bf17c1da84cef58e56a8227dfb37fbe4',
     ),
     'phpmailer/phpmailer' => 
     array (

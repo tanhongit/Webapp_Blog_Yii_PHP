@@ -5,6 +5,7 @@ $yii = dirname(__FILE__) . '/framework/yii.php';
 $config = dirname(__FILE__) . '/protected/config/main.php';
 $composer = dirname(__FILE__) . '/protected/vendor/autoload.php';
 require_once($composer);
+require_once 'protected/vendor/maxmind-db/reader/autoload.php';
 
 // remove the following lines when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG', true);
