@@ -27,4 +27,13 @@ class User extends UserBase
 		$data = User::model()->findAll();
 		return $data;
 	}
+
+	public function getByEmail($email)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->condition = 'email = "' . $email . '"';
+		$data = User::model()->findAll($criteria);
+		return $data;
+	}
 }
