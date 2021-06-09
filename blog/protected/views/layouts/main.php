@@ -96,7 +96,7 @@ require_once('protected/scripts/globals.php');
 					<div class="footer-menu">
 						<h2 class="footer-wid-title">Categories</h2>
 						<ul>
-							<?php foreach (Category::model()->getCategoryForWidget() as $value) : ?>
+							<?php foreach (Category::model()->getForWidget() as $value) : ?>
 								<li><a href="/category/<?= $value['id'] ?>"><?= $value['name'] ?></a></li>
 							<?php endforeach; ?>
 						</ul>
@@ -147,7 +147,7 @@ require_once('protected/scripts/globals.php');
 										$data_currency[$value['currency_code']] = $value['currency_name'];
 									}
 
-									foreach (CurrencyRate::model()->getAllCurrency() as $value) {
+									foreach (CurrencyRate::model()->getAll() as $value) {
 										$data_currency[$value['currency_code']] = $value['currency_code'] . '-' . $value['currency_name'];
 									}
 									$form = $this->beginWidget('CActiveForm', array(

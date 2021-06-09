@@ -19,7 +19,7 @@ class Coupon extends CouponBase
 		return '{{coupons}}';
 	}
 
-	public function getAllCoupon()
+	public function getAll()
 	{
 		$data = Coupon::model()->findAll();
 		return $data;

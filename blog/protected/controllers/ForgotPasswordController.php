@@ -51,7 +51,7 @@ class ForgotPasswordController extends Controller
 			} elseif (empty($result_data_email) || !isset($result_data_email)) {
 				Yii::app()->session['result_forgot_password'] = "<div style='padding-top: 200' class='container'><div style='text-align: center;' class='alert alert-danger'><strong>NO!</strong> Email này không có người dùng và không tồn tại trong máy chủ. Vui lòng nhập lại Email khác. <a href='javascript: history.go(-1)'>Trở lại</a> hoặc <a href='/'>Đến Trang chủ</a></div></div>";
 			} else {
-				$users = User::model()->getAllUser();
+				$users = User::model()->getAll();
 				foreach ($users as $user) {
 					if ($user['email'] == $email) {
 						// $verification_Code = $user['verificationCode'];

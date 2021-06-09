@@ -257,7 +257,7 @@ class ShoppingCartController extends Controller
 		} else {
 			$coupon_code = Yii::app()->request->getParam('coupon_code');
 			Yii::app()->session['input_add_coupon'] = $coupon_code;
-			$data_db = Coupon::model()->getAllCoupon();
+			$data_db = Coupon::model()->getAll();
 			$discount_price = 0.0;
 
 			foreach ($data_db as $value) {

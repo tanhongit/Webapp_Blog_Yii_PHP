@@ -19,7 +19,7 @@ class CurrencyRate extends CurrencyRateBase
         return '{{currency_rates}}';
     }
 
-    public function getAllCurrency()
+    public function getAll()
     {
         $criteria = new CDbCriteria();
         $criteria->select = '*';

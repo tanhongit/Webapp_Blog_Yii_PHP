@@ -61,7 +61,7 @@ class CategoryController extends Controller
 		$per_page = Yii::app()->params['pager']; //Required config params in main.php
 		$pages->setPageSize($per_page);
 
-		$data = Product::model()->getProductByCategoryUsePagi($id, $page, $per_page);
+		$data = Product::model()->getByCategoryPagination($id, $page, $per_page);
 
 		$category_name = Category::model()->getByID($id)['name'];
 
@@ -92,7 +92,7 @@ class CategoryController extends Controller
 		$per_page = Yii::app()->params['pager']; //Required config params in main.php
 		$pages->setPageSize($per_page);
 
-		$data = Product::model()->getProductByCategoryUsePagi($id, $page, $per_page);
+		$data = Product::model()->getByCategoryPagination($id, $page, $per_page);
 
 		$category_name = Category::model()->getByID($id)['name'];
 

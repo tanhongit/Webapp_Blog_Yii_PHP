@@ -1,6 +1,6 @@
 <?php
 $recent_data = Product::model()->getRecent();
-$recent_post_data = Post::model()->getRecentPost();
+$recent_post_data = Post::model()->getRecent();
 ?>
 <div class="col-md-3">
     <div class="single-sidebar">

@@ -71,7 +71,7 @@ class Product extends ProductBase
 		return $data;
 	}
 
-	public function getProductByCategoryUsePagi($category_id, $page = 0, $per_page = 0)
+	public function getByCategoryPagination($category_id, $page = 0, $per_page = 0)
 	{
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';

@@ -70,7 +70,7 @@ class PostController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		$user = User::getAllUser();
+		$user = User::getAll();
 		// print_r($user);
 		$data = CHtml::listData($user, 'id', 'username');
 
@@ -97,7 +97,7 @@ class PostController extends Controller
 	{
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		$user = User::getAllUser();
+		$user = User::getAll();
 		// print_r($user);
 		$data = CHtml::listData($user, 'id', 'username');
 		$model = $this->loadModel($id);

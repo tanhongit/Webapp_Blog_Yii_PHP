@@ -20,7 +20,7 @@ class Category extends CategoryBase
 		return '{{categories}}';
 	}
 
-	public function getAllCategory()
+	public function getAll()
 	{
 		$data = Category::model()->findAll();
 		return $data;
@@ -32,7 +32,7 @@ class Category extends CategoryBase
 		return $data;
 	}
 
-	public function getCategoryForWidget()
+	public function getForWidget()
 	{
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';

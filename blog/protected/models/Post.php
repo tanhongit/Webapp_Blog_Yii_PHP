@@ -26,7 +26,7 @@ class Post extends PostBase
 	// 	$data = Post::model()->find
 	// }
 
-	public function getRecentPost(){
+	public function getRecent(){
 		$criteria = new CDbCriteria();
 		$criteria->select = '*';
 		$criteria->order = 'create_time DESC';

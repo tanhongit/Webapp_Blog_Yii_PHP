@@ -22,7 +22,7 @@ class User extends UserBase
 		return '{{user}}';
 	}
 
-	public function getAllUser()
+	public function getAll()
 	{
 		$data = User::model()->findAll();
 		return $data;
