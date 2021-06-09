@@ -81,7 +81,7 @@ class ProductController extends Controller
 			$model->attributes = $_POST['Product'];
 
 			$model->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
-
+			$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			$image = CUploadedFile::getInstance($model, 'image'); //image is the name input form
 			$image->saveAs($path . '/' . time() . '_' . $image->name);
 			$model->image = "/uploads/" . time() . '_' . $image->name;
@@ -109,9 +109,10 @@ class ProductController extends Controller
 		$category = Category::model()->getAllCategory();
 		// print_r($user);
 		$data = CHtml::listData($category, 'id', 'name');
-
+		
 		if (isset($_POST['Product'])) {
 			$model->attributes = $_POST['Product'];
+			$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			if ($model->save())
 				$this->redirect(array('view', 'id' => $model->id));
 		}

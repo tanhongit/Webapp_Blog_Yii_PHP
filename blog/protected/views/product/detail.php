@@ -100,10 +100,10 @@ $this->breadcrumbs = array(
                                     </div>
                                 </div>
 
-                                <h2><a href="<?= $value->id ?>"><?= $value->name ?></a></h2>
+                                <h2><a href="<?= $value->id ?>" id="product_name_for_modal_<?= $value->id ?>"><?= $value->name ?></a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins><?= get_price_apply_i18n($value->price) ?></ins> <del>$100.00</del>
+                                    <ins id="price_add_cart_<?= $value->id ?>"><?= get_price_apply_i18n($value->price) ?></ins> <del>$100.00</del>
                                 </div>
                             </div>
                         <?php endforeach; ?>

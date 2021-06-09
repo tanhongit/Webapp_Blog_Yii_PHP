@@ -70,6 +70,8 @@ class CategoryController extends Controller
 		if(isset($_POST['Category']))
 		{
 			$model->attributes=$_POST['Category'];
+			$model->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
+			$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

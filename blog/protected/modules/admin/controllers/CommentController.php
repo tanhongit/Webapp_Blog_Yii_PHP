@@ -69,6 +69,7 @@ class CommentController extends Controller
 
 		if(isset($_POST['Comment']))
 		{
+			$model->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			$model->attributes=$_POST['Comment'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
