@@ -131,7 +131,7 @@ $this->breadcrumbs = array(
 											<input type="submit" onclick="addCouponCart()" name="apply_coupon" value="Apply Coupon" class="button">
 										</div>
 										<input type="submit" value="Update Cart" name="update_cart" class="button">
-										<a type="submit" name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
+										<a type="submit" <?php echo (isset($data) && !empty($data)) ? '' : 'style="pointer-events: none;background:#E0F5F8"' ?> name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
 									</td>
 								</tr>
 							</tbody>
@@ -256,7 +256,11 @@ $this->breadcrumbs = array(
 
 								</section>
 							</form> -->
-							<a type="submit" name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
+							<?php if (isset($data) && !empty($data)) { ?>
+								<div class="cart_totals ">
+									<a type="submit" name="proceed" class="checkout-button button alt wc-forward" href="/checkout">Checkout</a>
+								</div>
+							<?php } ?>
 						</div>
 					</div>
 				</div>

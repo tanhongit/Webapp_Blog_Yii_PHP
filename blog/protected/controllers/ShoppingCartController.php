@@ -237,6 +237,9 @@ class ShoppingCartController extends Controller
 				} catch (Exception $e) {
 					echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 				}
+
+				//clear cart after place order
+				Cart::destroy();
 			}
 		}
 		$data_cart = Yii::app()->session['cart'];

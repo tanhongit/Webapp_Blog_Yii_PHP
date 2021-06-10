@@ -109,4 +109,15 @@ class Cart extends CActiveRecord
         }
         unset(Yii::app()->session['input_add_coupon']);
     }
+
+    static function destroy()
+    {
+        $session_price_coupon = Yii::app()->session['cart_discount'];
+        if (isset($session_price_coupon) || $session_price_coupon > 0) {
+            unset(Yii::app()->session['cart_discount']);
+        }
+        Yii::app()->user->setState('coupon_cart_add_1', 'none');
+        Yii::app()->session['result_add_coupon'] = '';
+        unset(Yii::app()->session['cart']);
+    }
 }
