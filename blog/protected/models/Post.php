@@ -34,4 +34,10 @@ class Post extends PostBase
 		$data = Post::model()->findAll($criteria);
 		return $data;
 	}
+
+	public function getByID($id)
+	{
+		$data = Post::model()->findByPk($id);
+		return $data;
+	}
 }

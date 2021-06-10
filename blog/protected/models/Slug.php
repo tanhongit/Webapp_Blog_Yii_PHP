@@ -36,4 +36,28 @@ class Slug extends SlugBase
 	{
 		return '{{slugs}}';
 	}
+
+	public function getAll()
+	{
+		$data = Slug::model()->findAll();
+		return $data;
+	}
+
+	public function getBySlug($slug)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->condition = 'slug = "' . $slug . '"';
+		$data = Slug::model()->findAll($criteria);
+		return $data;
+	}
+
+	public function getByPostID($post_id)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->condition = 'post_id = ' . $post_id;
+		$data = Slug::model()->findAll($criteria);
+		return $data;
+	}
 }

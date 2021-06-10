@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -10,12 +11,6 @@
  * @property integer $post_id
  * @property integer $category_id
  * @property integer $tag_id
- *
- * The followings are the available model relations:
- * @property Categories $category
- * @property Post $post
- * @property Product $product
- * @property Tag $tag
  */
 class SlugBase extends CActiveRecord
 {
@@ -43,12 +38,7 @@ class SlugBase extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-			'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
-			'post' => array(self::BELONGS_TO, 'Post', 'post_id'),
-			'product' => array(self::BELONGS_TO, 'Product', 'product_id'),
-			'tag' => array(self::BELONGS_TO, 'Tag', 'tag_id'),
-		);
+		return array();
 	}
 
 	/**
