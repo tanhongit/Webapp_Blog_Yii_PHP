@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -7,6 +8,9 @@
  * @property integer $id
  * @property string $name
  * @property integer $frequency
+ *
+ * The followings are the available model relations:
+ * @property Slugs[] $slugs
  */
 class TagBase extends CActiveRecord
 {
@@ -19,11 +23,11 @@ class TagBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('frequency', 'required'),
-			array('frequency', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
+			array('frequency', 'numerical', 'integerOnly' => true),
+			array('name', 'length', 'max' => 255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, frequency', 'safe', 'on'=>'search'),
+			array('id, name, frequency', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -35,6 +39,7 @@ class TagBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'slugs' => array(self::HAS_MANY, 'Slugs', 'tag_id'),
 		);
 	}
 
@@ -45,8 +50,8 @@ class TagBase extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => Yii::t('app','model.tag.name'),
-			'frequency' => Yii::t('app','model.tag.frequency'),
+			'name' => 'Name',
+			'frequency' => 'Frequency',
 		);
 	}
 
@@ -59,14 +64,14 @@ class TagBase extends CActiveRecord
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('frequency',$this->frequency);
+		$criteria->compare('id', $this->id);
+		$criteria->compare('name', $this->name, true);
+		$criteria->compare('frequency', $this->frequency);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
 		));
 	}
 }

@@ -70,14 +70,17 @@ class PostController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		$user = User::getAll();
+		$user = User::model()->getAll();
 		// print_r($user);
 		$data = CHtml::listData($user, 'id', 'username');
 
 		if (isset($_POST['Post'])) {
+
+			$model->attributes = $_POST['Post'];
+
 			$model->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
-			$model->attributes = $_POST['Post'];
+
 			if ($model->save())
 				$this->redirect(array('view', 'id' => $model->id));
 		}
@@ -97,7 +100,7 @@ class PostController extends Controller
 	{
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		$user = User::getAll();
+		$user = User::model()->getAll();
 		// print_r($user);
 		$data = CHtml::listData($user, 'id', 'username');
 		$model = $this->loadModel($id);

@@ -9,13 +9,14 @@
  * @property string $content
  * @property string $tag
  * @property integer $status
- * @property integer $create_time
- * @property integer $update_time
+ * @property string $create_time
+ * @property string $update_time
  * @property integer $author_id
  *
  * The followings are the available model relations:
  * @property Comment[] $comments
  * @property User $author
+ * @property Slugs[] $slugs
  */
 class PostBase extends CActiveRecord
 {
@@ -28,11 +29,12 @@ class PostBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title, content, tag, status, author_id', 'required'),
-			array('status, create_time, update_time, author_id', 'numerical', 'integerOnly'=>true),
-			array('title, tag', 'length', 'max'=>255),
+			array('status, author_id', 'numerical', 'integerOnly' => true),
+			array('title, tag', 'length', 'max' => 255),
+			array('create_time, update_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, content, tag, status, create_time, update_time, author_id', 'safe', 'on'=>'search'),
+			array('id, title, content, tag, status, create_time, update_time, author_id', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -46,6 +48,7 @@ class PostBase extends CActiveRecord
 		return array(
 			'comments' => array(self::HAS_MANY, 'Comment', 'post_id'),
 			'author' => array(self::BELONGS_TO, 'User', 'author_id'),
+			'slugs' => array(self::HAS_MANY, 'Slugs', 'post_id'),
 		);
 	}
 
@@ -56,13 +59,13 @@ class PostBase extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => Yii::t('app','model.post.title'),
-			'content' => Yii::t('app','model.post.content'),
-			'tag' => Yii::t('app','model.post.tag'),
-			'status' => Yii::t('app','model.post.status'),
-			'create_time' => Yii::t('app','model.post.create_time'),
-			'update_time' => Yii::t('app','model.post.update_time'),
-			'author_id' => Yii::t('app','model.post.author'),
+			'title' => 'Title',
+			'content' => 'Content',
+			'tag' => 'Tag',
+			'status' => 'Status',
+			'create_time' => 'Create Time',
+			'update_time' => 'Update Time',
+			'author_id' => 'Author',
 		);
 	}
 
@@ -75,19 +78,19 @@ class PostBase extends CActiveRecord
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('content',$this->content,true);
-		$criteria->compare('tag',$this->tag,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('create_time',$this->create_time);
-		$criteria->compare('update_time',$this->update_time);
-		$criteria->compare('author_id',$this->author_id);
+		$criteria->compare('id', $this->id);
+		$criteria->compare('title', $this->title, true);
+		$criteria->compare('content', $this->content, true);
+		$criteria->compare('tag', $this->tag, true);
+		$criteria->compare('status', $this->status);
+		$criteria->compare('create_time', $this->create_time, true);
+		$criteria->compare('update_time', $this->update_time, true);
+		$criteria->compare('author_id', $this->author_id);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
 		));
 	}
 }

@@ -15,9 +15,5 @@ return array(
         'checkout' => 'shoppingCart/checkout',
         'category' => 'category/index',
         // 'category/<id:\d+>/*' => 'category',
-
-        '<lang:\w+>/<controller:\w+>/<id:\d+>' => '<controller>/view',
-        '<lang:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-        '<lang:\w+>/<controller:\w+>/<action:\w+>' => '<controller>/<action>',
     ),
 );

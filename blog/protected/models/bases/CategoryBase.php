@@ -15,6 +15,7 @@
  *
  * The followings are the available model relations:
  * @property Product[] $products
+ * @property Slugs[] $slugs
  */
 class CategoryBase extends CActiveRecord
 {
@@ -27,12 +28,12 @@ class CategoryBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('status', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
+			array('status', 'numerical', 'integerOnly' => true),
+			array('name', 'length', 'max' => 255),
 			array('description, meta_key, meta_description, create_time, update_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, status, meta_key, meta_description, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, name, description, status, meta_key, meta_description, create_time, update_time', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -45,6 +46,7 @@ class CategoryBase extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'products' => array(self::HAS_MANY, 'Product', 'category_id'),
+			'slugs' => array(self::HAS_MANY, 'Slugs', 'category_id'),
 		);
 	}
 
@@ -74,19 +76,19 @@ class CategoryBase extends CActiveRecord
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('meta_key',$this->meta_key,true);
-		$criteria->compare('meta_description',$this->meta_description,true);
-		$criteria->compare('create_time',$this->create_time,true);
-		$criteria->compare('update_time',$this->update_time,true);
+		$criteria->compare('id', $this->id);
+		$criteria->compare('name', $this->name, true);
+		$criteria->compare('description', $this->description, true);
+		$criteria->compare('status', $this->status);
+		$criteria->compare('meta_key', $this->meta_key, true);
+		$criteria->compare('meta_description', $this->meta_description, true);
+		$criteria->compare('create_time', $this->create_time, true);
+		$criteria->compare('update_time', $this->update_time, true);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
 		));
 	}
 }
