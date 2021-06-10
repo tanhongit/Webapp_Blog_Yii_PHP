@@ -1,14 +1,8 @@
 <?php
-// $sql = 'SELECT * FROM tbl_product LIMIT 2';
-// $rows = Yii::app()->db->createCommand($sql)->queryAll();
-// Yii::app()->cache->set('testquery', $rows, 10);
-// print_r('<pre>');
-// print_r(Yii::app()->cache->get('testquery'));
 require_once('protected/scripts/globals.php');
-!empty($keyword) ? $keyword_breadcrumb = $keyword : $keyword_breadcrumb  = '?';
 $this->breadcrumbs = array(
 	'Search',
-	$keyword_breadcrumb
+	'Advanced'
 );
 ?>
 <div class="single-product-area">
@@ -35,6 +29,17 @@ $this->breadcrumbs = array(
 							</div>
 							<div class="form-row place-order">
 								<input type="submit" data-value="Apply" value="Apply" id="from_price_search" name="from_price_search" class="button alt">
+							</div>
+							<br>
+							<div class="list-group">
+								<?php foreach ($categories as $row) { ?>
+									<div class="list-group-item">
+										<label>
+											<input class="form-check-input me-1" type="checkbox" value="<?= $row['id'] ?>">
+											<?= $row['name'] ?>
+										</label>
+									</div>
+								<?php } ?>
 							</div>
 						</div>
 					</div>

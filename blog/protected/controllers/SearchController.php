@@ -36,6 +36,43 @@ class SearchController extends Controller
 		);
 	}
 
+	public function actionAdvanced()
+	{
+		// get value in url
+		isset($_REQUEST['page']) && $params = $_REQUEST['page'];
+		$page = (isset($params) ? $params - 1 : 0);
+
+		isset($_GET['keyword'])
+			? $keyword = $_GET['keyword']
+			: $keyword = "";
+
+		$categories = Category::model()->getAll();
+
+		//get count
+		$count = Product::model()->getAllSearch($keyword);
+
+		//count page
+		$pages = new CPagination($count);
+		$per_page = 4; //Required config params in main.php
+		$pages->setPageSize($per_page);
+
+		$data = Product::model()->searchUsePagination($keyword, $page, $per_page);
+
+		$this->render(
+			'advanced',
+			array(
+				'data' => $data,
+				'categories' => $categories,
+
+				//div Paging navigation
+				'page_size' => $per_page,
+				'pages' => $pages,
+				'item_count' => $count,
+				'keyword' => $keyword,
+			)
+		);
+	}
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
