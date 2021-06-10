@@ -72,7 +72,7 @@ class ShoppingCartController extends Controller
 	{
 		$product_id = Yii::app()->request->getParam('product_id');
 		$quality = Yii::app()->request->getParam('quality');
-		Cart::updateItemCart($product_id, $quality);
+		Cart::updateItem($product_id, $quality);
 
 		$total_quality_cart = Cart::getTotalQualityProductCart();
 		echo $total_quality_cart; //for show  total count quality cart
@@ -81,7 +81,7 @@ class ShoppingCartController extends Controller
 	public function actionDeleteCartItem()
 	{
 		$product_id = Yii::app()->request->getParam('product_id');
-		Cart::deleteCartItem($product_id);
+		Cart::deleteItem($product_id);
 
 		$total_quality_cart = Cart::getTotalQualityProductCart();
 		echo $total_quality_cart; //for show  total count quality cart
@@ -110,7 +110,7 @@ class ShoppingCartController extends Controller
 		Yii::app()->session['cart'] && $data = Yii::app()->session['cart'];
 		// print_r('<pre>');
 		// print_r($data);die;
-		$total_quality_cart = Cart::totalPriceCart();
+		$total_quality_cart = Cart::totalPrice();
 		if (isset($_POST['woocommerce_checkout_place_order'])) {
 			$modalOrder = new Order;
 			$modalOrder->user_id = !Yii::app()->user->isGuest
@@ -305,5 +305,10 @@ class ShoppingCartController extends Controller
 				}
 			}
 		}
+	}
+
+	public function actionCancelCoupon()
+	{
+		Cart::cancelCoupon();
 	}
 }

@@ -774,7 +774,7 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
 
                                             <tr class="cart-subtotal">
                                                 <th>Cart Subtotal</th>
-                                                <td><span class="amount"><strong><?= get_price_apply_i18n(Cart::totalPriceCartNotDiscount()) ?></strong></span>
+                                                <td><span class="amount"><strong><?= get_price_apply_i18n(Cart::totalPriceNotDiscount()) ?></strong></span>
                                                 </td>
                                             </tr>
 
@@ -801,7 +801,7 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                                             </tr>
                                             <tr class="order-total">
                                                 <th>Order Total</th>
-                                                <td><strong><span class="amount"><?= get_price_apply_i18n(Cart::totalPriceCart()) ?></span></strong> </td>
+                                                <td><strong><span class="amount"><?= get_price_apply_i18n(Cart::totalPrice()) ?></span></strong> </td>
                                             </tr>
 
                                         </tfoot>

@@ -5,6 +5,53 @@ $this->breadcrumbs = array(
 	'Cart'
 );
 ?>
+<style>
+	.input-text,
+	.close-icon,
+	.coupon {
+		position: relative;
+	}
+
+	.input-text {
+		outline: 0;
+	}
+
+	.input-text:focus {
+		box-shadow: 0 0 15px 5px #b0e0ee;
+		border: 2px solid #bebede;
+	}
+
+	.close-icon {
+		border: 1px solid transparent;
+		background-color: transparent;
+		display: inline-block;
+		vertical-align: middle;
+		outline: 0;
+		cursor: pointer;
+	}
+
+	.close-icon:after {
+		content: "X";
+		display: block;
+		width: 15px;
+		height: 15px;
+		position: absolute;
+		background-color: #FA9595;
+		z-index: 1;
+		right: 35px;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		padding: 2px;
+		border-radius: 50%;
+		text-align: center;
+		color: white;
+		font-weight: normal;
+		font-size: 12px;
+		box-shadow: 0 0 2px #E50F0F;
+		cursor: pointer;
+	}
+</style>
 <div class="single-product-area">
 	<div class="zigzag-bottom"></div>
 	<div class="container">
@@ -80,6 +127,7 @@ $this->breadcrumbs = array(
 										<div class="coupon">
 											<label for="coupon_code">Coupon:</label>
 											<input type="text" placeholder="Coupon code" value="<?= Yii::app()->session['input_add_coupon'] ?>" id="coupon_code" class="input-text" name="coupon_code">
+											<button onclick="cancelCoupon()" class="close-icon" id="cancelCoupon" type="reset"></button>
 											<input type="submit" onclick="addCouponCart()" name="apply_coupon" value="Apply Coupon" class="button">
 										</div>
 										<input type="submit" value="Update Cart" name="update_cart" class="button">
@@ -141,7 +189,7 @@ $this->breadcrumbs = array(
 										</tr>
 										<tr class="order-total">
 											<th>Price Subtotal</th>
-											<td><strong><span class="amount"><?= get_price_apply_i18n(Cart::totalPriceCartNotDiscount()) ?></span></strong> </td>
+											<td><strong><span class="amount"><?= get_price_apply_i18n(Cart::totalPriceNotDiscount()) ?></span></strong> </td>
 										</tr>
 										<tr class="shipping">
 											<th>Shipping and Handling</th>
@@ -161,7 +209,7 @@ $this->breadcrumbs = array(
 									<tbody>
 										<tr class="cart-subtotal">
 											<th>Quality Total</th>
-											<td><strong><?= get_price_apply_i18n(Cart::totalPriceCart()) ?></strong></td>
+											<td><strong><?= get_price_apply_i18n(Cart::totalPrice()) ?></strong></td>
 										</tr>
 										<tr>
 											<td colspan="2">
@@ -172,7 +220,7 @@ $this->breadcrumbs = array(
 													$data_currency = $value['currency_name'];
 												}
 												$convert = new ConvertNumberToWord();
-												if (!empty(Cart::totalPriceCart())) {
+												if (!empty(Cart::totalPrice())) {
 													echo ucwords(strtolower($convert->convert(get_total_price_cart_i18n()) . ' ' . $data_currency));
 												} else {
 													echo 'None';
@@ -256,6 +304,13 @@ $this->breadcrumbs = array(
 		$.post(url + '/shoppingCart/AddCoupon', {
 			'coupon_code': coupon_code,
 		}, function(data) {
+			$('#the_cart_component').load(url + '/shoppingCart/index #the_cart_component');
+			$('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
+		});
+	}
+
+	function cancelCoupon() {
+		$.post(url + '/shoppingCart/cancelCoupon', {}, function(data) {
 			$('#the_cart_component').load(url + '/shoppingCart/index #the_cart_component');
 			$('#mini-cart-menu').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #mini-cart-menu');
 		});

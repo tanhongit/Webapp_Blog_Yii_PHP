@@ -44,7 +44,7 @@
 
 			<div class="col-sm-6">
 				<div class="shopping-item" id="shopping-item">
-					<a href="/cart">Cart - <span class="cart-amunt"><?= get_price_apply_i18n(Cart::totalPriceCart()) ?></span> <i class="fa fa-shopping-cart"></i> <span class="product-count" id="quality_cart"><?= $total_quality_cart ?></span></a>
+					<a href="/cart">Cart - <span class="cart-amunt"><?= get_price_apply_i18n(Cart::totalPrice()) ?></span> <i class="fa fa-shopping-cart"></i> <span class="product-count" id="quality_cart"><?= $total_quality_cart ?></span></a>
 				</div>
 			</div>
 		</div>

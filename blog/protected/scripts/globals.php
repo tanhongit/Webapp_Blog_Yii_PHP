@@ -188,7 +188,7 @@ function get_total_price_cart_i18n()
     foreach ($data_current_rate as $value) {
         Yii::app()->params->currency == $value['currency_code'] && $current_rate = $value['rate'];
     }
-    $currency_price = Cart::totalPriceCart() * $current_rate;
+    $currency_price = Cart::totalPrice() * $current_rate;
     $currency_price = round($currency_price, 0);
     return  $currency_price;
 }

@@ -48,7 +48,7 @@ class Cart extends CActiveRecord
         return $total;
     }
 
-    static function totalPriceCartNotDiscount()
+    static function totalPriceNotDiscount()
     {
         $cart = Yii::app()->session['cart'];
         if (!empty($cart)) {
@@ -60,16 +60,16 @@ class Cart extends CActiveRecord
         }
     }
 
-    static function totalPriceCart()
+    static function totalPrice()
     {
         if (!Yii::app()->session['cart_discount'] || empty(Yii::app()->session['cart_discount'])) {
-            return Cart::totalPriceCartNotDiscount();
+            return Cart::totalPriceNotDiscount();
         } else {
-            return Cart::totalPriceCartNotDiscount() - Yii::app()->session['cart_discount'];
+            return Cart::totalPriceNotDiscount() - Yii::app()->session['cart_discount'];
         }
     }
 
-    static function updateItemCart($id, $q)
+    static function updateItem($id, $q)
     {
         $cart = Yii::app()->session['cart'];
         $productInfo = Product::model()->getDetail($id);
@@ -89,12 +89,24 @@ class Cart extends CActiveRecord
         Yii::app()->session['cart'] = $cart; //set session again
     }
 
-    static function deleteCartItem($id)
+    static function deleteItem($id)
     {
         $cart = Yii::app()->session['cart'];
         if (array_key_exists($id, $cart)) {
             unset($cart[$id]);
         }
         Yii::app()->session['cart'] = $cart; //set session again
+    }
+
+    static function cancelCoupon()
+    {
+        $session_price_coupon = Yii::app()->session['cart_discount'];
+
+        if (isset($session_price_coupon) || $session_price_coupon > 0) {
+            unset(Yii::app()->session['cart_discount']);
+            Yii::app()->user->setState('coupon_cart_add_1', 'none');
+            Yii::app()->session['result_add_coupon'] = 'Coupon has been canceled';
+        }
+        unset(Yii::app()->session['input_add_coupon']);
     }
 }
