@@ -80,8 +80,13 @@ class ProductController extends Controller
 		if (isset($_POST['Product'])) {
 			$model->attributes = $_POST['Product'];
 
-			$model->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
-			$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
+			if (empty($_POST['Product[create_time]'])) {
+				$model->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
+			}
+			if (empty($_POST['Product[update_time]'])) {
+				$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
+			}
+
 			$image = CUploadedFile::getInstance($model, 'image'); //image is the name input form
 			$image->saveAs($path . '/' . time() . '_' . $image->name);
 			$model->image = "/uploads/" . time() . '_' . $image->name;

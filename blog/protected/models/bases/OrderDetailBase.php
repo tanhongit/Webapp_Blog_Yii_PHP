@@ -21,12 +21,12 @@ class OrderDetailBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('order_id_id, product_id, quantity', 'numerical', 'integerOnly'=>true),
+			array('order_id_id, product_id, quantity', 'numerical', 'integerOnly' => true),
 			array('price', 'numerical'),
 			array('create_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, order_id_id, product_id, price, quantity, create_time', 'safe', 'on'=>'search'),
+			array('id, order_id_id, product_id, price, quantity, create_time', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -37,8 +37,7 @@ class OrderDetailBase extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-		);
+		return array();
 	}
 
 	/**
@@ -65,17 +64,17 @@ class OrderDetailBase extends CActiveRecord
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('order_id_id',$this->order_id_id);
-		$criteria->compare('product_id',$this->product_id);
-		$criteria->compare('price',$this->price);
-		$criteria->compare('quantity',$this->quantity);
-		$criteria->compare('create_time',$this->create_time,true);
+		$criteria->compare('id', $this->id);
+		$criteria->compare('order_id_id', $this->order_id_id);
+		$criteria->compare('product_id', $this->product_id);
+		$criteria->compare('price', $this->price);
+		$criteria->compare('quantity', $this->quantity);
+		$criteria->compare('create_time', $this->create_time, true);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
 		));
 	}
 }

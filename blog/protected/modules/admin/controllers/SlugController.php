@@ -1,6 +1,6 @@
 <?php
 
-class PostController extends Controller
+class SlugController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -27,24 +27,20 @@ class PostController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array(
-				'allow',  // allow all users to perform 'index' and 'view' actions
-				'actions' => array('index', 'view'),
-				'users' => array('*'),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view'),
+				'users'=>array('*'),
 			),
-			array(
-				'allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions' => array('create', 'update'),
-				'users' => array('@'),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update'),
+				'users'=>array('@'),
 			),
-			array(
-				'allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions' => array('admin', 'delete'),
-				'users' => array('admin'),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
+				'users'=>array('admin'),
 			),
-			array(
-				'deny',  // deny all users
-				'users' => array('*'),
+			array('deny',  // deny all users
+				'users'=>array('*'),
 			),
 		);
 	}
@@ -55,8 +51,8 @@ class PostController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view', array(
-			'model' => $this->loadModel($id),
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
 		));
 	}
 
@@ -66,32 +62,20 @@ class PostController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model = new Post;
+		$model=new Slug;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		$user = User::model()->getAll();
-		// print_r($user);
-		$data = CHtml::listData($user, 'id', 'username');
 
-		if (isset($_POST['Post'])) {
-
-			$model->attributes = $_POST['Post'];
-
-			if (empty($_POST['Post[create_time]'])) {
-				$model->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
-			}
-			if (empty($_POST['Post[update_time]'])) {
-				$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
-			}
-
-			if ($model->save())
-				$this->redirect(array('view', 'id' => $model->id));
+		if(isset($_POST['Slug']))
+		{
+			$model->attributes=$_POST['Slug'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
-		$this->render('create', array(
-			'model' => $model,
-			'data' => $data,
+		$this->render('create',array(
+			'model'=>$model,
 		));
 	}
 
@@ -102,25 +86,20 @@ class PostController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		$user = User::model()->getAll();
-		// print_r($user);
-		$data = CHtml::listData($user, 'id', 'username');
-		$model = $this->loadModel($id);
+		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if (isset($_POST['Post'])) {
-			$model->attributes = $_POST['Post'];
-			if ($model->save())
-				$this->redirect(array('view', 'id' => $model->id));
+		if(isset($_POST['Slug']))
+		{
+			$model->attributes=$_POST['Slug'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
-		$this->render('update', array(
-			'model' => $model,
-			'data' => $data
+		$this->render('update',array(
+			'model'=>$model,
 		));
 	}
 
@@ -134,7 +113,7 @@ class PostController extends Controller
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if (!isset($_GET['ajax']))
+		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
@@ -143,9 +122,9 @@ class PostController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider = new CActiveDataProvider('Post');
-		$this->render('index', array(
-			'dataProvider' => $dataProvider,
+		$dataProvider=new CActiveDataProvider('Slug');
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
 		));
 	}
 
@@ -154,13 +133,13 @@ class PostController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model = new Post('search');
+		$model=new Slug('search');
 		$model->unsetAttributes();  // clear any default values
-		if (isset($_GET['Post']))
-			$model->attributes = $_GET['Post'];
+		if(isset($_GET['Slug']))
+			$model->attributes=$_GET['Slug'];
 
-		$this->render('admin', array(
-			'model' => $model,
+		$this->render('admin',array(
+			'model'=>$model,
 		));
 	}
 
@@ -168,24 +147,25 @@ class PostController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Post the loaded model
+	 * @return Slug the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model = Post::model()->findByPk($id);
-		if ($model === null)
-			throw new CHttpException(404, 'The requested page does not exist.');
+		$model=Slug::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Post $model the model to be validated
+	 * @param Slug $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if (isset($_POST['ajax']) && $_POST['ajax'] === 'post-form') {
+		if(isset($_POST['ajax']) && $_POST['ajax']==='slug-form')
+		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}

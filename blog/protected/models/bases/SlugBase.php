@@ -1,15 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "{{coupons}}".
+ * This is the model class for table "{{slugs}}".
  *
- * The followings are the available columns in table '{{coupons}}':
+ * The followings are the available columns in table '{{slugs}}':
  * @property integer $id
- * @property string $code
- * @property double $discount
+ * @property string $slug
  * @property integer $product_id
+ * @property integer $post_id
+ * @property integer $category_id
+ * @property integer $tag_id
+ *
+ * The followings are the available model relations:
+ * @property Categories $category
+ * @property Post $post
+ * @property Product $product
+ * @property Tag $tag
  */
-class CouponBase extends CActiveRecord
+class SlugBase extends CActiveRecord
 {
 	/**
 	 * @return array validation rules for model attributes.
@@ -19,13 +27,12 @@ class CouponBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('code', 'required'),
-			array('product_id', 'numerical', 'integerOnly' => true),
-			array('discount', 'numerical'),
-			array('code', 'length', 'max' => 255),
+			array('slug', 'required'),
+			array('product_id, post_id, category_id, tag_id', 'numerical', 'integerOnly' => true),
+			array('slug', 'length', 'max' => 255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, code, discount, product_id', 'safe', 'on' => 'search'),
+			array('id, slug, product_id, post_id, category_id, tag_id', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -36,7 +43,12 @@ class CouponBase extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array();
+		return array(
+			'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
+			'post' => array(self::BELONGS_TO, 'Post', 'post_id'),
+			'product' => array(self::BELONGS_TO, 'Product', 'product_id'),
+			'tag' => array(self::BELONGS_TO, 'Tag', 'tag_id'),
+		);
 	}
 
 	/**
@@ -46,9 +58,11 @@ class CouponBase extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'code' => 'Code',
-			'discount' => 'Discount',
+			'slug' => 'Slug',
 			'product_id' => 'Product',
+			'post_id' => 'Post',
+			'category_id' => 'Category',
+			'tag_id' => 'Tag',
 		);
 	}
 
@@ -64,9 +78,11 @@ class CouponBase extends CActiveRecord
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id);
-		$criteria->compare('code', $this->code, true);
-		$criteria->compare('discount', $this->discount);
+		$criteria->compare('slug', $this->slug, true);
 		$criteria->compare('product_id', $this->product_id);
+		$criteria->compare('post_id', $this->post_id);
+		$criteria->compare('category_id', $this->category_id);
+		$criteria->compare('tag_id', $this->tag_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

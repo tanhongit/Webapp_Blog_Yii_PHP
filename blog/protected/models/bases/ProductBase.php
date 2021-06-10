@@ -23,7 +23,6 @@
  *
  * The followings are the available model relations:
  * @property Categories $category
- * @property Slugs[] $slugs
  */
 class ProductBase extends CActiveRecord
 {
@@ -55,7 +54,6 @@ class ProductBase extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
-			'slugs' => array(self::HAS_MANY, 'Slugs', 'product_id'),
 		);
 	}
 

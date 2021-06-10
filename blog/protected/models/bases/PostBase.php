@@ -16,7 +16,6 @@
  * The followings are the available model relations:
  * @property Comment[] $comments
  * @property User $author
- * @property Slugs[] $slugs
  */
 class PostBase extends CActiveRecord
 {
@@ -48,7 +47,6 @@ class PostBase extends CActiveRecord
 		return array(
 			'comments' => array(self::HAS_MANY, 'Comment', 'post_id'),
 			'author' => array(self::BELONGS_TO, 'User', 'author_id'),
-			'slugs' => array(self::HAS_MANY, 'Slugs', 'post_id'),
 		);
 	}
 
