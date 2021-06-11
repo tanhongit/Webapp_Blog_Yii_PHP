@@ -21,11 +21,6 @@ $this->breadcrumbs = array(
         box-sizing: border-box;
     }
 
-    a {
-        color: #03658c;
-        text-decoration: none;
-    }
-
     ul {
         list-style-type: none;
     }
@@ -34,38 +29,154 @@ $this->breadcrumbs = array(
         font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
     }
 
-    /* Initial state */
-    div.modal-review__rating-order-wrap>span {
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    *:before,
+    *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .clearfix {
+        clear: both;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    a {
+        color: tomato;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #2196f3;
+    }
+
+    pre {
         display: block;
-        float: left;
-        height: 30px;
-        width: 40px;
-        background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='80'%20height='30'%3E%3Cpath%20d='M17.5,12.5h-8.5l6.8,5-2.6,8.1,6.8-5,6.8,5-2.6-8.1,6.8-5h-8.5l-2.6-8.1z'%20fill='%23c0c0c0'%20stroke='%23c0c0c0'/%3E%3Cpath%20d='M57.5,12.5h-8.5l6.8,5-2.6,8.1,6.8-5,6.8,5-2.6-8.1,6.8-5h-8.5l-2.6-8.1z'%20fill='%23ffd83d'%20stroke='%23eac328'/%3E%3C/svg%3E");
-        background-position: 0px 0px;
-        /* gray star */
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        color: #333;
+        word-break: break-all;
+        word-wrap: break-word;
+        background-color: #F5F5F5;
+        border: 1px solid #CCC;
+        border-radius: 4px;
     }
 
-    /* Persistent state */
-    div.modal-review__rating-order-wrap[data-rating-value]>span {
-        background-position: -40px 0px;
-        /* gold star */
+    .header {
+        padding: 20px 0;
+        position: relative;
+        margin-bottom: 10px;
+
     }
 
-    div.modal-review__rating-order-wrap>span.active~span {
-        background-position: 0px 0px;
-        /* gray star */
+    .header:after {
+        content: "";
+        display: block;
+        height: 1px;
+        background: #eee;
+        position: absolute;
+        left: 30%;
+        right: 30%;
     }
 
-    /* Hover state */
-    div.modal-review__rating-order-wrap[class]:hover>span {
-        background-position: -40px 0px;
-        /* gold star */
+    .header h2 {
+        font-size: 3em;
+        font-weight: 300;
+        margin-bottom: 0.2em;
     }
 
-    div.modal-review__rating-order-wrap[class]>span:hover~span {
-        background-position: 0px 0px;
-        /* gray star */
+    .header p {
+        font-size: 14px;
     }
+
+
+
+    #a-footer {
+        margin: 20px 0;
+    }
+
+    .new-react-version {
+        padding: 20px 20px;
+        border: 1px solid #eee;
+        border-radius: 20px;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .new-react-version .react-svg-logo {
+        text-align: center;
+        max-width: 60px;
+        margin: 20px auto;
+        margin-top: 0;
+    }
+
+    .success-box {
+        margin: 50px 0;
+        padding: 10px 10px;
+        border: 1px solid #eee;
+        background: #f9f9f9;
+    }
+
+    .success-box img {
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .success-box>div {
+        vertical-align: top;
+        display: inline-block;
+        color: #888;
+    }
+
+
+
+    /* Rating Star Widgets Style */
+    .rating-stars ul {
+        list-style-type: none;
+        padding: 0;
+
+        -moz-user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .rating-stars ul>li.star {
+        display: inline-block;
+
+    }
+
+    /* Idle State of the stars */
+    .rating-stars ul>li.star>i.fa {
+        font-size: 2.5em;
+        /* Change the size of the stars */
+        color: #ccc;
+        /* Color on idle state */
+    }
+
+    /* Hover state of the stars */
+    .rating-stars ul>li.star.hover>i.fa {
+        color: #FFCC36;
+    }
+
+    /* Selected state of the stars */
+    .rating-stars ul>li.star.selected>i.fa {
+        color: #FF912C;
+    }
+
 
     /** ====================
 * Lista de Comentarios
@@ -379,7 +490,7 @@ $this->breadcrumbs = array(
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile">
                             <h2>Reviews</h2>
-                            <div class="submit-review" id="result-comment-notice">
+                            <div class="submit-review">
                                 <?php if (Yii::app()->user->isGuest) { ?>
                                     <p><label for="name">Name</label> <input id="input_name" name="name" type="text"></p>
                                     <p><label for="email">Email</label> <input id="input_email" name="email" type="email"></p>
@@ -392,22 +503,48 @@ $this->breadcrumbs = array(
                                 <div class="rating-chooser">
                                     <p>Your rating</p>
 
-                                    <div class="modal-review__rating-order-wrap">
-                                        <span data-rating-value="1"></span>
-                                        <span data-rating-value="2"></span>
-                                        <span data-rating-value="3"></span>
-                                        <span data-rating-value="4"></span>
-                                        <span data-rating-value="5"></span>
-                                    </div>
+                                    <section class='rating-widget'>
+
+                                        <!-- Rating Stars Box -->
+                                        <div class='rating-stars text-center'>
+                                            <ul id='stars'>
+                                                <li class='star' title='Poor' data-value='1'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Fair' data-value='2'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Good' data-value='3'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Excellent' data-value='4'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='WOW!!!' data-value='5'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class='success-box'>
+                                            <div class='clearfix'></div>
+                                            <div class='text-message'></div>
+                                            <div class='clearfix'></div>
+                                        </div>
+
+
+
+                                    </section>
 
                                 </div>
                                 <br>
                                 <p><label for="review">Your review</label> <textarea id="input_content" name="review" id="" cols="30" rows="10"></textarea></p>
-
-                                <p>
-                                    <?php if (Yii::app()->cache->get('result_review_product'))
-                                        echo Yii::app()->cache->get('result_review_product'); ?>
-                                </p>
+                                <div id="result-comment-notice">
+                                    <p>
+                                        <?php if (Yii::app()->cache->get('result_review_product'))
+                                            echo Yii::app()->cache->get('result_review_product'); ?>
+                                    </p>
+                                </div>
                                 <p><input type="submit" onclick="addNewReview(<?= $data->id  ?>)" value="Submit"></p>
                             </div>
                             <!-- Contenedor Principal -->
@@ -529,11 +666,58 @@ $this->breadcrumbs = array(
 </div>
 <script src="<?= get_BaseUrl(); ?>/js/jquery2.1.1.min.js"></script>
 <script>
-    $('.modal-review__rating-order-wrap > span').click(function() {
-        $(this).addClass('active').siblings().removeClass('active');
-        $(this).parent().attr('data-rating-value', $(this).data('rating-value'));
-        console.log($(this).parent().attr('data-rating-value', $(this).data('rating-value')));
+    let value_rating_star = 0;
+
+    /* 1. Visualizing things on Hover - See next part for action on click */
+    $('#stars li').on('mouseover', function() {
+        var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+        // Now highlight all the stars that's not after the current hovered star
+        $(this).parent().children('li.star').each(function(e) {
+            if (e < onStar) {
+                $(this).addClass('hover');
+            } else {
+                $(this).removeClass('hover');
+            }
+        });
+
+    }).on('mouseout', function() {
+        $(this).parent().children('li.star').each(function(e) {
+            $(this).removeClass('hover');
+        });
     });
+
+    /* 2. Action to perform on click */
+    $('#stars li').on('click', function() {
+        var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+        var stars = $(this).parent().children('li.star');
+
+        for (i = 0; i < stars.length; i++) {
+            $(stars[i]).removeClass('selected');
+        }
+
+        for (i = 0; i < onStar; i++) {
+            $(stars[i]).addClass('selected');
+        }
+
+        // JUST RESPONSE (Not needed)
+        var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+        var msg = "";
+        if (ratingValue > 1) {
+            msg = "Thanks! You rated this " + ratingValue + " stars.";
+        } else {
+            msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+        }
+        responseMessage(msg);
+        value_rating_star = ratingValue;
+        console.log(value_rating_star);
+    });
+
+
+    function responseMessage(msg) {
+        $('.success-box').fadeIn(200);
+        $('.success-box div.text-message').html("<span>" + msg + "</span>");
+    }
 
     function plusCartItemDetail(id) {
         const total_qty = new Number($('#quantity_for_product').val());
@@ -554,13 +738,16 @@ $this->breadcrumbs = array(
             'email': email,
             'content': content,
             'product_id': id,
+            'rating_star': value_rating_star,
         }, function(data) {
-            $('#input_name').val('');
-            $('#input_email').val('');
-            $('#input_content').attr('');
-            $('textarea#input_content').val('');
             $('#result-comment-notice').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #result-comment-notice');
-            $('#result-comment').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #result-comment');
+            if (data != '') {
+                $('#input_name').val('');
+                $('#input_email').val('');
+                $('#input_content').attr('');
+                $('textarea#input_content').val('');
+                $('#result-comment').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #result-comment');
+            }
         });
     }
 </script>

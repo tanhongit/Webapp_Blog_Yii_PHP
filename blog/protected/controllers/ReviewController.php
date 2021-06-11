@@ -41,6 +41,7 @@ class ReviewController extends Controller
 		$content = Yii::app()->request->getParam('content');
 		$product_id = Yii::app()->request->getParam('product_id');
 		$user_id = 0;
+		$rating_star = Yii::app()->request->getParam('rating_star');
 
 		if (!Yii::app()->user->isGuest) {
 			$name = Yii::app()->user->currentUserInfo['username'];
@@ -50,6 +51,8 @@ class ReviewController extends Controller
 
 		if (empty($name) || empty($email)) {
 			Yii::app()->cache->set('result_review_product', "<div style='padding-top: 200'><div style='text-align: center;' class='alert alert-danger'><strong>NO!</strong> Trường Name/Email hiện đang rỗng hoặc không hợp lệ. Vui lòng thao tác lại.</div></div>", 20);
+		} elseif (!isset($rating_star) || empty($rating_star) || $rating_star < 1) {
+			Yii::app()->cache->set('result_review_product', "<div style='padding-top: 200'><div style='text-align: center;' class='alert alert-danger'><strong>NO!</strong> Vui lòng thêm số sao đánh giá của bạn.</div></div>", 20);
 		} elseif (!preg_match("/([a-z0-9_]+|[a-z0-9_]+\.[a-z0-9_]+)@(([a-z0-9]|[a-z0-9]+\.[a-z0-9]+)+\.([a-z]{2,4}))/i", $email)) {
 			Yii::app()->cache->set('result_review_product', "<div style='padding-top: 200' ><div style='text-align: center;' class='alert alert-danger'><strong>NO!</strong> Email này không hợp lệ. Vui long nhập email khác.</div></div>", 20);
 		} else {
@@ -59,9 +62,11 @@ class ReviewController extends Controller
 			$modalReview->content = $content;
 			$modalReview->product_id = $product_id;
 			$modalReview->user_id = $user_id;
+			$modalReview->rating = $rating_star;
 
 			$modalReview->save();
 			Yii::app()->cache->set('result_review_product', "<div style='padding-top: 200'><div style='text-align: center;' class='alert alert-success'><strong>Done!</strong> Bạn đã để lại review thành công.<br><br> Vui lòng xem lại review của bạn bên dưới!!</div></div>", 20);
+			echo 'done';
 		}
 	}
 }
