@@ -34,6 +34,39 @@ $this->breadcrumbs = array(
         font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
     }
 
+    /* Initial state */
+    div.modal-review__rating-order-wrap>span {
+        display: block;
+        float: left;
+        height: 30px;
+        width: 40px;
+        background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='80'%20height='30'%3E%3Cpath%20d='M17.5,12.5h-8.5l6.8,5-2.6,8.1,6.8-5,6.8,5-2.6-8.1,6.8-5h-8.5l-2.6-8.1z'%20fill='%23c0c0c0'%20stroke='%23c0c0c0'/%3E%3Cpath%20d='M57.5,12.5h-8.5l6.8,5-2.6,8.1,6.8-5,6.8,5-2.6-8.1,6.8-5h-8.5l-2.6-8.1z'%20fill='%23ffd83d'%20stroke='%23eac328'/%3E%3C/svg%3E");
+        background-position: 0px 0px;
+        /* gray star */
+    }
+
+    /* Persistent state */
+    div.modal-review__rating-order-wrap[data-rating-value]>span {
+        background-position: -40px 0px;
+        /* gold star */
+    }
+
+    div.modal-review__rating-order-wrap>span.active~span {
+        background-position: 0px 0px;
+        /* gray star */
+    }
+
+    /* Hover state */
+    div.modal-review__rating-order-wrap[class]:hover>span {
+        background-position: -40px 0px;
+        /* gold star */
+    }
+
+    div.modal-review__rating-order-wrap[class]>span:hover~span {
+        background-position: 0px 0px;
+        /* gray star */
+    }
+
     /** ====================
 * Lista de Comentarios
 =======================*/
@@ -359,14 +392,16 @@ $this->breadcrumbs = array(
                                 <div class="rating-chooser">
                                     <p>Your rating</p>
 
-                                    <div class="rating-wrap-post">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                    <div class="modal-review__rating-order-wrap">
+                                        <span data-rating-value="1"></span>
+                                        <span data-rating-value="2"></span>
+                                        <span data-rating-value="3"></span>
+                                        <span data-rating-value="4"></span>
+                                        <span data-rating-value="5"></span>
                                     </div>
+
                                 </div>
+                                <br>
                                 <p><label for="review">Your review</label> <textarea id="input_content" name="review" id="" cols="30" rows="10"></textarea></p>
 
                                 <p>
@@ -492,7 +527,14 @@ $this->breadcrumbs = array(
         </div>
     </div>
 </div>
+<script src="<?= get_BaseUrl(); ?>/js/jquery2.1.1.min.js"></script>
 <script>
+    $('.modal-review__rating-order-wrap > span').click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        $(this).parent().attr('data-rating-value', $(this).data('rating-value'));
+        console.log($(this).parent().attr('data-rating-value', $(this).data('rating-value')));
+    });
+
     function plusCartItemDetail(id) {
         const total_qty = new Number($('#quantity_for_product').val());
         $('#quantity_for_product').val((total_qty + 1));
