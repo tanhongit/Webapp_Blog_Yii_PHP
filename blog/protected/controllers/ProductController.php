@@ -149,6 +149,8 @@ class ProductController extends Controller implements ViewInterFace
 
 		$latest_data = Product::model()->getLatest();
 
+		$review_data = Review::model()->getByProductID($id);
+
 		$model = $this->loadModel($id);
 		$model->view += 1;
 		$model->save();
@@ -160,6 +162,7 @@ class ProductController extends Controller implements ViewInterFace
 			'recent_data' => $recent_data,
 			'recent_post_data' => $recent_post_data,
 			'latest_data' => $latest_data,
+			'review_data' => $review_data,
 		));
 	}
 	public function loadModel($id)
