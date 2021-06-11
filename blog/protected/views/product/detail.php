@@ -346,9 +346,16 @@ $this->breadcrumbs = array(
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile">
                             <h2>Reviews</h2>
-                            <div class="submit-review">
-                                <p><label for="name">Name</label> <input id="input_name" name="name" type="text"></p>
-                                <p><label for="email">Email</label> <input id="input_email" name="email" type="email"></p>
+                            <div class="submit-review" id="result-comment-notice">
+                                <?php if (Yii::app()->user->isGuest) { ?>
+                                    <p><label for="name">Name</label> <input id="input_name" name="name" type="text"></p>
+                                    <p><label for="email">Email</label> <input id="input_email" name="email" type="email"></p>
+                                <?php } else { ?>
+                                    <input id="input_name" name="name" value="<?= Yii::app()->user->currentUserInfo['username'] ?>" type="hidden">
+                                    <input id="input_email" name="email" value="<?= Yii::app()->user->currentUserInfo['email'] ?>" type="hidden">
+                                    <p class="woocommerce-info">You are logged in with the user <span style="color: #80a3d6;"><?= Yii::app()->user->currentUserInfo['username'] ?></span>. Do you want <a href="/site/logout">Logout</a> ?
+                                    </p>
+                                <?php } ?>
                                 <div class="rating-chooser">
                                     <p>Your rating</p>
 
@@ -363,8 +370,8 @@ $this->breadcrumbs = array(
                                 <p><label for="review">Your review</label> <textarea id="input_content" name="review" id="" cols="30" rows="10"></textarea></p>
 
                                 <p>
-                                    <?php if (Yii::app()->session['result_review_product'])
-                                        echo Yii::app()->session['result_review_product']; ?>
+                                    <?php if (Yii::app()->cache->get('result_review_product'))
+                                        echo Yii::app()->cache->get('result_review_product'); ?>
                                 </p>
                                 <p><input type="submit" onclick="addNewReview(<?= $data->id  ?>)" value="Submit"></p>
                             </div>
@@ -510,6 +517,7 @@ $this->breadcrumbs = array(
             $('#input_email').val('');
             $('#input_content').attr('');
             $('textarea#input_content').val('');
+            $('#result-comment-notice').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #result-comment-notice');
             $('#result-comment').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #result-comment');
         });
     }
