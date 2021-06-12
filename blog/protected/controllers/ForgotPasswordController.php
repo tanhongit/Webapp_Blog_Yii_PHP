@@ -55,6 +55,7 @@ class ForgotPasswordController extends Controller
 				foreach ($users as $user) {
 					if ($user['email'] == $email) {
 						// $verification_Code = $user['verificationCode'];
+						$verification_Code = $user['verificationCode'];
 						$username = $user['username'];
 						break;
 					}
@@ -63,16 +64,16 @@ class ForgotPasswordController extends Controller
 				include 'protected/libs/setting_mail.php';
 				$mail = new PHPMailer(true);
 				try {
-					$verificationLink = get_site_url() . "index.php?controller=forgot-password&action=resultcode&code=";
+					$verificationLink = get_site_url() . "/forgotPassword/result?code=" . $verification_Code;
 					//content
 					$htmlStr = "";
 					$htmlStr .= "Xin chào <b>" . $username . '</b> (' . $email . "),<br /><br />";
-					$htmlStr .= "Chào mừng bạn đến với Chị Kòi Quán.<br /><br /><br />";
+					$htmlStr .= "Chào mừng bạn đến WEBAPP YII.<br /><br /><br />";
 					$htmlStr .= "Vui lòng truy cập tại link sau để xác thực tài khoản và bắt đầu đổi mật khẩu mới.<br><br>";
 					$htmlStr .= "<a href='{$verificationLink}' target='_blank' style='padding:1em; font-weight:bold; background-color:blue; color:#fff;'>Change New Password</a><br /><br /><br />";
-					$htmlStr .= "Cảm ơn bạn đã tham gia và đồng hành cùng quán Chị Kòi.<br><br>";
+					$htmlStr .= "Cảm ơn bạn đã tham gia !<br><br>";
 					$htmlStr .= "Trân trọng,<br />";
-					$htmlStr .= "<a href='https://tanhongit.com/' target='_blank'>By Tân Hồng IT</a><br />";
+					$htmlStr .= "<a href='#' target='_blank'>By WEBAPP YII</a><br />";
 					//Server settings
 					$mail->CharSet = "UTF-8";
 					$mail->SMTPDebug = 0; // Enable verbose debug output (0 : ko hiện debug, 1 hiện)
@@ -103,5 +104,36 @@ class ForgotPasswordController extends Controller
 				Yii::app()->session['result_forgot_password'] = "<div style='padding-top: 200' class='container'><div style='text-align: center;' class='alert alert-success'><strong>Done!</strong> Bạn sẽ nhận được tin nhắn Email xác nhận đổi mật khẩu với email mà bạn vừa nhập.<br><br> Vui lòng đến hộp thư và kiểm tra tin nhắn và xác nhận liên kết đổi mật khẩu ở đó!!</div></div>";
 			}
 		}
+	}
+
+	public function actionResult()
+	{
+		if (!empty($_GET['code'])) {
+			$users = User::model()->getAll();
+			$verify_id_user = 0;
+			foreach ($users as $user) {
+				if ($user['verificationCode'] == $_GET['code']) {
+					$verify_id_user = 1;
+					$user_id = $user['id'];
+				}
+			}
+			if ($verify_id_user != 1) {
+				Yii::app()->cache->set('result_code_forgot', "<div style='padding-top: 200' class='container'><div style='text-align: center;' class='alert alert-danger'><strong>Oh No!</strong> Link xác nhận tài khoản để đổi mật khẩu của bạn không đúng. Vui lòng kiểm tra lại.</div></div>", 20);
+			} else {
+				header('location:' . get_site_url() . "/forgotPassword/change?id=" . $user_id);
+			}
+		} else {
+			Yii::app()->cache->set('result_code_forgot', "<div style='padding-top: 200' class='container'><div style='text-align: center;' class='alert alert-danger'><strong>Oh No!</strong> Link không tồn tại. Vui lòng kiểm tra lại.</div></div>", 20);
+		}
+		$this->render('result', array());
+	}
+
+	public function actionChange()
+	{
+		if (isset($_GET['id'])) $user_id = $_GET['id'];
+		$user_info = User::model()->getByID($user_id);
+		$this->render('change', array(
+			'user_info' => $user_info,
+		));
 	}
 }

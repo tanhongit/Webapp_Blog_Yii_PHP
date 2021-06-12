@@ -88,7 +88,15 @@ endif;
                     <div class="col-sm-6">
                         <div class="product-inner">
                             <h2 class="product-name"><span id="product_name_for_modal"><span id="product_name_for_modal_<?= $data->id ?>"><?= $data->name ?></span></span></h2>
-
+                            <div style="margin-top: 10px">
+                                <div class="result-container">
+                                    <div class="rate-bg" style="width:<?php echo $rate_value; ?>%">
+                                    </div>
+                                    <div class="rate-stars"><img src="<?= get_BaseUrl(); ?>/images/rating_star.png" alt=""></div>
+                                </div>
+                                <span class="reviewScore"><?php echo substr($avg_rating, 0, 3); ?></span><span class="reviewCount">(<?php echo $count_review; ?> reviews)</span>
+                            </div>
+                            <hr>
                             <div class="product-inner-price">
                                 <ins><span id="price_add_cart_<?= $data->id ?>"><?= get_price_apply_i18n($data->price) ?></span></ins> <del>0.00</del>
                             </div>
@@ -129,67 +137,68 @@ endif;
                                     <div class="rate-stars"><img src="<?= get_BaseUrl(); ?>/images/rating_star.png" alt=""></div>
                                 </div>
                                 <span class="reviewScore"><?php echo substr($avg_rating, 0, 3); ?></span><span class="reviewCount">(<?php echo $count_review; ?> reviews)</span>
+                            </div>
 
-                                <h2 style="padding-top: 15px;">Reviews</h2>
-                                <div class="submit-review">
-                                    <?php if (Yii::app()->user->isGuest) { ?>
-                                        <p><label for="name">Name</label> <input id="input_name" name="name" type="text"></p>
-                                        <p><label for="email">Email</label> <input id="input_email" name="email" type="email"></p>
-                                    <?php } else { ?>
-                                        <input id="input_name" name="name" value="<?= Yii::app()->user->currentUserInfo['username'] ?>" type="hidden">
-                                        <input id="input_email" name="email" value="<?= Yii::app()->user->currentUserInfo['email'] ?>" type="hidden">
-                                        <p class="woocommerce-info">You are logged in with the user <span style="color: #80a3d6;"><?= Yii::app()->user->currentUserInfo['username'] ?></span>. Do you want <a href="/site/logout">Logout</a> ?
-                                        </p>
-                                    <?php } ?>
-                                    <div class="rating-chooser">
-                                        <p>Your rating</p>
+                            <h2 style="padding-top: 15px;">Reviews</h2>
+                            <div class="submit-review">
+                                <?php if (Yii::app()->user->isGuest) { ?>
+                                    <p><label for="name">Name</label> <input id="input_name" name="name" type="text"></p>
+                                    <p><label for="email">Email</label> <input id="input_email" name="email" type="email"></p>
+                                <?php } else { ?>
+                                    <input id="input_name" name="name" value="<?= Yii::app()->user->currentUserInfo['username'] ?>" type="hidden">
+                                    <input id="input_email" name="email" value="<?= Yii::app()->user->currentUserInfo['email'] ?>" type="hidden">
+                                    <p class="woocommerce-info">You are logged in with the user <span style="color: #80a3d6;"><?= Yii::app()->user->currentUserInfo['username'] ?></span>. Do you want <a href="/site/logout">Logout</a> ?
+                                    </p>
+                                <?php } ?>
+                                <div class="rating-chooser">
+                                    <p>Your rating</p>
 
-                                        <section class='rating-widget'>
-                                            <!-- Rating Stars Box -->
-                                            <div class='rating-stars text-center'>
-                                                <ul id='stars'>
-                                                    <li class='star' title='Poor' data-value='1'>
-                                                        <i class='fa fa-star fa-fw'></i>
-                                                    </li>
-                                                    <li class='star' title='Fair' data-value='2'>
-                                                        <i class='fa fa-star fa-fw'></i>
-                                                    </li>
-                                                    <li class='star' title='Good' data-value='3'>
-                                                        <i class='fa fa-star fa-fw'></i>
-                                                    </li>
-                                                    <li class='star' title='Excellent' data-value='4'>
-                                                        <i class='fa fa-star fa-fw'></i>
-                                                    </li>
-                                                    <li class='star' title='WOW!!!' data-value='5'>
-                                                        <i class='fa fa-star fa-fw'></i>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                    <section class='rating-widget'>
+                                        <!-- Rating Stars Box -->
+                                        <div class='rating-stars text-center'>
+                                            <ul id='stars'>
+                                                <li class='star' title='Poor' data-value='1'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Fair' data-value='2'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Good' data-value='3'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Excellent' data-value='4'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='WOW!!!' data-value='5'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                            </ul>
+                                        </div>
 
-                                            <div class='success-box'>
-                                                <div class='clearfix'></div>
-                                                <div class='text-message'></div>
-                                                <div class='clearfix'></div>
-                                            </div>
-                                        </section>
+                                        <div class='success-box'>
+                                            <div class='clearfix'></div>
+                                            <div class='text-message'></div>
+                                            <div class='clearfix'></div>
+                                        </div>
+                                    </section>
 
-                                    </div>
-                                    <br>
-                                    <p><label for="review">Your review</label> <textarea id="input_content" name="review" id="" cols="30" rows="10"></textarea></p>
-                                    <div id="result-comment-notice">
-                                        <p>
-                                            <?php if (Yii::app()->cache->get('result_review_product'))
-                                                echo Yii::app()->cache->get('result_review_product'); ?>
-                                        </p>
-                                    </div>
-                                    <p><input type="submit" onclick="addNewReview(<?= $data->id  ?>)" value="Submit"></p>
                                 </div>
+                                <br>
+                                <p><label for="review">Your review</label> <textarea id="input_content" name="review" id="" cols="30" rows="10"></textarea></p>
+                                <div id="result-comment-notice">
+                                    <p>
+                                        <?php if (Yii::app()->cache->get('result_review_product'))
+                                            echo Yii::app()->cache->get('result_review_product'); ?>
+                                    </p>
+                                </div>
+                                <p><input type="submit" onclick="addNewReview(<?= $data->id  ?>)" value="Submit"></p>
+                            </div>
 
-                                <?php if (!empty($review_data)) : ?>
-                                    <!-- Contenedor Principal -->
-                                    <div class="comments-container" id="result-comment">
-                                        <ul id="comments-list" class="comments-list">
-                                            <!-- <li>
+                            <?php if (!empty($review_data)) : ?>
+                                <!-- Contenedor Principal -->
+                                <div class="comments-container" id="result-comment">
+                                    <ul id="comments-list" class="comments-list">
+                                        <!-- <li>
                                         <div class="comment-main-level">
                                             <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
                                             <div class="comment-box">
@@ -240,62 +249,60 @@ endif;
                                         </ul>
                                     </li> -->
 
-                                            <?php foreach ($review_data as $value) : ?>
-                                                <li>
-                                                    <div class="comment-main-level">
-                                                        <!-- Avatar -->
-                                                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-                                                        <!-- Contenedor del Comentario -->
-                                                        <div class="comment-box">
-                                                            <div class="comment-head">
-                                                                <h6 class="comment-name"><a href="#"><?= $value['name'] ?></a></h6>
-                                                                <span><?= time_elapsed_string($value['create_time']) ?></span>
+                                        <?php foreach ($review_data as $value) : ?>
+                                            <li>
+                                                <div class="comment-main-level">
+                                                    <!-- Avatar -->
+                                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+                                                    <!-- Contenedor del Comentario -->
+                                                    <div class="comment-box">
+                                                        <div class="comment-head">
+                                                            <h6 class="comment-name"><a href="#"><?= $value['name'] ?></a></h6>
+                                                            <span><?= time_elapsed_string($value['create_time']) ?></span>
 
-                                                                <?php
-                                                                for ($i = 1; $i <= 5 - $value['rating']; $i++) {
-                                                                    echo '<i class="fa fa-star"></i>';
-                                                                }
-                                                                for ($i = 1; $i <= $value['rating']; $i++) {
-                                                                    echo '<i class="fa fa-star" style="color:#E6E33A"></i>';
-                                                                } ?>
+                                                            <?php
+                                                            for ($i = 1; $i <= 5 - $value['rating']; $i++) {
+                                                                echo '<i class="fa fa-star"></i>';
+                                                            }
+                                                            for ($i = 1; $i <= $value['rating']; $i++) {
+                                                                echo '<i class="fa fa-star" style="color:#E6E33A"></i>';
+                                                            } ?>
 
-                                                            </div>
-                                                            <div class="comment-content">
-                                                                <?= $value['content'] ?>
-                                                            </div>
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <?= $value['content'] ?>
                                                         </div>
                                                     </div>
-                                                </li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
+                                                </div>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
-
-                    <hr>
-                    <div class="related-products-wrapper">
-                        <h2 class="related-products-title">Related Products</h2>
-                        <div class="related-products-carousel">
-                            <?php foreach ($related_data as $value) : ?>
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img id="imgProduct<?= $value->id ?>" src="<?= get_BaseUrl() . $value->image ?>" alt="">
-                                        <div class="product-hover">
-                                            <a href="javascript:voice(0);" onclick="addToCart(<?= $value->id ?>)" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="<?= $value->id ?>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                        </div>
-                                    </div>
-
-                                    <h2><a href="<?= $value->id ?>" id="product_name_for_modal_<?= $value->id ?>"><?= $value->name ?></a></h2>
-
-                                    <div class="product-carousel-price">
-                                        <ins id="price_add_cart_<?= $value->id ?>"><?= get_price_apply_i18n($value->price) ?></ins> <del>$100.00</del>
+                </div>
+                <hr>
+                <div class="related-products-wrapper">
+                    <h2 class="related-products-title">Related Products</h2>
+                    <div class="related-products-carousel">
+                        <?php foreach ($related_data as $value) : ?>
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img id="imgProduct<?= $value->id ?>" src="<?= get_BaseUrl() . $value->image ?>" alt="">
+                                    <div class="product-hover">
+                                        <a href="javascript:voice(0);" onclick="addToCart(<?= $value->id ?>)" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="<?= $value->id ?>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
+
+                                <h2><a href="<?= $value->id ?>" id="product_name_for_modal_<?= $value->id ?>"><?= $value->name ?></a></h2>
+
+                                <div class="product-carousel-price">
+                                    <ins id="price_add_cart_<?= $value->id ?>"><?= get_price_apply_i18n($value->price) ?></ins> <del>$100.00</del>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

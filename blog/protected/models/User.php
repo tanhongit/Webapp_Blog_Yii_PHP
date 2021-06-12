@@ -36,4 +36,13 @@ class User extends UserBase
 		$data = User::model()->findAll($criteria);
 		return $data;
 	}
+
+	public function getByID($id)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->condition = 'id = ' . $id;
+		$data = User::model()->findAll($criteria);
+		return $data;
+	}
 }
