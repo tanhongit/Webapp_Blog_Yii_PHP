@@ -126,7 +126,7 @@ endif;
                                 <div class="result-container">
                                     <div class="rate-bg" style="width:<?php echo $rate_value; ?>%">
                                     </div>
-                                    <div class="rate-stars"></div>
+                                    <div class="rate-stars"><img src="<?= get_BaseUrl(); ?>/images/rating_star.png" alt=""></div>
                                 </div>
                                 <span class="reviewScore"><?php echo substr($avg_rating, 0, 3); ?></span><span class="reviewCount">(<?php echo $count_review; ?> reviews)</span>
 
@@ -250,10 +250,9 @@ endif;
                                                             <div class="comment-head">
                                                                 <h6 class="comment-name"><a href="#"><?= $value['name'] ?></a></h6>
                                                                 <span><?= time_elapsed_string($value['create_time']) ?></span>
-                                                                <i class="fa fa-star"></i>
 
                                                                 <?php
-                                                                for ($i = 1; $i < 5 - $value['rating']; $i++) {
+                                                                for ($i = 1; $i <= 5 - $value['rating']; $i++) {
                                                                     echo '<i class="fa fa-star"></i>';
                                                                 }
                                                                 for ($i = 1; $i <= $value['rating']; $i++) {
@@ -302,91 +301,92 @@ endif;
             </div>
         </div>
     </div>
-    <script src="<?= get_BaseUrl(); ?>/js/jquery2.1.1.min.js"></script>
-    <script>
-        let value_rating_star = 0;
-        $('.success-box').hide();
-        /* 1. Visualizing things on Hover - See next part for action on click */
-        $('#stars li').on('mouseover', function() {
-            var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+</div>
+<script src="<?= get_BaseUrl(); ?>/js/jquery2.1.1.min.js"></script>
+<script>
+    let value_rating_star = 0;
+    $('.success-box').hide();
+    /* 1. Visualizing things on Hover - See next part for action on click */
+    $('#stars li').on('mouseover', function() {
+        var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
 
-            // Now highlight all the stars that's not after the current hovered star
-            $(this).parent().children('li.star').each(function(e) {
-                if (e < onStar) {
-                    $(this).addClass('hover');
-                } else {
-                    $(this).removeClass('hover');
-                }
-            });
-
-        }).on('mouseout', function() {
-            $(this).parent().children('li.star').each(function(e) {
-                $(this).removeClass('hover');
-            });
-        });
-
-        /* 2. Action to perform on click */
-        $('#stars li').on('click', function() {
-            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-            var stars = $(this).parent().children('li.star');
-
-            for (i = 0; i < stars.length; i++) {
-                $(stars[i]).removeClass('selected');
-            }
-
-            for (i = 0; i < onStar; i++) {
-                $(stars[i]).addClass('selected');
-            }
-
-            // JUST RESPONSE (Not needed)
-            var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
-            var msg = "";
-            if (ratingValue > 1) {
-                msg = "Thanks! You rate this " + ratingValue + " stars.";
+        // Now highlight all the stars that's not after the current hovered star
+        $(this).parent().children('li.star').each(function(e) {
+            if (e < onStar) {
+                $(this).addClass('hover');
             } else {
-                msg = "We will improve ourselves. You rate this " + ratingValue + " stars.";
+                $(this).removeClass('hover');
             }
-            responseMessage(msg);
-            value_rating_star = ratingValue;
-            console.log(value_rating_star);
         });
 
+    }).on('mouseout', function() {
+        $(this).parent().children('li.star').each(function(e) {
+            $(this).removeClass('hover');
+        });
+    });
 
-        function responseMessage(msg) {
-            $('.success-box').show();
-            $('.success-box').fadeIn(200);
-            $('.success-box div.text-message').html("<span>" + msg + "</span>");
+    /* 2. Action to perform on click */
+    $('#stars li').on('click', function() {
+        var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+        var stars = $(this).parent().children('li.star');
+
+        for (i = 0; i < stars.length; i++) {
+            $(stars[i]).removeClass('selected');
         }
 
-        function plusCartItemDetail(id) {
-            const total_qty = new Number($('#quantity_for_product').val());
-            $('#quantity_for_product').val((total_qty + 1));
+        for (i = 0; i < onStar; i++) {
+            $(stars[i]).addClass('selected');
         }
 
-        function minusCartItemDetail(id) {
-            const total_qty = new Number($('#quantity_for_product').val());
-            $('#quantity_for_product').val((total_qty - 1));
+        // JUST RESPONSE (Not needed)
+        var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+        var msg = "";
+        if (ratingValue > 1) {
+            msg = "Thanks! You rate this " + ratingValue + " stars.";
+        } else {
+            msg = "We will improve ourselves. You rate this " + ratingValue + " stars.";
         }
+        responseMessage(msg);
+        value_rating_star = ratingValue;
+        console.log(value_rating_star);
+    });
 
-        function addNewReview(id) {
-            name = $('#input_name').val();
-            email = $('#input_email').val();
-            content = $('textarea#input_content').val();
-            $.post(url + '/review/add', {
-                'name': name,
-                'email': email,
-                'content': content,
-                'product_id': id,
-                'rating_star': value_rating_star,
-            }, function(data) {
-                $('#result-comment-notice').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #result-comment-notice');
-                if (data != '') {
-                    $('#input_name').val('');
-                    $('#input_email').val('');
-                    $('#input_content').attr('');
-                    $('textarea#input_content').val('');
-                    $('#result-comment').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #result-comment');
-                }
-            });
-        }
-    </script>
+
+    function responseMessage(msg) {
+        $('.success-box').show();
+        $('.success-box').fadeIn(200);
+        $('.success-box div.text-message').html("<span>" + msg + "</span>");
+    }
+
+    function plusCartItemDetail(id) {
+        const total_qty = new Number($('#quantity_for_product').val());
+        $('#quantity_for_product').val((total_qty + 1));
+    }
+
+    function minusCartItemDetail(id) {
+        const total_qty = new Number($('#quantity_for_product').val());
+        $('#quantity_for_product').val((total_qty - 1));
+    }
+
+    function addNewReview(id) {
+        name = $('#input_name').val();
+        email = $('#input_email').val();
+        content = $('textarea#input_content').val();
+        $.post(url + '/review/add', {
+            'name': name,
+            'email': email,
+            'content': content,
+            'product_id': id,
+            'rating_star': value_rating_star,
+        }, function(data) {
+            $('#result-comment-notice').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #result-comment-notice');
+            if (data != '') {
+                $('#input_name').val('');
+                $('#input_email').val('');
+                $('#input_content').attr('');
+                $('textarea#input_content').val('');
+                $('#result-comment').load(url + '<?= $_SERVER['REQUEST_URI'] ?> #result-comment');
+            }
+        });
+    }
+</script>

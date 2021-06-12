@@ -79,6 +79,9 @@ https://viblo.asia/p/su-khac-nhau-giua-self-va-static-trong-php-YWOZry4rKQ0
 language code: http://www.lingoes.net/en/translator/langcode.htm
 
 
+-------
+Display Star Rating average from Mysql Database with PHP
+https://techmytip.com/display-star-rating-from-database/
 
 
 
