@@ -116,7 +116,7 @@ class ShoppingCartController extends Controller
 			$modalOrder->user_id = !Yii::app()->user->isGuest
 				? Yii::app()->user->currentUserInfo['id']
 				: 0;
-			$modalOrder->order_date = gmdate('Y-m-d H:i:s', time() + 7 * 3600);;
+			$modalOrder->order_date = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			$modalOrder->total_price = $total_quality_cart;
 			$modalOrder->status = 1;
 			$modalOrder->first_name = $_POST['billing_first_name'];

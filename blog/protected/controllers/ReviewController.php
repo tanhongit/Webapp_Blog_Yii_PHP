@@ -63,6 +63,7 @@ class ReviewController extends Controller
 			$modalReview->product_id = $product_id;
 			$modalReview->user_id = $user_id;
 			$modalReview->rating = $rating_star;
+			$modalReview->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 
 			$modalReview->save();
 			Yii::app()->cache->set('result_review_product', "<div style='padding-top: 200'><div style='text-align: center;' class='alert alert-success'><strong>Done!</strong> Bạn đã để lại review thành công.<br><br> Vui lòng xem lại review của bạn bên dưới!!</div></div>", 20);
