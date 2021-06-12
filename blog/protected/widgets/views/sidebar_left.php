@@ -31,8 +31,13 @@ $recent_post_data = Post::model()->getRecent();
     <div class="single-sidebar">
         <h2 class="sidebar-title">Recent Posts</h2>
         <ul>
-            <?php foreach ($recent_post_data as $value) : ?>
-                <li><a href="/post/<?= $value->id ?>"><?= $value->title ?></a></li>
+            <?php foreach ($recent_post_data as $value) :
+                $slug = '';
+                foreach (Slug::model()->getByPostID($value->id) as $value_2) {
+                    $slug = $value_2['slug'];
+                }
+            ?>
+                <li><a href="/post/view/<?= $slug ?>"><?= $value->title ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>
