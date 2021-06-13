@@ -67,7 +67,7 @@ class PostController extends Controller
 	public function actionCreate()
 	{
 		$model = new Post;
-
+		$model_slug = new Slug;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		$user = User::model()->getAll();
@@ -85,13 +85,22 @@ class PostController extends Controller
 				$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			}
 
-			if ($model->save())
+			$model_slug->attributes = $_POST['Slug'];
+
+			if ($model->save()) {
+				$model_slug->post_id = $model->id;
+				if (empty($_POST['Slug[slug]'])) {
+					$model_slug->slug = slug($model->title);
+				}
+				$model_slug->save();
 				$this->redirect(array('view', 'id' => $model->id));
+			}
 		}
 
 		$this->render('create', array(
 			'model' => $model,
 			'data' => $data,
+			'model_slug' => $model_slug,
 		));
 	}
 
@@ -105,22 +114,46 @@ class PostController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		$user = User::model()->getAll();
-		// print_r($user);
+
+		$slug = Slug::model()->getByPostID($id);
+		foreach ($slug as $value) {
+			$slug_id = $value['id'];
+		}
+
 		$data = CHtml::listData($user, 'id', 'username');
 		$model = $this->loadModel($id);
+
+		$model_slug = Slug::model()->findByPk($slug_id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if (isset($_POST['Post'])) {
 			$model->attributes = $_POST['Post'];
+
+			$model_slug->attributes = $_POST['Slug'];
+			// $model_slug->slug = $_POST['Slug']['slug'];
+
+			$the_slug = $_POST['Slug']['slug'];
+			if (empty($the_slug)) {
+				$the_slug = slug($_POST['Post']['title']);
+			}
+			foreach (Slug::model()->getAll() as $value) {
+				if ($the_slug == $value['slug']) {
+					$model_slug->slug = $the_slug . '-1';
+				}
+			}
+
+			$model_slug->save();
+
 			if ($model->save())
 				$this->redirect(array('view', 'id' => $model->id));
 		}
 
 		$this->render('update', array(
 			'model' => $model,
-			'data' => $data
+			'data' => $data,
+			'model_slug' => $model_slug,
 		));
 	}
 

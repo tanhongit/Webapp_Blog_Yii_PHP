@@ -242,7 +242,7 @@ require_once('protected/scripts/globals.php');
 
 	<!-- Main Script -->
 	<script src="<?= get_BaseUrl(); ?>/js/main.js"></script>
-
+	<script src='https://www.google.com/recaptcha/api.js' async defer ></script>
 	<!-- cart -->
 	<script>
 		$('#shipping_address_div').hide();

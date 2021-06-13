@@ -22,6 +22,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model_slug, 'slug'); ?>
+		<?php echo $form->textField($model_slug, 'slug', array('size' => 60, 'maxlength' => 255)); ?>
+		<?php echo $form->error($model_slug, 'slug'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model, 'content'); ?>
 		<?php //echo $form->textArea($model, 'content', array('rows' => 6, 'cols' => 50)); 
 		$this->widget('application.extensions.eckeditor.ECKEditor', array(

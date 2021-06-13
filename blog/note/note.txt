@@ -84,7 +84,9 @@ Display Star Rating average from Mysql Database with PHP
 https://techmytip.com/display-star-rating-from-database/
 
 
-
+-------
+filter php 
+https://www.webslesson.info/2018/08/how-to-make-product-filter-in-php-using-ajax.html
 
 
 

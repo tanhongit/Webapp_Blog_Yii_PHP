@@ -99,4 +99,54 @@ class SearchController extends Controller
 		);
 	}
 	*/
+
+	public function actionFetchData()
+	{
+		// $sql = 'SELECT * FROM tbl_product LIMIT 2';
+		// $rows = Yii::app()->db->createCommand($sql)->queryAll();
+		// Yii::app()->cache->set('testquery', $rows, 10);
+		// print_r('<pre>');
+		// print_r(Yii::app()->cache->get('testquery'));
+		if (isset($_POST["action"])) {
+			$query = " SELECT * FROM tbl_product WHERE ";
+			$query .= "status = '1' ";
+			if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
+				$query .= "AND price BETWEEN '" . $_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "' ";
+			}
+			if (isset($_POST["category"])) {
+				$brand_filter = implode("','", $_POST["category"]);
+				$query .= "AND category_id IN('" . $brand_filter . "') ";
+			}
+			$statement = Yii::app()->db->createCommand($query)->queryAll();
+
+
+			$total_row = 1;
+			$output = '';
+			if ($total_row > 0) {
+				foreach ($statement as $value) {
+					$price = get_price_apply_i18n($value['price']);
+					$output .= '
+						<div class="col-md-3 col-sm-6">
+							<div class="single-shop-product">
+								<div class="product-upper">
+									<a href="/product/detail/' . $value['id'] . '"><img id="imgProduct' . $value['id'] . '" src="' . Yii::app()->request->baseUrl . $value['image'] . '" alt="' . $value['image'] . '"></a>
+								</div>
+								<h2><a href="/product/detail/' . $value['id'] . '"><span id="product_name_for_modal_' . $value['id'] . '">' . $value['name'] . '</span></a></h2>
+								<div class="product-carousel-price">
+									<ins>' . $price . '</ins> <del>$0.00</del>
+								</div>
+
+								<div class="product-option-shop">
+									<a href="javascript:voice(0);" class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" onclick="addToCart(' . $value['id'] . ')">Add to cart</a>
+								</div>
+							</div>
+						</div>
+					';
+				}
+			} else {
+				$output .= '<h3>No Data Found</h3>';
+			}
+			echo $output;
+		}
+	}
 }

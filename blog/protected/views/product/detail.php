@@ -194,11 +194,10 @@ endif;
                                 <p><input type="submit" onclick="addNewReview(<?= $data->id  ?>)" value="Submit"></p>
                             </div>
 
-                            <?php if (!empty($review_data)) : ?>
-                                <!-- Contenedor Principal -->
-                                <div class="comments-container" id="result-comment">
-                                    <ul id="comments-list" class="comments-list">
-                                        <!-- <li>
+                            <!-- Contenedor Principal -->
+                            <div class="comments-container" id="result-comment">
+                                <ul id="comments-list" class="comments-list">
+                                    <!-- <li>
                                         <div class="comment-main-level">
                                             <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
                                             <div class="comment-box">
@@ -249,36 +248,35 @@ endif;
                                         </ul>
                                     </li> -->
 
-                                        <?php foreach ($review_data as $value) : ?>
-                                            <li>
-                                                <div class="comment-main-level">
-                                                    <!-- Avatar -->
-                                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-                                                    <!-- Contenedor del Comentario -->
-                                                    <div class="comment-box">
-                                                        <div class="comment-head">
-                                                            <h6 class="comment-name"><a href="#"><?= $value['name'] ?></a></h6>
-                                                            <span><?= time_elapsed_string($value['create_time']) ?></span>
+                                    <?php foreach ($review_data as $value) : ?>
+                                        <li>
+                                            <div class="comment-main-level">
+                                                <!-- Avatar -->
+                                                <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+                                                <!-- Contenedor del Comentario -->
+                                                <div class="comment-box">
+                                                    <div class="comment-head">
+                                                        <h6 class="comment-name"><a href="#"><?= $value['name'] ?></a></h6>
+                                                        <span><?= time_elapsed_string($value['create_time']) ?></span>
 
-                                                            <?php
-                                                            for ($i = 1; $i <= 5 - $value['rating']; $i++) {
-                                                                echo '<i class="fa fa-star"></i>';
-                                                            }
-                                                            for ($i = 1; $i <= $value['rating']; $i++) {
-                                                                echo '<i class="fa fa-star" style="color:#E6E33A"></i>';
-                                                            } ?>
+                                                        <?php
+                                                        for ($i = 1; $i <= 5 - $value['rating']; $i++) {
+                                                            echo '<i class="fa fa-star"></i>';
+                                                        }
+                                                        for ($i = 1; $i <= $value['rating']; $i++) {
+                                                            echo '<i class="fa fa-star" style="color:#E6E33A"></i>';
+                                                        } ?>
 
-                                                        </div>
-                                                        <div class="comment-content">
-                                                            <?= $value['content'] ?>
-                                                        </div>
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        <?= $value['content'] ?>
                                                     </div>
                                                 </div>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                            <?php endif; ?>
+                                            </div>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

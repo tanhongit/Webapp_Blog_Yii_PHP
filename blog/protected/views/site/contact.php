@@ -62,7 +62,7 @@
 				<?php echo $form->error($model, 'body'); ?>
 			</div>
 
-			<?php if (CCaptcha::checkRequirements()) : ?>
+			<!-- <?php if (CCaptcha::checkRequirements()) : ?>
 				<div class="row">
 					<?php echo $form->labelEx($model, 'verifyCode'); ?>
 					<div>
@@ -74,7 +74,9 @@
 					</div>
 					<?php echo $form->error($model, 'verifyCode'); ?>
 				</div>
-			<?php endif; ?>
+			<?php endif; ?> -->
+
+			<div class="g-recaptcha" data-sitekey="6Lco4iobAAAAABRxCbtI-qU2OHn0jbP4LAhhyKTQ"></div>
 
 			<div class="row buttons">
 				<?php echo CHtml::submitButton('Submit'); ?>
