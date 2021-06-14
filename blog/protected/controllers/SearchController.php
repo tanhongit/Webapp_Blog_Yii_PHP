@@ -108,15 +108,21 @@ class SearchController extends Controller
 		// print_r('<pre>');
 		// print_r(Yii::app()->cache->get('testquery'));
 		if (isset($_POST["action"])) {
-			$query = " SELECT * FROM tbl_product WHERE ";
-			$query .= "status = '1' ";
+			$query = " SELECT * FROM tbl_product WHERE status = '1' ";
+
+			if (isset($_POST["keyword"])) {;
+				$query .= "AND (name LIKE '%" . $_POST["keyword"] . "%' OR price LIKE '%" . $_POST["keyword"] . "%') ";
+			}
+
 			if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
 				$query .= "AND price BETWEEN '" . $_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "' ";
 			}
+
 			if (isset($_POST["category"])) {
 				$brand_filter = implode("','", $_POST["category"]);
 				$query .= "AND category_id IN('" . $brand_filter . "') ";
 			}
+			
 			$statement = Yii::app()->db->createCommand($query)->queryAll();
 
 

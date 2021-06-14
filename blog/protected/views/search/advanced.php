@@ -5,7 +5,11 @@ $this->breadcrumbs = array(
 	'Advanced'
 );
 ?>
-
+<style>
+	.search-input {
+		color: red;
+	}
+</style>
 <div class="single-product-area">
 	<div class="zigzag-bottom"></div>
 	<div class="container">
@@ -16,6 +20,14 @@ $this->breadcrumbs = array(
 						<div id="customer_details" class="col2-set">
 							<div class="woocommerce-billing-fields">
 								<h3>Advanced Search</h3>
+
+								<h4 class="search-input"><strong>By Keyword</strong></h4>
+								<p id="billing_last_name_field" class="form-row form-row-first validate-required">
+									<input type="text" required value="" placeholder="Enter keyword or price" id="input_search_keyword" name="input_search_keyword" class="common_selector input-text ">
+								</p>
+
+								<hr>
+								<h4 class="search-input"><strong>By Price</strong></h4>
 								<p id="billing_last_name_field" class="form-row form-row-first validate-required">
 									<label class="" for="from_price_search_input">From <abbr title="required" class="required">*</abbr>
 									</label>
@@ -34,6 +46,9 @@ $this->breadcrumbs = array(
 							<br>
 							<input type="hidden" id="hidden_minimum_price" value="0" />
 							<input type="hidden" id="hidden_maximum_price" value="65000" />
+
+							<hr>
+							<h4 class="search-input"><strong>By Category</strong></h4>
 							<div class="list-group">
 								<?php foreach ($categories as $row) { ?>
 									<div class="list-group-item">
@@ -74,6 +89,8 @@ $this->breadcrumbs = array(
 			var action = 'fetchData';
 			var minimum_price = $('#hidden_minimum_price').val();
 			var maximum_price = $('#hidden_maximum_price').val();
+			var keyword = $('#input_search_keyword').val();
+
 			var category = get_filter('category_input');
 			$.ajax({
 				url: "/search/fetchData",
@@ -81,6 +98,7 @@ $this->breadcrumbs = array(
 
 				data: {
 					action: action,
+					keyword: keyword,
 					minimum_price: minimum_price,
 					maximum_price: maximum_price,
 					category: category,
