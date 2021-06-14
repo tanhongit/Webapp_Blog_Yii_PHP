@@ -134,8 +134,20 @@ class ProductController extends Controller implements ViewInterFace
 		$this->render('topview', array('data' => $data)); // Ex: app//product/list?id=2
 	}
 
-	public function actionDetail($id)
+	public function actionDetail()
 	{
+		$test_request_url = explode('/', get_request_url());
+		$pop_array_url = array_pop($test_request_url);
+		$data_slug = Slug::model()->getBySlug($pop_array_url);
+
+		$id = 0;
+
+		if (!empty($data_slug)) {
+			foreach ($data_slug as $value) {
+				$id = $value['product_id'];
+			}
+		}
+
 		$data = Product::model()->getDetail($id);
 
 		$category_id = $data->category_id;

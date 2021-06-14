@@ -78,8 +78,20 @@ class CategoryController extends Controller
 			)
 		); // app//product/list/2
 	}
-	public function actionView($id)
+	public function actionView()
 	{
+		$test_request_url = explode('/', get_request_url());
+		$pop_array_url = array_pop($test_request_url);
+		$data_slug = Slug::model()->getBySlug($pop_array_url);
+
+		$id = 0;
+
+		if (!empty($data_slug)) {
+			foreach ($data_slug as $value) {
+				$id = $value['category_id'];
+			}
+		}
+
 		// get value in url
 		isset($_REQUEST['page']) && $params = $_REQUEST['page'];
 		$page = (isset($params) ? $params - 1 : 0);

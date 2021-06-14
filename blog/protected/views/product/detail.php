@@ -353,7 +353,6 @@ endif;
         }
         responseMessage(msg);
         value_rating_star = ratingValue;
-        console.log(value_rating_star);
     });
 
 
