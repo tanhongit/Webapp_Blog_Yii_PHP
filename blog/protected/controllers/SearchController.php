@@ -118,6 +118,10 @@ class SearchController extends Controller
 				$query .= "AND category_id IN('" . $brand_filter . "') ";
 			}
 
+			if (isset($_POST["get_desc_asc"])) {
+				$query .= "ORDER BY view " . $_POST["get_desc_asc"];
+			}
+
 			$statement = Yii::app()->db->createCommand($query)->queryAll();
 
 

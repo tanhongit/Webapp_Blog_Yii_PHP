@@ -27,6 +27,14 @@ $this->breadcrumbs = array(
 								</p>
 
 								<hr>
+								<h4 class="search-input"><strong>Top view</strong></h4>
+								<select class="country_to_state country_select" name="get_desc_asc" id="get_desc_asc">
+									<option value="DESC">DESC</option>
+									<option value="ASC">ASC</option>
+								</select>
+								<input type="submit" data-value="Apply" value="Apply" id="from_price_search" name="from_price_search" class="common_selector button alt">
+
+								<hr>
 								<h4 class="search-input"><strong>By Price</strong></h4>
 								<p id="billing_last_name_field" class="form-row form-row-first validate-required">
 									<label class="" for="from_price_search_input">From <abbr title="required" class="required">*</abbr>
@@ -91,6 +99,8 @@ $this->breadcrumbs = array(
 			var maximum_price = $('#hidden_maximum_price').val();
 			var keyword = $('#input_search_keyword').val();
 
+			var get_desc_asc = $('#get_desc_asc').val();
+
 			var category = get_filter('category_input');
 			$.ajax({
 				url: "/search/fetchData",
@@ -102,6 +112,7 @@ $this->breadcrumbs = array(
 					minimum_price: minimum_price,
 					maximum_price: maximum_price,
 					category: category,
+					get_desc_asc: get_desc_asc,
 				},
 				success: function(data) {
 					$('.filter-data').html(data);
