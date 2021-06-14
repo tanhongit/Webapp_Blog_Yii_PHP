@@ -102,11 +102,6 @@ class SearchController extends Controller
 
 	public function actionFetchData()
 	{
-		// $sql = 'SELECT * FROM tbl_product LIMIT 2';
-		// $rows = Yii::app()->db->createCommand($sql)->queryAll();
-		// Yii::app()->cache->set('testquery', $rows, 10);
-		// print_r('<pre>');
-		// print_r(Yii::app()->cache->get('testquery'));
 		if (isset($_POST["action"])) {
 			$query = " SELECT * FROM tbl_product WHERE status = '1' ";
 
@@ -122,7 +117,7 @@ class SearchController extends Controller
 				$brand_filter = implode("','", $_POST["category"]);
 				$query .= "AND category_id IN('" . $brand_filter . "') ";
 			}
-			
+
 			$statement = Yii::app()->db->createCommand($query)->queryAll();
 
 
@@ -130,14 +125,19 @@ class SearchController extends Controller
 			$output = '';
 			if ($total_row > 0) {
 				foreach ($statement as $value) {
-					$price = get_price_apply_i18n($value['price']);
+					$price = return_price_apply_i18n($value['price']);
+
+					if (strlen($value['name']) < 20) {
+						$name =  $value['name'];
+					} else $name = substr($value['name'], 0, 25) . '...';
+
 					$output .= '
 						<div class="col-md-3 col-sm-6">
 							<div class="single-shop-product">
 								<div class="product-upper">
 									<a href="/product/detail/' . $value['id'] . '"><img id="imgProduct' . $value['id'] . '" src="' . Yii::app()->request->baseUrl . $value['image'] . '" alt="' . $value['image'] . '"></a>
 								</div>
-								<h2><a href="/product/detail/' . $value['id'] . '"><span id="product_name_for_modal_' . $value['id'] . '">' . $value['name'] . '</span></a></h2>
+								<h2><a href="/product/detail/' . $value['id'] . '"><span id="product_name_for_modal_' . $value['id'] . '">' . $name . '</span></a></h2>
 								<div class="product-carousel-price">
 									<ins>' . $price . '</ins> <del>$0.00</del>
 								</div>

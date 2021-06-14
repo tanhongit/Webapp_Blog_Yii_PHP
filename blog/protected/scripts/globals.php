@@ -180,6 +180,33 @@ function get_price_apply_i18n($price)
     echo $number->formatCurrency($currency_price, Yii::app()->params->currency);
 }
 
+function return_price_apply_i18n($price)
+{
+    //check lang code
+    $data_lang_code = LanguageCode::model()->getAll();
+    $code_postal = '';
+
+    $lang_code = '';
+    !empty(Yii::app()->language) ? $lang_code = Yii::app()->language : $lang_code = 'en';
+
+    foreach ($data_lang_code as $value) {
+        $lang_code == $value['first_code'] && $code_postal = $value['second_code'];
+    }
+
+    //check currency code
+    $data_current_rate = CurrencyRate::model()->getAll();
+    $current_rate = 0.0;
+    foreach ($data_current_rate as $value) {
+        Yii::app()->params->currency == $value['currency_code'] && $current_rate = $value['rate'];
+    }
+
+    $currency_price = $price * $current_rate;
+
+    //get price i18n
+    $number = new CNumberFormatter($lang_code . '_' . $code_postal);
+    return $number->formatCurrency($currency_price, Yii::app()->params->currency);
+}
+
 function get_total_price_cart_i18n()
 {
     //check currency code
