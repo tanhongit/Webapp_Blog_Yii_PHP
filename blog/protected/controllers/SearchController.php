@@ -131,9 +131,7 @@ class SearchController extends Controller
 				foreach ($statement as $value) {
 					$price = return_price_apply_i18n($value['price']);
 
-					if (strlen($value['name']) < 20) {
-						$name =  $value['name'];
-					} else $name = substr($value['name'], 0, 25) . '...';
+					$name = getSubStrString($value['name'], 35);
 
 					$output .= '
 						<div class="col-md-3 col-sm-6">

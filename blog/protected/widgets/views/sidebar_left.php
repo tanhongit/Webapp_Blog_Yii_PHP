@@ -17,7 +17,7 @@ $recent_post_data = Post::model()->getRecent();
 
             <div class="thubmnail-recent">
                 <a href="/product/detail/<?= getOptionSlug('product_id', $value->id) ?>"><img id='imgProduct<?= $value->id ?>' src="<?= get_BaseUrl() . $value->image ?>" class="recent-thumb" alt=""></a>
-                <h2><a href="/product/detail/<?= getOptionSlug('product_id', $value->id) ?>"><?= $value->name ?></a></h2>
+                <h2><a href="/product/detail/<?= getOptionSlug('product_id', $value->id) ?>"><?= getSubStrString($value->name, 40) ?></a></h2>
                 <div class="product-sidebar-price">
                     <ins><span id="price_<?= $value->id ?>">
                             <?php get_price_apply_i18n($value->price); ?>
@@ -32,7 +32,7 @@ $recent_post_data = Post::model()->getRecent();
         <h2 class="sidebar-title">Recent Posts</h2>
         <ul>
             <?php foreach ($recent_post_data as $value) : ?>
-                <li><a href="/post/view/<?= getOptionSlug('post_id', $value->id) ?>"><?= $value->title ?></a></li>
+                <li><a href="/post/view/<?= getOptionSlug('post_id', $value->id) ?>"><?= getSubStrString($value->title, 40) ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>

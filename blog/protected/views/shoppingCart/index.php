@@ -95,7 +95,7 @@ $this->breadcrumbs = array(
 										</td>
 
 										<td class="product-name">
-											<a href="product/detail/<?= getOptionSlug('product_id', $value['id']) ?>" title="<?= $value['product_name'] ?>"><?= substr($value['product_name'], 0, 27) ?></a>
+											<a href="product/detail/<?= getOptionSlug('product_id', $value['id']) ?>" title="<?= $value['product_name'] ?>"><?= getSubStrString($value['product_name'], 25) ?></a>
 										</td>
 
 										<td class="product-price">

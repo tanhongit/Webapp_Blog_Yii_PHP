@@ -16,7 +16,7 @@
                                     </div>
                                 </div>
 
-                                <h2><a href="/product/detail/<?= getOptionSlug('product_id', $value->id) ?>"><span id="product_name_for_modal_<?= $value->id ?>"><?= $value->name ?></span></a></h2>
+                                <h2><a href="/product/detail/<?= getOptionSlug('product_id', $value->id) ?>"><span id="product_name_for_modal_<?= $value->id ?>"><?= getSubStrString($value->name, 40) ?></span></a></h2>
 
                                 <div class="product-carousel-price">
                                     <span id="price_add_cart_<?= $value->id ?>"><?= get_price_apply_i18n($value->price) ?></span></ins> <del>$100.00</del>

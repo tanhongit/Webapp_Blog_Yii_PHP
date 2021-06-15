@@ -276,3 +276,11 @@ function getOptionSlug($option_id, $id)
     }
     return $slug;
 }
+
+function getSubStrString($string, $length)
+{
+    if (strlen($string) < $length) {
+        $name =  $string;
+    } else $name = substr($string, 0, $length) . '...';
+    return $name;
+}

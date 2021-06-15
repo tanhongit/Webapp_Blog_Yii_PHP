@@ -762,8 +762,8 @@ if (!isset(Yii::app()->session['cart']) || empty(Yii::app()->session['cart'])) :
                                         <tbody>
                                             <?php foreach ($data_cart as $key => $value) : ?>
                                                 <tr class="cart_item">
-                                                    <td class="product-name">
-                                                        <?= substr($value['product_name'], 0, 27) ?> <strong class="product-quantity">× <?= $value['quality'] ?></strong> </td>
+                                                    <td class="product-name" title="<?= $value['product_name'] ?>">
+                                                        <?= getSubStrString($value['product_name'], 25) ?> <strong class="product-quantity">× <?= $value['quality'] ?></strong> </td>
                                                     <td class="product-total">
                                                         <span class="amount"><?= get_price_apply_i18n($value['quality'] * $value['price']) ?></span>
                                                     </td>
