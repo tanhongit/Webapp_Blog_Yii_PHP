@@ -136,17 +136,7 @@ class ProductController extends Controller implements ViewInterFace
 
 	public function actionDetail()
 	{
-		$test_request_url = explode('/', get_request_url());
-		$pop_array_url = array_pop($test_request_url);
-		$data_slug = Slug::model()->getBySlug($pop_array_url);
-
-		$id = 0;
-
-		if (!empty($data_slug)) {
-			foreach ($data_slug as $value) {
-				$id = $value['product_id'];
-			}
-		}
+		$id = getIDBySlugView('detail', 'product');
 
 		$data = Product::model()->getDetail($id);
 

@@ -1,5 +1,7 @@
 <?php
 require_once('protected/scripts/globals.php');
+require_once('protected/scripts/models.php');
+
 /**
  * ApplicationConfigBehavior is a behavior for the application.
  * It loads additional config paramenters that cannot be statically 

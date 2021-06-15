@@ -9,17 +9,7 @@ class PostController extends Controller
 
 	public function actionView()
 	{
-		$test_request_url = explode('/', get_request_url());
-		$pop_array_url = array_pop($test_request_url);
-		$data_slug = Slug::model()->getBySlug($pop_array_url);
-
-		$post_id = 0;
-
-		if (!empty($data_slug)) {
-			foreach ($data_slug as $value) {
-				$post_id = $value['post_id'];
-			}
-		}
+		$post_id = getIDBySlugView('view', 'post');
 
 		$data = Post::model()->getByID($post_id);
 
