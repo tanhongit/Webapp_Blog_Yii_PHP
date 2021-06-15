@@ -60,4 +60,13 @@ class Slug extends SlugBase
 		$data = Slug::model()->findAll($criteria);
 		return $data;
 	}
+
+	public function getByOptionID($option, $id)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select = '*';
+		$criteria->condition = $option . ' = ' . $id;
+		$data = Slug::model()->findAll($criteria);
+		return $data;
+	}
 }

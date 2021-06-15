@@ -91,11 +91,11 @@ $this->breadcrumbs = array(
 									<tr class="cart_item">
 
 										<td class="product-thumbnail">
-											<a href="product/detail/<?= $value['id'] ?>"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<?= get_BaseUrl() . $value['product_image'] ?>"></a>
+											<a href="product/detail/<?= getOptionSlug('product_id', $value['id']) ?>"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<?= get_BaseUrl() . $value['product_image'] ?>"></a>
 										</td>
 
 										<td class="product-name">
-											<a href="product/detail/<?= $value['id'] ?>"><?= substr($value['product_name'], 0, 27) ?></a>
+											<a href="product/detail/<?= getOptionSlug('product_id', $value['id']) ?>" title="<?= $value['product_name'] ?>"><?= substr($value['product_name'], 0, 27) ?></a>
 										</td>
 
 										<td class="product-price">

@@ -220,7 +220,8 @@ function get_total_price_cart_i18n()
     return  $currency_price;
 }
 
-function time_elapsed_string($datetime, $full = false) {
+function time_elapsed_string($datetime, $full = false)
+{
     $now_time = new DateTime;
     $ago_time = new DateTime($datetime);
     $diff = $now_time->diff($ago_time);
@@ -265,4 +266,13 @@ function convert_name($str)
     $str = preg_replace("/(\“|\”|\‘|\’|\,|\!|\&|\;|\@|\#|\%|\~|\`|\=|\_|\'|\]|\[|\}|\{|\)|\(|\+|\^)/", '-', $str);
     $str = preg_replace("/( )/", '-', $str);
     return $str;
+}
+
+function getOptionSlug($option_id, $id)
+{
+    $slug = '';
+    foreach (Slug::model()->getByOptionID($option_id, $id) as $value_2) {
+        $slug = $value_2['slug'];
+    }
+    return $slug;
 }
