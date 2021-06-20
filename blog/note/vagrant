@@ -132,6 +132,8 @@ https://kifarunix.com/how-to-create-self-signed-ssl-certificate-with-mkcert-on-u
 https://kifarunix.com/create-locally-trusted-ssl-certificates-with-mkcert-on-ubuntu-20-04/
 
 cd /etc/apache2/sites-enabled/*file conf*
+sudo sed -i 's#/etc/ssl/certs/ssl-cert-snakeoil.pem#/vagrant/webapp_yii.vagrant.pem#; s#/etc/ssl/private/ssl-cert-snakeoil.key#/vagrant/webapp_yii.vagrant-key.pem#' /etc/apache2/sites-available/webapp_yii.vagrant.conf
+grep -E "SSLCertificateFile|SSLCertificateKeyFile" /etc/apache2/sites-available/webapp_yii.vagrant.conf
 
 
 -----------------------------
