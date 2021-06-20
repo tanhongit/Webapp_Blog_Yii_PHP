@@ -136,6 +136,11 @@ sudo sed -i 's#/etc/ssl/certs/ssl-cert-snakeoil.pem#/vagrant/webapp_yii.vagrant.
 grep -E "SSLCertificateFile|SSLCertificateKeyFile" /etc/apache2/sites-available/webapp_yii.vagrant.conf
 
 
+---------
+import database mysql by command
+https://chiaselaptrinhmienphi.wordpress.com/2018/05/19/huong-dan-import-database-mysql-bang-command-dung-cho-sql-dung-luong-lon/
+
+
 -----------------------------
 path to the folder containing the downloaded boxes
 https://helpex.vn/question/vagrant-tai-tap-tin-.box-cua-no-ve-dau-5cb7def8ae03f646703c8634 (C:/Users/USERNAME/.vagrant.d/boxes)
