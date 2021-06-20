@@ -128,6 +128,9 @@ https://askubuntu.com/questions/47515/any-way-to-search-for-text-within-nano#:~:
 SSL
 document by https://github.com/TanHongIT/php-training/tree/master/doc
 
+https://kifarunix.com/how-to-create-self-signed-ssl-certificate-with-mkcert-on-ubuntu-18-04/
+https://kifarunix.com/create-locally-trusted-ssl-certificates-with-mkcert-on-ubuntu-20-04/
+
 cd /etc/apache2/sites-enabled/*file conf*
 
 
