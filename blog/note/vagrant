@@ -7,6 +7,10 @@ vagrant resume
 -----------
 vagrant ssh
     --------
+
+    sudo do-release-upgrade
+
+    
     (ubuntu)
     whoami
     sudo apt-get update -y
@@ -100,13 +104,31 @@ config: https://www.youtube.com/watch?v=Bma7P8q02KI&t=582s
 setup lamp: https://www.youtube.com/watch?v=9Gyt3G5wLAs&list=PLbup-MaQtodWsbllDXyHS4Cef4G8G5iNX&index=3
 
 --------
+How to add a downloaded .box file to Vagrant?
+https://stackoverflow.com/questions/22065698/how-to-add-a-downloaded-box-file-to-vagrant
+
 How to save/remove existing Vagrant box and restore the saved vagrant box https://www.webfoobar.com/node/52
+$ vagrant box add ubuntutrusty64 F:\vagrant\ubuntu\ubuntutrusty64.box
 
 --------
 Chuyển phiên bản php trên dòng lệnh ubuntu 
 https://qastack.vn/programming/42619312/switch-php-versions-on-commandline-ubuntu-16-04
 sudo update-alternatives --config php
 
+--------
+Find php.ini
+https://askubuntu.com/questions/356968/find-the-correct-php-ini-file
+/etc/php/7.0/cli/php.ini
+
+--------
+search for text within nano
+https://askubuntu.com/questions/47515/any-way-to-search-for-text-within-nano#:~:text=You%20can%20search%20for%20text,W%20)%20will%20repeat%20the%20find.
+
+--------
+SSL
+document by https://github.com/TanHongIT/php-training/tree/master/doc
+
+cd /etc/apache2/sites-enabled/*file conf*
 
 
 -----------------------------
