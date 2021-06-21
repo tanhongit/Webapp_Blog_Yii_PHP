@@ -87,6 +87,10 @@ https://vinasupport.com/sua-loi-unable-to-lock-the-administration-directory-var-
 Yii2 showScriptName remove index.php Not Found apache
 http://forum.isystems.am/post/269/yii2-showscriptname-remove-indexphp-not-found-apache
 
+Invalid command 'Header', perhaps misspelled or defined by a module not included in the server configuration
+Apache: edit to .conf file produces “Invalid command 'Header'”
+https://stackoverflow.com/questions/34554240/apache-edit-to-conf-file-produces-invalid-command-header
+
 
 
 
