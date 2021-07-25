@@ -140,7 +140,20 @@ class PostController extends Controller
 			}
 			foreach (Slug::model()->getAll() as $value) {
 				if ($the_slug == $value['slug']) {
-					$model_slug->slug = $the_slug . '-1';
+					
+					$a_slug = $the_slug . '-' . 1;
+
+					$array_slug = explode('-', $a_slug);
+					$pop_array_url = array_pop($array_slug);
+
+					$array_num = array();
+					for ($i = 0; $i < 100; $i++) {
+						$array_num[] = $i;
+					}
+
+					if (in_array(intval($pop_array_url), $array_num)) {
+						$model_slug->slug = $the_slug . '-' . (intval($pop_array_url) + 1);
+					} else $model_slug->slug = $a_slug;
 				}
 			}
 
