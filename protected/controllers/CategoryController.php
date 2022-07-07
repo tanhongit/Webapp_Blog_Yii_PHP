@@ -17,7 +17,11 @@ class CategoryController extends Controller
 			),
 		);
 	}
-	
+
+    /**
+     * show list product
+     * @return void
+     */
 	public function actionIndex()
 	{
 		// get value in url
@@ -76,7 +80,7 @@ class CategoryController extends Controller
 				'item_count' => $count,
 				'category_name' => $category_name,
 			)
-		); // app//product/list/2
+		); // app//category/list/2
 	}
 	public function actionView()
 	{

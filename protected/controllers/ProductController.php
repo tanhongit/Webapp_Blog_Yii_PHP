@@ -2,6 +2,10 @@
 
 class ProductController extends Controller implements ViewInterFace
 {
+    /**
+     * app//product/
+     * @return void
+     */
 	public function actionIndex()
 	{
 		// get value in url
@@ -58,21 +62,21 @@ class ProductController extends Controller implements ViewInterFace
 	}
 	*/
 
-	/** get all product data by category  */
+	/** get all product data by category . Ex: app//product/list1 */
 	public function actionList1()
 	{
 		$data = Product::model()->getForHomePage();
 
-		$this->render('list', array('data' => $data));
+		$this->render('list_bk', array('data' => $data));
 	}
 
-	/** get product data by category using request id url . Ex: app//product/list?id=2 */
+	/** get product data by category using request id url . Ex: app//product/list2?id=2 */
 	public function actionList2()
 	{
 		$id = $_REQUEST['id'];
 		$data = Product::model()->getByCategory($id);
 
-		$this->render('list', array('data' => $data)); // Ex: app//product/list?id=2
+		$this->render('list_bk', array('data' => $data)); // Ex: app//product/list2?id=2
 	}
 
 
@@ -84,7 +88,7 @@ class ProductController extends Controller implements ViewInterFace
 		// 'product/list/<id:\d+>',
 		$data = Product::model()->getByCategory($id);
 
-		$this->render('list', array('data' => $data)); // app//product/list/2
+		$this->render('list_bk', array('data' => $data)); // app//product/list3/2
 	}
 
 	/** show data product by category enabled SEO friendly URLs and echo statement in the view */
