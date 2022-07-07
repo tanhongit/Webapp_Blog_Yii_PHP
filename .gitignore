@@ -1,5 +1,5 @@
-/blog/protected/runtime/application.log
-/blog/protected/runtime/cache
-/blog/protected/runtime
-/blog/protected/libs/setting_mail.php
-/blog/protected/libs/payment.php
+/protected/runtime/application.log
+/protected/runtime/cache
+/protected/runtime
+/protected/libs/setting_mail.php
+/protected/libs/payment.php
