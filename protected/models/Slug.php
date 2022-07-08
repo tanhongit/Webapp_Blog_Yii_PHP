@@ -43,6 +43,10 @@ class Slug extends SlugBase
 		return $data;
 	}
 
+    /**
+     * @param $slug
+     * @return array|CActiveRecord|mixed|null
+     */
 	public function getBySlug($slug)
 	{
 		$criteria = new CDbCriteria();
@@ -52,6 +56,10 @@ class Slug extends SlugBase
 		return $data;
 	}
 
+    /**
+     * @param $post_id
+     * @return array|CActiveRecord|mixed|null
+     */
 	public function getByPostID($post_id)
 	{
 		$criteria = new CDbCriteria();
@@ -61,6 +69,11 @@ class Slug extends SlugBase
 		return $data;
 	}
 
+    /**
+     * @param $option
+     * @param $id
+     * @return array|CActiveRecord|mixed|null
+     */
 	public function getByOptionID($option, $id)
 	{
 		$criteria = new CDbCriteria();
@@ -69,4 +82,51 @@ class Slug extends SlugBase
 		$data = Slug::model()->findAll($criteria);
 		return $data;
 	}
+
+    /**
+     * @param $conditions
+     * @param $select
+     * @return array|CActiveRecord|mixed|null
+     */
+    public function getByOptionCondition($conditions = '', $select = '*')
+    {
+        $criteria = new CDbCriteria();
+        $criteria->select = $select;
+        if ($conditions != '') {
+            $criteria->condition = $conditions;
+        }
+        $data = Slug::model()->findAll($criteria);
+        return $data;
+    }
+
+    /**
+     * @param $objectID
+     * @param $data
+     * @param $action
+     * @return mixed
+     */
+    public function updateSlug($objectID, $data, $action = 'update') {
+        $slugModel = self::model()->getByPostID($objectID)[0];
+        if ($data) {
+            $slugModel->attributes = $_POST['Slug'];
+
+            $slugName = slug($_POST['Slug']['slug']);
+            if (empty($slugName)) {
+                $slugName = slug($_POST['Post']['title']);
+            }
+            $slugTerm = $slugName;
+
+            if ('update' == $action) {
+                $condition = 'slug = "' . $slugName . '" AND id != ' . $slugModel->id;
+                $checkSlug = self::model()->getByOptionCondition($condition);
+                if (count($checkSlug) > 0) {
+                    $slugTerm = slug($slugName . '-' . generateRandomString());
+                }
+            }
+            $slugModel->slug = $slugTerm;
+
+            $slugModel->save();
+        }
+        return $slugModel;
+    }
 }

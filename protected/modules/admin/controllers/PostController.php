@@ -117,28 +117,13 @@ class PostController extends Controller
         $data = CHtml::listData($user, 'id', 'username');
         $model = $this->loadModel($id);
 
-        $slug = Slug::model()->getByPostID($id);
-        $slug_id = $slug[0]['id'];
-        $slugModel = Slug::model()->findByPk($slug_id);
+        $slugModel = Slug::model()->getByPostID($id)[0];
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if (isset($_POST['Post'])) {
 			$model->attributes = $_POST['Post'];
-			$slugModel->attributes = $_POST['Slug'];
-
-            $slugName = slug($_POST['Slug']['slug']);
-            if (empty($slugName)) {
-                $slugName = slug($_POST['Post']['title']);
-            }
-            $slugTerm = $slugName;
-            $checkSlug = Slug::model()->getBySlug($slugName);
-            if (count($checkSlug) > 0) {
-                $slugTerm = slug($slugName . '-' . generateRandomString());
-            }
-            $slugModel->slug = $slugTerm;
-
-			$slugModel->save();
+			$slugModel = Slug::model()->updateSlug($id, $_POST);
 
 			if ($model->save())
 				$this->redirect(array('view', 'id' => $model->id));
