@@ -67,7 +67,7 @@ class PostController extends Controller
 	public function actionCreate()
 	{
 		$model = new Post;
-		$model_slug = new Slug;
+		$slugModel = new Slug;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		$user = User::model()->getAll();
@@ -85,14 +85,14 @@ class PostController extends Controller
 				$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			}
 
-			$model_slug->attributes = $_POST['Slug'];
+			$slugModel->attributes = $_POST['Slug'];
 
 			if ($model->save()) {
-				$model_slug->post_id = $model->id;
+				$slugModel->post_id = $model->id;
 				if (empty($_POST['Slug[slug]'])) {
-					$model_slug->slug = slug($model->title);
+					$slugModel->slug = slug($model->title);
 				}
-				$model_slug->save();
+				$slugModel->save();
 				$this->redirect(array('view', 'id' => $model->id));
 			}
 		}
@@ -100,7 +100,7 @@ class PostController extends Controller
 		$this->render('create', array(
 			'model' => $model,
 			'data' => $data,
-			'model_slug' => $model_slug,
+			'slugModel' => $slugModel,
 		));
 	}
 
@@ -114,50 +114,31 @@ class PostController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		$user = User::model()->getAll();
+        $data = CHtml::listData($user, 'id', 'username');
+        $model = $this->loadModel($id);
 
-		$slug = Slug::model()->getByPostID($id);
-		foreach ($slug as $value) {
-			$slug_id = $value['id'];
-		}
-
-		$data = CHtml::listData($user, 'id', 'username');
-		$model = $this->loadModel($id);
-
-		$model_slug = Slug::model()->findByPk($slug_id);
-
+        $slug = Slug::model()->getByPostID($id);
+        $slug_id = $slug[0]['id'];
+        $slugModel = Slug::model()->findByPk($slug_id);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if (isset($_POST['Post'])) {
 			$model->attributes = $_POST['Post'];
+			$slugModel->attributes = $_POST['Slug'];
 
-			$model_slug->attributes = $_POST['Slug'];
-			// $model_slug->slug = $_POST['Slug']['slug'];
+            $slugName = slug($_POST['Slug']['slug']);
+            if (empty($slugName)) {
+                $slugName = slug($_POST['Post']['title']);
+            }
+            $slugTerm = $slugName;
+            $checkSlug = Slug::model()->getBySlug($slugName);
+            if (count($checkSlug) > 0) {
+                $slugTerm = slug($slugName . '-' . generateRandomString());
+            }
+            $slugModel->slug = $slugTerm;
 
-			$the_slug = $_POST['Slug']['slug'];
-			if (empty($the_slug)) {
-				$the_slug = slug($_POST['Post']['title']);
-			}
-			foreach (Slug::model()->getAll() as $value) {
-				if ($the_slug == $value['slug']) {
-					
-					$a_slug = $the_slug . '-' . 1;
-
-					$array_slug = explode('-', $a_slug);
-					$pop_array_url = array_pop($array_slug);
-
-					$array_num = array();
-					for ($i = 0; $i < 100; $i++) {
-						$array_num[] = $i;
-					}
-
-					if (in_array(intval($pop_array_url), $array_num)) {
-						$model_slug->slug = $the_slug . '-' . (intval($pop_array_url) + 1);
-					} else $model_slug->slug = $a_slug;
-				}
-			}
-
-			$model_slug->save();
+			$slugModel->save();
 
 			if ($model->save())
 				$this->redirect(array('view', 'id' => $model->id));
@@ -166,7 +147,7 @@ class PostController extends Controller
 		$this->render('update', array(
 			'model' => $model,
 			'data' => $data,
-			'model_slug' => $model_slug,
+			'slugModel' => $slugModel,
 		));
 	}
 

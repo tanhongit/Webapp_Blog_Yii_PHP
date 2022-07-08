@@ -22,9 +22,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model_slug, 'slug'); ?>
-		<?php echo $form->textField($model_slug, 'slug', array('size' => 60, 'maxlength' => 255)); ?>
-		<?php echo $form->error($model_slug, 'slug'); ?>
+		<?php echo $form->labelEx($slugModel, 'slug'); ?>
+		<?php echo $form->textField($slugModel, 'slug', array('size' => 60, 'maxlength' => 255)); ?>
+		<?php echo $form->error($slugModel, 'slug'); ?>
 	</div>
 
 	<div class="row">
