@@ -62,7 +62,7 @@ class SlugController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Slug;
+		$model= new Slug;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);

@@ -4,6 +4,9 @@ function get_BaseUrl()
     return Yii::app()->request->baseUrl;
 }
 
+/**
+ * @return mixed
+ */
 function get_server_name()
 {
     // return $_SERVER['SERVER_NAME'];
@@ -283,4 +286,14 @@ function getSubStrString($string, $length)
         $name =  $string;
     } else $name = substr($string, 0, $length) . '...';
     return $name;
+}
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
 }
