@@ -1,5 +1,7 @@
 # Welcome to Webapp Blog Yii PHP Framework 
 
+It's a free e-commerce website project for everyone to use. It is built in Yii PHP Framework.
+
 # 1. Configuration requirements
 
     - Version PHP 7.2, 7.4
