@@ -129,4 +129,38 @@ class Slug extends SlugBase
         }
         return $slugModel;
     }
+
+    /**
+     * @param $data
+     * @param $model
+     * @param $object
+     * @return false|Slug
+     */
+    public function createSlug($data, $model, $object = 'product')
+    {
+        if ($data) {
+            $slugModel = new Slug;
+            $slugModel->attributes = $data['Slug'];
+
+            $objectID = $object . '_id';
+            $slugModel->$objectID = $model->id;
+            if (empty($data['Slug']['slug'])) {
+                $slugModel->slug = slug($model->title);
+            } else {
+                $slugModel->slug = slug($data['Slug']['slug']);
+            }
+
+            $slugTerm = $slugModel->slug;
+            $condition = 'slug = "' . $slugModel->slug . '"';
+            $checkSlug = self::model()->getByOptionCondition($condition);
+            if (count($checkSlug) > 0) {
+                $slugTerm = slug($slugModel->slug . '-' . generateRandomString());
+            }
+            $slugModel->slug = $slugTerm;
+
+            $slugModel->save();
+            return $slugModel;
+        }
+        return false;
+    }
 }
