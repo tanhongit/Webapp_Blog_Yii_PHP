@@ -70,6 +70,19 @@ class Slug extends SlugBase
 	}
 
     /**
+     * @param $productID
+     * @return array|CActiveRecord|mixed|null
+     */
+    public function getByProductID($productID)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->select = '*';
+        $criteria->condition = 'product_id = ' . $productID;
+        $data = Slug::model()->findAll($criteria);
+        return $data;
+    }
+
+    /**
      * @param $option
      * @param $id
      * @return array|CActiveRecord|mixed|null
@@ -105,18 +118,41 @@ class Slug extends SlugBase
      * @param $action
      * @return mixed
      */
-    public function updateSlug($objectID, $data, $action = 'update') {
-        $slugModel = self::model()->getByPostID($objectID)[0];
+    public function updateSlug($objectID, $data, $object = 'product', $action = 'update') {
+        if ($object == 'product') {
+            $objectTitle = 'name';
+            $slugModel = self::model()->getByProductID($objectID);
+        } elseif ($object == 'post') {
+            $objectTitle = 'title';
+            $slugModel = self::model()->getByPostID($objectID);
+        } elseif ($object == 'category') {
+            $objectTitle = 'name';
+            $slugModel = self::model()->getByPostID($objectID);
+        } elseif ($object == 'tag') {
+            $objectTitle = 'name';
+            $slugModel = self::model()->getByPostID($objectID);
+        }
+
+        $hasSlug = false;
+        if (count($slugModel) > 0) {
+            $slugModel = $slugModel[0];
+            $hasSlug = true;
+        } else {
+            $slugModel = new Slug;
+            $objID = $object . '_id';
+            $slugModel->$objID = $objectID;
+        }
+
         if ($data) {
             $slugModel->attributes = $_POST['Slug'];
-
             $slugName = slug($_POST['Slug']['slug']);
+
             if (empty($slugName)) {
-                $slugName = slug($_POST['Post']['title']);
+                $slugName = slug($_POST[ucfirst($object)][$objectTitle]);
             }
             $slugTerm = $slugName;
 
-            if ('update' == $action) {
+            if ('update' == $action && $hasSlug) {
                 $condition = 'slug = "' . $slugName . '" AND id != ' . $slugModel->id;
                 $checkSlug = self::model()->getByOptionCondition($condition);
                 if (count($checkSlug) > 0) {

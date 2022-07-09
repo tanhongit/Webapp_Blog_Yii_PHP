@@ -62,9 +62,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model, 'image'); ?>
-		<?php echo $form->FileField($model, 'image', array('size' => 60, 'maxlength' => 255)); ?>
-		<?php echo $form->error($model, 'image'); ?>
+        <input type="file" name="image" id="image" value="<?= $model->image ? $model->image : ''?>"/>
 	</div>
 
 	<div class="row">
