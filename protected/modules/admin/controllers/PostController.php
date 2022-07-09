@@ -78,21 +78,15 @@ class PostController extends Controller
 
 			$model->attributes = $_POST['Post'];
 
-			if (empty($_POST['Post[create_time]'])) {
+			if (empty($_POST['Post']['create_time'])) {
 				$model->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			}
-			if (empty($_POST['Post[update_time]'])) {
+			if (empty($_POST['Post']['update_time'])) {
 				$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			}
 
-			$slugModel->attributes = $_POST['Slug'];
-
 			if ($model->save()) {
-				$slugModel->post_id = $model->id;
-				if (empty($_POST['Slug[slug]'])) {
-					$slugModel->slug = slug($model->title);
-				}
-				$slugModel->save();
+			    $slugModel = Slug::model()->createSlug($_POST, $model, 'post');
 				$this->redirect(array('view', 'id' => $model->id));
 			}
 		}
