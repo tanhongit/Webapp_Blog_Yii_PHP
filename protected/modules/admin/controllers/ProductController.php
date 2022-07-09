@@ -67,23 +67,23 @@ class ProductController extends Controller
 	public function actionCreate()
 	{
 		$model = new Product;
+        $slugModel = new Slug;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		$category = Category::model()->getAll();
-		// print_r($user);
-		$data = CHtml::listData($category, 'id', 'name');
-
+        $dataCategory = CHtml::listData($category, 'id', 'name');
+        $dataAuthor = CHtml::listData(User::model()->getAll(), 'id', 'username');
 		$path = Yii::getPathOfAlias('webroot') . '/uploads';
 
 		if (isset($_POST['Product'])) {
 			$model->attributes = $_POST['Product'];
 
-			if (empty($_POST['Product[create_time]'])) {
+			if (empty($_POST['Product']['create_time'])) {
 				$model->create_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			}
-			if (empty($_POST['Product[update_time]'])) {
+			if (empty($_POST['Product']['update_time'])) {
 				$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
 			}
 
@@ -92,11 +92,14 @@ class ProductController extends Controller
 			$model->image = "/uploads/" . time() . '_' . $image->name;
 
 			if ($model->save())
+                $slugModel = Slug::model()->createSlug($_POST, $model);
 				$this->redirect(array('view', 'id' => $model->id));
 		}
 		$this->render('create', array(
 			'model' => $model,
-			'data' => $data,
+			'dataCategory' => $dataCategory,
+            'dataAuthor' => $dataAuthor,
+            'slugModel' => $slugModel,
 		));
 	}
 

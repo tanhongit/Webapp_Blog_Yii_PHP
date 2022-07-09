@@ -144,8 +144,19 @@ class Slug extends SlugBase
 
             $objectID = $object . '_id';
             $slugModel->$objectID = $model->id;
+
+            if ($object == 'product') {
+                $slugName = 'name';
+            } elseif ($object == 'post') {
+                $slugName = 'title';
+            } elseif ($object == 'category') {
+                $slugName = 'name';
+            } elseif ($object == 'tag') {
+                $slugName = 'name';
+            }
+
             if (empty($data['Slug']['slug'])) {
-                $slugModel->slug = slug($model->title);
+                $slugModel->slug = slug($model->$slugName);
             } else {
                 $slugModel->slug = slug($data['Slug']['slug']);
             }
