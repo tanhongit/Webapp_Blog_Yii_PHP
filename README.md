@@ -25,3 +25,5 @@ APP_URL/admin/post/
 APP_URL/admin/category/
 APP_URL/admin/tag/
 ```
+
+![2022-07-09_100848](https://user-images.githubusercontent.com/35853002/178089397-909c5dff-f45b-422d-a53d-59975bfc4c8d.png)
