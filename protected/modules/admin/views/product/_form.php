@@ -26,6 +26,12 @@
 		<?php echo $form->error($model, 'name'); ?>
 	</div>
 
+    <div class="row">
+        <?php echo $form->labelEx($slugModel, 'slug'); ?>
+        <?php echo $form->textField($slugModel, 'slug', array('size' => 60, 'maxlength' => 255)); ?>
+        <?php echo $form->error($slugModel, 'slug'); ?>
+    </div>
+
 	<div class="row">
 		<?php echo $form->labelEx($model, 'description'); ?>
 		<?php //echo $form->textArea($model, 'content', array('rows' => 6, 'cols' => 50)); 
@@ -45,7 +51,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'category_id'); ?>
-		<?php echo $form->dropDownList($model, 'category_id', $data, array('empty' => 'Choose category')); ?>
+		<?php echo $form->dropDownList($model, 'category_id', $dataCategory, array('empty' => 'Choose category')); ?>
 		<?php echo $form->error($model, 'category_id'); ?>
 	</div>
 
@@ -152,11 +158,11 @@
 		<?php echo $form->error($model, 'update_time'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model, 'author_id'); ?>
-		<?php echo $form->textField($model, 'author_id'); ?>
-		<?php echo $form->error($model, 'author_id'); ?>
-	</div>
+    <div class="row">
+        <?php echo $form->labelEx($model, 'author_id'); ?>
+        <?php echo $form->dropDownList($model, 'author_id', $dataAuthor, array('empty' => 'Choose other user')); ?>
+        <?php echo $form->error($model, 'author_id'); ?>
+    </div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
