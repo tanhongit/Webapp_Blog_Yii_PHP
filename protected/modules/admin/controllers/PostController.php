@@ -111,13 +111,18 @@ class PostController extends Controller
         $data = CHtml::listData($user, 'id', 'username');
         $model = $this->loadModel($id);
 
-        $slugModel = Slug::model()->getByPostID($id)[0];
+        $slugModel = Slug::model()->getByPostID($id);
+        if (count($slugModel) > 0) {
+            $slugModel = $slugModel[0];
+        } else {
+            $slugModel = new Slug;
+        }
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if (isset($_POST['Post'])) {
 			$model->attributes = $_POST['Post'];
-			$slugModel = Slug::model()->updateSlug($id, $_POST);
+			$slugModel = Slug::model()->updateSlug($id, $_POST, 'post');
 
 			if ($model->save())
 				$this->redirect(array('view', 'id' => $model->id));

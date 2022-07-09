@@ -115,19 +115,30 @@ class ProductController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		$category = Category::model()->getAll();
-		// print_r($user);
-		$data = CHtml::listData($category, 'id', 'name');
-		
+        $dataCategory = CHtml::listData($category, 'id', 'name');
+        $dataAuthor = CHtml::listData(User::model()->getAll(), 'id', 'username');
+
+        $slugModel = Slug::model()->getByProductID($id);
+        if (count($slugModel) > 0) {
+            $slugModel = $slugModel[0];
+        } else {
+            $slugModel = new Slug;
+        }
+
 		if (isset($_POST['Product'])) {
 			$model->attributes = $_POST['Product'];
 			$model->update_time = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
-			if ($model->save())
-				$this->redirect(array('view', 'id' => $model->id));
+			if ($model->save()) {
+                $slugModel = Slug::model()->updateSlug($id, $_POST);
+                $this->redirect(array('view', 'id' => $model->id));
+            }
 		}
 
 		$this->render('update', array(
 			'model' => $model,
-			'data' => $data
+            'dataCategory' => $dataCategory,
+            'dataAuthor' => $dataAuthor,
+            'slugModel' => $slugModel,
 		));
 	}
 
