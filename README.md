@@ -12,7 +12,27 @@
 
 # 3. Feature
 
+```text
+1. FRONT-END
+    - Shopping cart
+    - Save cart with database
+    - Customer login
+    - Content: Page, Post, Product List, Product Details, Category,...
+    - Product attributes: cost price, promotion price, detail,...
+    - Comment on Product, Post,...
+    - Search, pagination,...
+    - Checkout, PlaceOrder,...
+    ...
 
+=================================================================
+
+2. BACKEND-ADMIN
+    - Product manager   (Create, delete, update)
+    - Category manager  (Create, delete, update)
+    - Order management  (Create, delete, update)
+    - User management   (Create, delete, update)
+    ...
+```
 
 # 4. Edit Connect Database
 
@@ -20,7 +40,7 @@ You need to change the connection information to the database if you want to sto
 
 Path: [`/config/database.php`](https://github.com/tanhongit/Webapp_Blog_Yii_PHP/tree/main/protected/config)
 
-Change **dbname**, **dbuser**, **dbpass**, **dbhost** to your database information.
+Change **host**, **dbname**, **username**, **password** to your database information.
 
 ```php
 return array(
@@ -88,7 +108,7 @@ mkcert local.webapp_blog_yii_php.com
 
 Change **local.webapp_blog_yii_php.com.conf** file (/apache2/sites-available/ to this)
 
-```
+```textmate
 <VirtualHost *:80>
 	ServerAdmin localserver@localhost
 	ServerName local.webapp_blog_yii_php.com
